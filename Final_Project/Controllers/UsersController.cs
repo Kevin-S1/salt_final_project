@@ -77,12 +77,17 @@ namespace Final_Project.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromBody] User user)
         {
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+            var matchingUser = _context.User.Where(u => u.AuthId == user.AuthId).ToList();
+            if (matchingUser.Count == 0)
+            {
+                _context.User.Add(user);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            }
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return NoContent();
         }
 
         // DELETE: api/Users/5

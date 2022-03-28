@@ -9,6 +9,8 @@ builder.Services.AddDbContext<SwappieContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddCors();
+
 
 var app = builder.Build();
 
@@ -19,6 +21,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
