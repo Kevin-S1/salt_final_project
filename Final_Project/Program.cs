@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Final_Project.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<SwappieContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SwappieContext")));
 
 // Add services to the container.
 
