@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Final_Project.Data;
+using Final_Project.DTOs;
 using Final_Project.Models;
 
 namespace Final_Project.Controllers
@@ -77,12 +78,19 @@ namespace Final_Project.Controllers
         // POST: api/Toys
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Toy>> PostToy(Toy toy)
+        public async Task<ActionResult<Toy>> PostToy([FromBody]ToyInputDTO toy)
         {
-            _context.Toy.Add(toy);
+            var id = _context.User.Where(u => u.AuthId == toy.AuthId).Select(u => u.Id).Single();
+            Toy newToy = new Toy()
+            {
+                Name = toy.Name,
+                Description = toy.Description,
+                UserId = id
+            };
+            _context.Toy.Add(newToy);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetToy", new { id = toy.Id }, toy);
+            return CreatedAtAction("GetToy", new { id = newToy.Id }, toy);
         }
 
         // DELETE: api/Toys/5

@@ -8,6 +8,7 @@ import Details from "./Components/Details/Details";
 import Listings from "./Components/Listings/Listings";
 import Loans from "./Components/Loans/Loans";
 import {useAuth0} from "@auth0/auth0-react";
+import AddToy from "./Components/AddToy/AddToy";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                 <Route path='listings' element={<Listings />}/>
                 <Route path='details' element={<Loans />}/>
             </Route>
+            <Route path='add' element={<AddToy />}/>
             <Route path='/' element={ <Home /> }>Home</Route>
         </Routes>
     </>

@@ -18,5 +18,11 @@ namespace Final_Project.Data
         public DbSet<Final_Project.Models.User> User { get; set; }
 
         public DbSet<Final_Project.Models.Toy> Toy { get; set; }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<User>()
+                .HasMany(_ => _.Toys)
+                .WithOne();
+        }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Final_Project.Data;
+using Final_Project.DTOs;
 using Final_Project.Models;
 
 namespace Final_Project.Controllers
@@ -45,23 +46,31 @@ namespace Final_Project.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        [HttpPut("{authId}")]
+        public async Task<IActionResult> PutUser(string authId, [FromBody] UserInputDTO userInputDto)
         {
-            if (id != user.Id)
+            
+            if (!UserExists(authId))
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            var user = _context.User.FirstOrDefault(u => u.AuthId == authId);
 
+            user.City = userInputDto.City;
+            user.Country = userInputDto.Country;
+            user.PhoneNumber = userInputDto.PhoneNumber;
+            
+            _context.Entry(user).State = EntityState.Modified;
+ 
             try
             {
                 await _context.SaveChangesAsync();
+                Console.WriteLine(user);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UserExists(authId))
                 {
                     return NotFound();
                 }
@@ -106,9 +115,9 @@ namespace Final_Project.Controllers
             return NoContent();
         }
 
-        private bool UserExists(int id)
+        private bool UserExists(string authId)
         {
-            return _context.User.Any(e => e.Id == id);
+            return _context.User.Any(e => e.AuthId == authId);
         }
     }
 }
