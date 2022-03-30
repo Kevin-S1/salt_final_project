@@ -1,0 +1,10 @@
+
+.toy-details__body {
+    display: flex;
+    
+}
+
+.toy-details__info {
+    flex-direction: column;
+    margin-top: 10px;
+}

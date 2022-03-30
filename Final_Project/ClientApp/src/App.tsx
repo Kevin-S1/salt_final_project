@@ -84,7 +84,6 @@ function App() {
   return (
     <>
       <NavBar />
-        
         <Routes>
             <Route path='/profile' >
                 <Route path='details' element={<Details />}/>

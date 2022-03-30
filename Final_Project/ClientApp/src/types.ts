@@ -1,6 +1,6 @@
 export type userDetails = {
-    city : string
-    country: string
+    city : string,
+    country: string,
     phoneNumber: string
 }
 
@@ -10,10 +10,20 @@ export type toy = {
     userId : number
 }
 
+export type toyDetails = {
+    id: number,
+    name: string,
+    description: string,
+    userId: number,
+    userName: string,
+    imgUrl: string
+}
+
 export type rating = {
     ratingValue : number,
     userId : string
 }
+
 
 export type InitialUserDetails = {
     city : string,
@@ -26,5 +36,5 @@ export type InitialUserDetails = {
     userName:string,
     toys:Array<toy>,
     ratings:Array<rating>,
-    sub:string,
+    sub:string
 }
