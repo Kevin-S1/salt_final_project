@@ -9,13 +9,15 @@ import Listings from "./Components/Listings/Listings";
 import Loans from "./Components/Loans/Loans";
 import {useAuth0} from "@auth0/auth0-react";
 import AddToy from "./Components/AddToy/AddToy";
-import {InitialUserDetails} from "./types";
+import Toy from "./Components/Toys/Toy";
+
+import {InitialUserDetails, toy} from "./types";
 
 
 function App() {
     
-    
     const [initialUserDetails, setInitialUserDetails] = useState<InitialUserDetails>();
+    const [toys,setToys] = useState<Array<toy>>();
     const { isAuthenticated, user } = useAuth0();
     
     const userDetails = {
@@ -24,6 +26,36 @@ function App() {
         sub: user?.sub,
         picture: user?.picture
     }
+    const GetToysData =async () =>{
+        const response = await fetch('https://localhost:7275/api/toys',{
+            method:'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json();
+
+        const updatedToysInformation: Array<toy> = data.map((toy:any) => {
+            const newToy = {
+                name:'',
+                description:'',
+                userId:0
+            };
+
+            newToy.name = toy.name;
+            newToy.description = toy.description;
+            newToy.userId =toy.userId;
+
+            return newToy;
+        })
+        setToys(updatedToysInformation);
+    }
+    useEffect(() =>{
+        console.log(toys)
+        }, 
+        [toys]
+    )
+
     
     const postUserData =async () =>{
         const response = await fetch('https://localhost:7275/api/Users',{
@@ -43,7 +75,11 @@ function App() {
         if(isAuthenticated) { 
             postUserData();
         }
-    },[isAuthenticated])
+    },[isAuthenticated]);
+
+    useEffect(()=>{
+        GetToysData();
+    },[]);
     
   return (
     <>
@@ -57,6 +93,9 @@ function App() {
             </Route>
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> }>Home</Route>
+            <Route path='/toys' element={ <Toy toys={ toys}/>}>
+                {/*<Route path=':id' element={<ToyDetails />}*/}
+            </Route>
         </Routes>
     </>
   );
