@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using System.Security.Principal;
 
@@ -10,7 +11,9 @@ public class Toy
     public string Description { get; set; }
     public string Image { get; set; } = "https://picsum.photos/200";
 
-    public virtual int UserId { get; set; }
+    public int UserId { get; set; }
+    
+    public User User { get; set; }
     public Ages Age { get; set; }
     public Categories Category { get; set; }
 }

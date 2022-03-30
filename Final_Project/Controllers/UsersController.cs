@@ -34,7 +34,17 @@ namespace Final_Project.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.User.FindAsync(id);
+
+            
+            var user = await _context
+                    .User
+                    .Include(u => u.Toys)
+                    .FirstOrDefaultAsync(u => u.Id == id);
+            Console.WriteLine(id);
+            // var user = await _context.User.FindAsync(authId);
+            // var toys = await _context.Toy.Where(t => t.UserId == user.Id).Select(t => t).ToListAsync();
+            
+            
 
             if (user == null)
             {
@@ -96,7 +106,7 @@ namespace Final_Project.Controllers
                 return CreatedAtAction("GetUser", new { id = user.Id }, user);
             }
 
-            return NoContent();
+            return Ok(matchingUser[0]);     
         }
 
         // DELETE: api/Users/5

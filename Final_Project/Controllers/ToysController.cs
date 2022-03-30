@@ -80,13 +80,14 @@ namespace Final_Project.Controllers
         [HttpPost]
         public async Task<ActionResult<Toy>> PostToy([FromBody]ToyInputDTO toy)
         {
-            var id = _context.User.Where(u => u.AuthId == toy.AuthId).Select(u => u.Id).Single();
+           Console.WriteLine(toy);
             Toy newToy = new Toy()
             {
                 Name = toy.Name,
                 Description = toy.Description,
-                UserId = id
+                UserId = toy.UserId
             };
+            
             _context.Toy.Add(newToy);
             await _context.SaveChangesAsync();
 

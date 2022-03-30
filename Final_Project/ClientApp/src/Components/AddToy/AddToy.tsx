@@ -1,35 +1,39 @@
 import React, {useEffect, useState} from "react";
 import './addToy.css'
 import {Button, Form} from "react-bootstrap";
-import {toy} from "../../types";
+import {toy, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
+import {create} from "domain";
 
 
-const AddToy = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    console.log(user?.sub);
+const AddToy = (props : any) => {
+   
+    const { isAuthenticated} = useAuth0();
+  
     const [name, setName] = useState<string>("")
     const [description, setDescription] = useState<string>("")
 
-    const [toy, setToy] = useState<toy>({name: "", description: "", authId: ""});
+    const [toy, setToy] = useState<toy>({name: "", description: "", userId: 0});
     
     const submitHandler = (e:any) => {
         e.preventDefault();
-        if(user?.sub !== undefined){
-            setToy({ name:name, description:description, authId:user.sub });
+        if(isAuthenticated){
+            setToy({ name:name, description:description, userId:props.initialUserDetails.id});
         }
     }
 
-    const UpdateToy = async()=> {
+    const CreateToy = async()=> {
+        
         if(isAuthenticated)
         {
-            const response = await fetch(`https://localhost:7275/api/Toys/`,{
+            const response = await fetch(`https://localhost:7275/api/toys/`,{
                 method:'POST',
                 body:JSON.stringify(toy),
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
+            console.log(await response.json())
             if(response.status === 204) {
 
                 setName("");
@@ -39,13 +43,14 @@ const AddToy = () => {
 
     }
     useEffect(()=>{
-        UpdateToy();
+        CreateToy();
     },[toy])
     
     return (
         <>
             <div>
-                <h4>Add Toy:</h4>
+                <h4>Add Toy: {props.initialUserDetails.id}</h4>
+                
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicCity">
                         <Form.Label>Name</Form.Label>

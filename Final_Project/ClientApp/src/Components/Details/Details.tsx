@@ -9,12 +9,11 @@ const Details = () => {
    
     
     const [updatedUserDetails, setUpdatedUserDetails] = useState<userDetails>({city: "", country: "", phoneNumber: ""});
-
-    
-    
     const [userCity, setUserCity] = useState<string>("")
     const [userCountry, setUserCountry] = useState<string>("")
     const [userPhoneNumber, setUserPhoneNumber] = useState<string>("")
+    
+    
     const submitHandler = (e : any) =>{
        e.preventDefault();
        setUpdatedUserDetails({city:userCity,country:userCountry,phoneNumber:userPhoneNumber});

@@ -130,11 +130,13 @@ namespace Final_Project.Migrations
 
             modelBuilder.Entity("Final_Project.Models.Toy", b =>
                 {
-                    b.HasOne("Final_Project.Models.User", null)
+                    b.HasOne("Final_Project.Models.User", "User")
                         .WithMany("Toys")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Final_Project.Models.User", b =>

@@ -12,8 +12,8 @@ public class User
     public string? Country { get; set; }
     public string? PhoneNumber { get; set; }
 
-    public ICollection<Toy>? Toys { get; set; } = new List<Toy>();
-    public ICollection<Rating>? Ratings { get; set; } = new List<Rating>();
+    public virtual ICollection<Toy>? Toys { get; set; }
+    public virtual ICollection<Rating>? Ratings { get; set; }
     
     [Required]
     [JsonPropertyName("sub")]
