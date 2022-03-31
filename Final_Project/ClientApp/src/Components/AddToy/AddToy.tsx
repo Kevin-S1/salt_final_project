@@ -52,12 +52,12 @@ const AddToy = (props : any) => {
                 <h4>Add Toy: {props.initialUserDetails.id}</h4>
                 
                 <Form onSubmit={ (e) => submitHandler(e)}>
-                    <Form.Group className="mb-3" controlId="formBasicCity">
+                    <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Name" name="name"  value={name} onChange={e => setName(e.target.value)}/>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicCountry">
-                        <Form.Label>Country</Form.Label>
+                    <Form.Group className="mb-3" controlId="formBasicDescription">
+                        <Form.Label>Description</Form.Label>
                         <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Description" name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
                     </Form.Group>
                     <Button variant="primary" type="submit">

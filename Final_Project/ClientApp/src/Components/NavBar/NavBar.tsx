@@ -12,7 +12,8 @@ const NavBar = () => {
         <>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Link to="/">Swappie</Link>
+                    <Link className='nav-header' to="/">Swappie</Link>
+                    <Link className='nav-item' to="/toys">Toys</Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -20,7 +21,8 @@ const NavBar = () => {
                         <Nav>
                             {isAuthenticated ? 
                                 <NavDropdown title="My Profile" id="collasible-nav-dropdown">
-                                    <NavDropdown.Item ><Link to="/profile/details">Details</Link></NavDropdown.Item>
+                                    <NavDropdown.Item ><Link to={`/profile/details`}
+                                    >Details</Link></NavDropdown.Item>
                                     <NavDropdown.Item ><Link to="/profile/loans">My Loans</Link></NavDropdown.Item>
                                     <NavDropdown.Item ><Link to="/profile/listings">My Listings</Link></NavDropdown.Item>
                             </NavDropdown> : <> </>}

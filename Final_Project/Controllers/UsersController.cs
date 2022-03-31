@@ -34,24 +34,46 @@ namespace Final_Project.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-
-            
             var user = await _context
                     .User
                     .Include(u => u.Toys)
                     .FirstOrDefaultAsync(u => u.Id == id);
-            Console.WriteLine(id);
-            // var user = await _context.User.FindAsync(authId);
-            // var toys = await _context.Toy.Where(t => t.UserId == user.Id).Select(t => t).ToListAsync();
-            
-            
-
             if (user == null)
             {
                 return NotFound();
             }
-
             return user;
+        }
+        
+        [HttpGet("usertoys/{id}")]
+        public async Task<ActionResult<List<ToyDetailsDTO>>> GetUserToys(int id)
+        {
+            var user = await _context
+                .User
+                .Include(u => u.Toys)
+                .FirstOrDefaultAsync(u => u.Id == id);
+            
+            if (user == null)
+            {
+                return NotFound();
+            }
+            
+            var toysList = new List<ToyDetailsDTO>();
+            foreach (var toy in user.Toys)
+            {
+                var toyDTO = new ToyDetailsDTO() { 
+                    Id = toy.Id,
+                    Name = toy.Name, 
+                    Description = toy.Description,
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    Image = toy.Image,
+                    UserEmail = user.Email,
+                    PhoneNumber = user.PhoneNumber
+                };
+                toysList.Add(toyDTO);
+            }
+            return toysList;
         }
 
         // PUT: api/Users/5

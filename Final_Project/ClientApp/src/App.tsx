@@ -19,6 +19,7 @@ function App() {
     
     const [initialUserDetails, setInitialUserDetails] = useState<InitialUserDetails>();
     const [toys,setToys] = useState<Array<toyDetails>>();
+    
     const { isAuthenticated, user } = useAuth0();
     
     const userDetails = {
@@ -35,22 +36,11 @@ function App() {
             }
         })
         const data = await response.json();
-
-        // const updatedToysInformation: Array<toyDetails> = data.map((toy:any) => {
-        //     const newToy = {
-        //         name:'',
-        //         description:'',
-        //         userId:0
-        //     };
-        //
-        //     newToy.name = toy.name;
-        //     newToy.description = toy.description;
-        //     newToy.userId =toy.userId;
-        //
-        //     return newToy;
-        // })
         setToys(data);
     }
+
+    
+    
     useEffect(() =>{
         console.log(toys)
         }, 
@@ -68,8 +58,7 @@ function App() {
         })
        
         const data = await response.json();
-        setInitialUserDetails(data)
-        console.log(initialUserDetails);
+        await setInitialUserDetails(data)
     }
 
     useEffect(()=>{
@@ -82,13 +71,15 @@ function App() {
         GetToysData();
     },[]);
     
+    
+    
   return (
     <>
       <NavBar />
         <Routes>
             <Route path='/profile' >
                 <Route path='details' element={<Details />}/>
-                <Route path='listings' element={<Listings toys={ toys } />}/>
+                <Route path='listings' element={<Listings id={initialUserDetails} />}/>
                 <Route path='loans' element={<Loans />}/>
             </Route>
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
