@@ -92,9 +92,10 @@ function App() {
             </Route>
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> }>Home</Route>
-            <Route path='/toys' element={ <Toy toys={ toys}/>}>
+            <Route path='/toys' element={ <Toy toys={toys}/>}>
                 {/*<Route path=':id' element={<ToyDetails />}*/}
             </Route>
+            
         </Routes>
     </>
   );
