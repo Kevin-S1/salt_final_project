@@ -1,18 +1,17 @@
 import React from "react";
 import './toy.css'
 import {toy} from "../../types";
+import ToyInfo from "../ToyInfo/ToyInfo";
 
-const Toy = (props : any) => {
-
+interface Props{
+   toys : Array<toy> | undefined
+}
+const Toy = ({toys}: Props) => {
+    console.log(toys);
     return (
         <>
-            {/*{*/}
-            {/*    props.toys.map((toy:any) =>*/}
-            {/*        <h1>{toy.description}</h1>*/}
-            {/*    )*/}
-            {/*}*/}
             {
-                props.toys.map((t:any) => t.description)
+                toys?.map((t : toy,index) =>(<ToyInfo key={index} toy={t} />))
             }
 
         </>
