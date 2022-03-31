@@ -15,16 +15,22 @@ const ToyDetails = (props: toyDetails) => {
     
     return(
         <div className="toy-details--body">
-            <img className="toy-details__image" src="" />
+            <img className="toy-details__image" src={props.imgUrl} />
             <div className="toy-details__info">
                 <header className="toy-details__header">{props.name}</header>
                 <p className="toy-details__description">{props.description}</p>
                 
                 {isAuthenticated ?
-                        <button onClick={() => logout({ returnTo: window.location.origin })}>
-                            Contact Owner
-                        </button> :
-                        <button onClick={() => loginWithRedirect()}>Log In to contact user</button>
+                    <footer className="toy-details--info__user-info">
+                        <div>{props.userName}</div>
+                        <div>{props.userEmail}</div>
+                        <div>{props.phoneNumber}</div>
+                    </footer>
+                         :
+                    <footer >
+                        <p>login to contact owner</p>
+                        <button className="" onClick={() => loginWithRedirect()}>Login </button>
+                    </footer>
                 }
             </div>
         </div>

@@ -1,3 +1,6 @@
+import {UrlWithStringQuery} from "url";
+import {SpawnSyncOptionsWithStringEncoding} from "child_process";
+
 export type userDetails = {
     city : string,
     country: string,
@@ -16,7 +19,9 @@ export type toyDetails = {
     description: string,
     userId: number,
     userName: string,
-    imgUrl: string
+    imgUrl: string,
+    userEmail: string,
+    phoneNumber: string
 }
 
 export type rating = {
