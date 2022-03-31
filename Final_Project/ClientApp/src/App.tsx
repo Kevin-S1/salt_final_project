@@ -11,13 +11,14 @@ import {useAuth0} from "@auth0/auth0-react";
 import AddToy from "./Components/AddToy/AddToy";
 import Toy from "./Components/Toys/Toy";
 
-import {InitialUserDetails, toy} from "./types";
+import {InitialUserDetails, toyDetails} from "./types";
+import ToyDetails from "./Components/ToyDetails/ToyDetails";
 
 
 function App() {
     
     const [initialUserDetails, setInitialUserDetails] = useState<InitialUserDetails>();
-    const [toys,setToys] = useState<Array<toy>>();
+    const [toys,setToys] = useState<Array<toyDetails>>();
     const { isAuthenticated, user } = useAuth0();
     
     const userDetails = {
@@ -35,20 +36,20 @@ function App() {
         })
         const data = await response.json();
 
-        const updatedToysInformation: Array<toy> = data.map((toy:any) => {
-            const newToy = {
-                name:'',
-                description:'',
-                userId:0
-            };
-
-            newToy.name = toy.name;
-            newToy.description = toy.description;
-            newToy.userId =toy.userId;
-
-            return newToy;
-        })
-        setToys(updatedToysInformation);
+        // const updatedToysInformation: Array<toyDetails> = data.map((toy:any) => {
+        //     const newToy = {
+        //         name:'',
+        //         description:'',
+        //         userId:0
+        //     };
+        //
+        //     newToy.name = toy.name;
+        //     newToy.description = toy.description;
+        //     newToy.userId =toy.userId;
+        //
+        //     return newToy;
+        // })
+        setToys(data);
     }
     useEffect(() =>{
         console.log(toys)
@@ -91,11 +92,9 @@ function App() {
                 <Route path='details' element={<Loans />}/>
             </Route>
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
-            <Route path='/' element={ <Home /> }>Home</Route>
-            <Route path='/toys' element={ <Toy toys={toys}/>}>
-                {/*<Route path=':id' element={<ToyDetails />}*/}
-            </Route>
-            
+            <Route path='/' element={ <Home /> } />
+            <Route path='/toys' element={ <Toy toys={toys}/>} />
+            <Route path='/toys/:id' element={<ToyDetails />} />
         </Routes>
     </>
   );

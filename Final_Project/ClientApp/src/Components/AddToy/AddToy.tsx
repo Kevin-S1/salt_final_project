@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './addToy.css'
 import {Button, Form} from "react-bootstrap";
-import {toy, InitialUserDetails} from "../../types";
+import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
 import {create} from "domain";
 
@@ -13,7 +13,7 @@ const AddToy = (props : any) => {
     const [name, setName] = useState<string>("")
     const [description, setDescription] = useState<string>("")
 
-    const [toy, setToy] = useState<toy>({name: "", description: "", userId: 0});
+    const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0});
     
     const submitHandler = (e:any) => {
         e.preventDefault();

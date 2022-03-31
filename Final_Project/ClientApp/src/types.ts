@@ -7,19 +7,19 @@ export type userDetails = {
     phoneNumber: string
 }
 
-export type toy = {
+export type addToyDto = {
     name : string,
     description : string,
     userId : number
 }
-
+// toy details page
 export type toyDetails = {
     id: number,
     name: string,
     description: string,
     userId: number,
     userName: string,
-    imgUrl: string,
+    image: string,
     userEmail: string,
     phoneNumber: string
 }
@@ -39,7 +39,7 @@ export type InitialUserDetails = {
     phoneNumber:string,
     picture:string,
     userName:string,
-    toys:Array<toy>,
+    toys:Array<toyDetails>,
     ratings:Array<rating>,
     sub:string
 }

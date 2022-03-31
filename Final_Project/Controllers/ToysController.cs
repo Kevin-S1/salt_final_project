@@ -27,21 +27,37 @@ namespace Final_Project.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Toy>>> GetToy()
         {
-            return await _context.Toy.ToListAsync();
+            return await _context.Toy
+                .Include(t => t.User)
+                .ToListAsync();
         }
 
         // GET: api/Toys/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Toy>> GetToy(int id)
+        public async Task<ActionResult<ToyDetailsDTO>> GetToy(int id)
         {
-            var toy = await _context.Toy.FindAsync(id);
+           
 
+            var toy = await _context.Toy.FindAsync(id);
             if (toy == null)
             {
                 return NotFound();
             }
-
-            return toy;
+            
+            var toyOwner = _context.User.Where(u => u.Id == toy.UserId).Single();
+            
+            var toyDTO = new ToyDetailsDTO() { 
+                Id = toy.Id,
+                Name = toy.Name, 
+                Description = toy.Description,
+                UserId = toyOwner.Id,
+                UserName = toyOwner.UserName,
+                Image = toy.Image,
+                UserEmail = toyOwner.Email,
+                PhoneNumber = toyOwner.PhoneNumber
+            };
+            
+            return toyDTO;
         }
 
         // PUT: api/Toys/5

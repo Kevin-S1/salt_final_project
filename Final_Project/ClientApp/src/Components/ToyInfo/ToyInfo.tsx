@@ -1,10 +1,10 @@
 import React from 'react';
-import { toy } from '../../types';
+import { toyDetails } from '../../types';
 import {Link} from "react-router-dom";
 import './toyinfo.css';
 
 interface Props{
-    toy: toy
+    toy: toyDetails
 }
 const ToyInfo = ({toy}: Props) => {
     
@@ -12,7 +12,7 @@ const ToyInfo = ({toy}: Props) => {
         <>
             <h1>{toy.name}</h1>
             <p>{toy.description}</p>
-            <Link to={`/toys/${toy.userId}`} >Details</Link>
+            <Link to={`/toys/${toy.id}`} >Details</Link>
         </>
     )
 };
