@@ -9,12 +9,12 @@ interface Props{
 const Toy = ({toys}: Props) => {
     console.log(toys);
     return (
-        <>
+        <section className="toy__list">
             {
                 toys?.map((t : toyDetails,index) =>(<ToyInfo key={index} toy={t} />))
             }
 
-        </>
+        </section>
     )
 };
 
