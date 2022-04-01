@@ -1,0 +1,30 @@
+.home-page__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.home-page__header{
+    margin-right: 1em;
+    color: black;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.5rem;
+}
+
+.home-page__paragraph {
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+.home-page__image {
+    width: 80vw;
+}
+
+@media only screen and (min-width: 680px) {
+
+    .home-page__image {
+        width: 30vw;
+    }
+
+}
