@@ -10,13 +10,14 @@ const NavBar = () => {
     
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar className="navBar" bg="light" expand="lg">
                 <Container>
                     <Link className='nav-header' to="/">Swappie</Link>
-                    <Link className='nav-item' to="/toys">Toys</Link>
+                    
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
+                            <Link className='nav-item' to="/toys">Toys</Link>
                         </Nav>
                         <Nav>
                             {isAuthenticated ? 
