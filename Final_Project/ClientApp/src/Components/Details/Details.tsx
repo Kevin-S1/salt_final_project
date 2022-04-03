@@ -6,8 +6,6 @@ import {userDetails} from "../../types";
 const Details = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     
-   
-    
     const [updatedUserDetails, setUpdatedUserDetails] = useState<userDetails>({city: "", country: "", phoneNumber: ""});
     const [userCity, setUserCity] = useState<string>("")
     const [userCountry, setUserCountry] = useState<string>("")
@@ -36,7 +34,6 @@ const Details = () => {
                setUserPhoneNumber("");
            }
        }
-        
     }
     useEffect(()=>{
         UpdateUserInformation();
@@ -54,6 +51,7 @@ const Details = () => {
                 <img src={user?.picture} alt={user?.name} />
                 <h2>{user?.name}</h2>
                 <p>{user?.email}</p>
+                <p>{user?.city}</p>
             </div>
             <Form onSubmit={ (e) => submitHandler(e)}>
                 <Form.Group className="mb-3" controlId="formBasicCity">

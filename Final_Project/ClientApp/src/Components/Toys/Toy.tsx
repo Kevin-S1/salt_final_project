@@ -1,20 +1,30 @@
 import React from "react";
 import './toy.css'
+import './form.scss'
 import {toyDetails} from "../../types";
 import ToyInfo from "../ToyInfo/ToyInfo";
 import { Dropdown } from "react-bootstrap";
+
+
 
 interface Props{
    toys : Array<toyDetails> | undefined
 }
 const Toy = ({toys}: Props) => {
     console.log(toys);
+
+    const submitHandler = (e: any) => {
+        e.preventDefault();
+        
+    }
+
     return (
         <>
             <section className='toy__search__filter'>
-                <form>
-                    <label className="toy__search__label">Search</label>
-                    <input className="toy__search__input" type='text' value='search for toy'></input>
+                <form className='toy__search__form' onSubmit={e => submitHandler(e)} role="search">
+                    <label className="toy__search__label" htmlFor="search">Search for stuff</label>
+                    <input className="toy__search__form__input" id="search" type="search" placeholder="Search..." />
+                    <button className="toy__search__form__button" type="submit">Go</button>    
                 </form>
                 <article className="toy__filter__container">
                     <Dropdown className="d-inline mx-2">

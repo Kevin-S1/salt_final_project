@@ -12,8 +12,7 @@
     margin-bottom: 1em;
     border-radius: 0.1em;
     height: 150px;
-    -webkit-box-shadow: 0px 0px 8px 1px #3F3F3F; 
-    box-shadow: 0px 0px 8px 1px #3F3F3F;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .toy__card__image{
