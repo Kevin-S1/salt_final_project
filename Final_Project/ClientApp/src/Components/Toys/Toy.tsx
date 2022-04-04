@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './toy.css'
 import './form.scss'
 import {toyDetails} from "../../types";
@@ -12,19 +12,22 @@ interface Props{
 }
 const Toy = ({toys}: Props) => {
     console.log(toys);
+    
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const submitHandler = (e: any) => {
+    const changeHandler = (e: any) => {
         e.preventDefault();
-        
+        console.log(e);
+        setSearchTerm(e.target.value);
+        console.log(searchTerm);
     }
 
     return (
         <>
             <section className='toy__search__filter'>
-                <form className='toy__search__form' onSubmit={e => submitHandler(e)} role="search">
+                <form className='toy__search__form'  role="search">
                     <label className="toy__search__label" htmlFor="search">Search for stuff</label>
-                    <input className="toy__search__form__input" id="search" type="search" placeholder="Search..." />
-                    <button className="toy__search__form__button" type="submit">Go</button>    
+                    <input className="toy__search__form__input" onChange={e => changeHandler(e)} id="search" type="search" placeholder="Search..." />
                 </form>
                 <article className="toy__filter__container">
                     <Dropdown className="d-inline mx-2">
@@ -56,7 +59,7 @@ const Toy = ({toys}: Props) => {
             </section>
             <section className="toy__list">
                 {
-                    toys?.map((t : toyDetails,index) =>(<ToyInfo key={index} toy={t} />))
+                    toys?.filter(toy => toy.name.includes(searchTerm)).map((t : toyDetails,index) =>(<ToyInfo key={index} toy={t} />))
                 }
 
             </section>

@@ -43,16 +43,6 @@ input[type="search"] {
   position: relative;
 }
 
-.toy__search__form__button{
-  display: none; // prevent being able to tab to it
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: var(--btn-width);
-  font-weight: bold;
-  background: var(--color-brand);
-  border-radius: 0 var(--rad) var(--rad) 0;
-}
 
 .toy__search__form__input:not(:placeholder-shown) {
   border-radius: var(--rad) 0 0 var(--rad);
