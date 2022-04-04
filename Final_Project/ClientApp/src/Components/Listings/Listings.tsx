@@ -39,17 +39,14 @@ const Listings = ({id}:Props) => {
     }
     
     return (
-        <>
+        <div className="listings--container">
+            <h4 className="listings--header">My Listings:</h4>
+            <button className="button-3" onClick={ () => navigate('/add')}>Add Toy</button>
             <div>
-                <h4>Listings:</h4>
-                <button onClick={ () => navigate('/add')}>Add Toy</button>
-                <div>
-                    <Toy toys={userToys}/>
-                    
-                </div>
+                <Toy toys={userToys}/>
+                
             </div>
-
-        </>
+        </div>
     );
 };
 

@@ -1,5 +1,3 @@
-
-
 .toy__list{
     display: flex;
     flex-direction: column;
@@ -11,14 +9,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.toy__search__label{
-    margin-right: 1em;
-}
-
-.toy__search__input{
-    filter: opacity(0.6);
 }
 
 .toy__filter__container{
