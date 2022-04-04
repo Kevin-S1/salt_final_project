@@ -13,7 +13,7 @@ public class Toy
 
     public int UserId { get; set; }
 
-    public int LendeeId { get; set; }
+    public int? LendeeId { get; set; }
     
     public Statuses Status { get; set; }
     

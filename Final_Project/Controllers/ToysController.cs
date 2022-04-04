@@ -45,16 +45,24 @@ namespace Final_Project.Controllers
             }
             
             var toyOwner = _context.User.Where(u => u.Id == toy.UserId).Single();
+
+            var lendeeCheck = toy.LendeeId != null ? toy.LendeeId : 0;
             
             var toyDTO = new ToyDetailsDTO() { 
                 Id = toy.Id,
                 Name = toy.Name, 
                 Description = toy.Description,
                 UserId = toyOwner.Id,
+                LendeeId = (int)lendeeCheck,
+                Status = toy.Status,
+                Age = toy.Age,
+                Category = toy.Category,
                 UserName = toyOwner.UserName,
                 Image = toy.Image,
                 UserEmail = toyOwner.Email,
-                PhoneNumber = toyOwner.PhoneNumber
+                PhoneNumber = toyOwner.PhoneNumber,
+                UserCity = toyOwner.City,
+                UserCountry = toyOwner.Country
             };
             
             return toyDTO;
@@ -101,7 +109,10 @@ namespace Final_Project.Controllers
             {
                 Name = toy.Name,
                 Description = toy.Description,
-                UserId = toy.UserId
+                UserId = toy.UserId,
+                Status = toy.Status,
+                Category = toy.Category,
+                Age = toy.Age
             };
             
             _context.Toy.Add(newToy);
