@@ -2,6 +2,7 @@ namespace Final_Project.Models;
 
 public enum Categories
 {
+    All, 
     Lego,
     Puzzles,
     Dolls,

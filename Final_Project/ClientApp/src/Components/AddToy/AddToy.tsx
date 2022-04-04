@@ -74,23 +74,24 @@ const AddToy = (props : any) => {
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
                         <select onChange={e => categoryChangeHandler(e)}>
-                            <option value="0">Lego</option>
-                            <option value="1">Puzzle</option>
-                            <option value="2">Dolls</option>
-                            <option value="3">Vehicles</option>
-                            <option value="4">Battery Operated</option>
-                            <option value="5">Wooden Toys</option>
-                            <option value="6">Board Games</option>
+                            <option value="1">Lego</option>
+                            <option value="2">Puzzle</option>
+                            <option value="3">Dolls</option>
+                            <option value="4">Vehicles</option>
+                            <option value="5">Battery Operated</option>
+                            <option value="6">Wooden Toys</option>
+                            <option value="7">Board Games</option>
                         </select>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Age Category</Form.Label>
                         <select onChange={e => ageChangeHandler(e)}>
-                            <option value="0">0-1</option>
-                            <option value="1">2-4</option>
-                            <option value="2">5-6</option>
-                            <option value="3">7-10</option>
-                            <option value="4">10+</option>
+                            
+                            <option value="1">0-1</option>
+                            <option value="2">2-4</option>
+                            <option value="3">5-6</option>
+                            <option value="4">7-10</option>
+                            <option value="5">10+</option>
                         </select>
                     </Form.Group>
                     <Button variant="primary" type="submit">

@@ -4,6 +4,7 @@ namespace Final_Project.Models;
 
 public enum Ages
 {
+    All,
     [Description("0-1")]
     AgeCategory1,
     [Description("2-4")]

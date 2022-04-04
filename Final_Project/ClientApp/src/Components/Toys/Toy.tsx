@@ -3,7 +3,7 @@ import './toy.css'
 import './form.scss'
 import {toyDetails} from "../../types";
 import ToyInfo from "../ToyInfo/ToyInfo";
-import { Dropdown } from "react-bootstrap";
+import {Dropdown, Form} from "react-bootstrap";
 
 
 
@@ -14,7 +14,21 @@ const Toy = ({toys}: Props) => {
     console.log(toys);
     
     const [searchTerm, setSearchTerm] = useState('');
+    const [category, setCategory] = useState<number>(0);
+    const [age, setAge] = useState<number>(0)
 
+    const categoryChangeHandler = (e: any) => {
+        e.preventDefault();
+        if(e.target.value === 0) return;
+        setCategory(parseInt(e.target.value));
+    }
+
+    const ageChangeHandler = (e: any) => {
+        e.preventDefault();
+        setAge(parseInt(e.target.value));
+    }
+    
+    
     const changeHandler = (e: any) => {
         e.preventDefault();
         console.log(e);
@@ -30,41 +44,43 @@ const Toy = ({toys}: Props) => {
                     <input className="toy__search__form__input" onChange={e => changeHandler(e)} id="search" type="search" placeholder="Search..." />
                 </form>
                 <article className="toy__filter__container">
-                    <Dropdown className="d-inline mx-2">
-                        <Dropdown.Toggle className="toy__filter__button" id="dropdown-autoclose-true">
-                        Categories
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                        <Dropdown.Item href="#">Lego</Dropdown.Item>
-                        <Dropdown.Item href="#">Toy Cars</Dropdown.Item>
-                        <Dropdown.Item href="#">Dolls</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown className="d-inline mx-2">
-                        <Dropdown.Toggle className="toy__filter__button"  id="dropdown-autoclose-true">
-                        Age
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                        <Dropdown.Item href="#">0-1</Dropdown.Item>
-                        <Dropdown.Item href="#">2-4</Dropdown.Item>
-                        <Dropdown.Item href="#">5-6</Dropdown.Item>
-                        <Dropdown.Item href="#">7-10</Dropdown.Item>
-                        <Dropdown.Item href="#">10+</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <Form.Group>
+                        <Form.Label>Category</Form.Label>
+                        <select onChange={e => categoryChangeHandler(e)}>
+                            <option selected  value="0">All</option>
+                            <option value="1">Lego</option>
+                            <option value="2">Puzzle</option>
+                            <option value="3">Dolls</option>
+                            <option value="4">Vehicles</option>
+                            <option value="5">Battery Operated</option>
+                            <option value="6">Wooden Toys</option>
+                            <option value="7">Board Games</option>
+                        </select>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Age Category</Form.Label>
+                        <select onChange={e => ageChangeHandler(e)} >
+                            <option selected value="0">All</option>
+                            <option value="1">0-1</option>
+                            <option value="2">2-4</option>
+                            <option value="3">5-6</option>
+                            <option value="4">7-10</option>
+                            <option value="5">10+</option>
+                        </select>
+                    </Form.Group>
                 </article>
                 
             </section>
             <section className="toy__list">
                 {
-                    toys?.filter(toy => toy.name.includes(searchTerm)).map((t : toyDetails,index) =>(<ToyInfo key={index} toy={t} />))
+                   
+                    toys?.filter(toy => toy.name.includes(searchTerm))
+                    .filter(toy => category === 0 ? toy : toy.category === category)
+                    .filter(toy => age === 0 ? toy : toy.age === age)
+                    .map((t : toyDetails,index) =>(<ToyInfo key={index} toy={t} />))
                 }
-
             </section>
         </>
-        
     )
 };
 
