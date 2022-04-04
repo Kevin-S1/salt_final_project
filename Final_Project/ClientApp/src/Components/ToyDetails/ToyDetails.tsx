@@ -44,9 +44,9 @@ const ToyDetails = () => {
                 </Col>
                 <Col className="toy-details__text col-6">
                     <p className="toy-details__header">{Toy?.name}</p>
-                    <p>Stockholm <GoLocation className="toy-details__go-location"/></p>
+                    <p>{Toy?.userCity} <GoLocation className="toy-details__go-location"/></p>
                     <div className="toy-details__status">
-                        <p className="toy-details__status-text">Available</p>
+                        <p className="toy-details__status-text">{Toy?.status}</p>
                         <div className="toy-details__status-blob"></div>
                     </div>
                     <Button className="btn-success">Reserve</Button>

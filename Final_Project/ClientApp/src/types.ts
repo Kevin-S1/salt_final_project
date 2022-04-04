@@ -10,7 +10,9 @@ export type userDetails = {
 export type addToyDto = {
     name : string,
     description : string,
-    userId : number
+    userId : number,
+    age : number,
+    category : number
 }
 // toy details page
 export type toyDetails = {
@@ -21,7 +23,13 @@ export type toyDetails = {
     userName: string,
     image: string,
     userEmail: string,
-    phoneNumber: string
+    phoneNumber: string,
+    userCity: string,
+    user: object,
+    userCountry: string,
+    status: number,
+    category: number,
+    age: number
 }
 
 export type rating = {

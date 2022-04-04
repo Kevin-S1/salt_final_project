@@ -61,15 +61,22 @@ namespace Final_Project.Controllers
             var toysList = new List<ToyDetailsDTO>();
             foreach (var toy in user.Toys)
             {
+                var lendeeCheck = toy.LendeeId != null ? toy.LendeeId : 0;
                 var toyDTO = new ToyDetailsDTO() { 
                     Id = toy.Id,
                     Name = toy.Name, 
                     Description = toy.Description,
                     UserId = user.Id,
+                    LendeeId = (int)lendeeCheck,
+                    Status = toy.Status,
+                    Age = toy.Age,
+                    Category = toy.Category,
                     UserName = user.UserName,
                     Image = toy.Image,
                     UserEmail = user.Email,
-                    PhoneNumber = user.PhoneNumber
+                    PhoneNumber = user.PhoneNumber,
+                    UserCity = user.City,
+                    UserCountry = user.Country
                 };
                 toysList.Add(toyDTO);
             }

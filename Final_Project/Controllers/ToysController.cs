@@ -36,8 +36,6 @@ namespace Final_Project.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ToyDetailsDTO>> GetToy(int id)
         {
-           
-
             var toy = await _context.Toy.FindAsync(id);
             if (toy == null)
             {
