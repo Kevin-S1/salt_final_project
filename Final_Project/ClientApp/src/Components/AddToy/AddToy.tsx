@@ -3,7 +3,7 @@ import './addToy.css'
 import {Button, Form} from "react-bootstrap";
 import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
-import {create} from "domain";
+import SuccessMsg from "../SuccessMsg/SuccessMsg";
 
 
 const AddToy = (props : any) => {
@@ -99,7 +99,6 @@ const AddToy = (props : any) => {
                     </Button>
                 </Form>
             </div>
-
         </>
     );
 };

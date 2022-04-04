@@ -23,7 +23,6 @@ const ToyInfo = ({toy}: Props) => {
                             <h4 className='toy__card__text toy__card__text--status'>
                             <IoIosCheckmarkCircle />{toy.status}</h4>
                         </article>
-                        
                     </article>
                     <article className='col-5'>
                         <img className='toy__card__image' src={toy.image}/>
