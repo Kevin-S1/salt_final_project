@@ -85,7 +85,7 @@ function App() {
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> } />
             <Route path='/toys' element={ <Toy toys={toys}/>} />
-            <Route path='/toys/:id' element={<ToyDetails />} />
+            <Route path='/toys/:id' element={<ToyDetails initialUserDetails={initialUserDetails}/>} />
         </Routes>
     </>
   );

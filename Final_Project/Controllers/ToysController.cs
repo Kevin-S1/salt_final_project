@@ -69,13 +69,18 @@ namespace Final_Project.Controllers
         // PUT: api/Toys/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutToy(int id, Toy toy)
+        public async Task<IActionResult> PutToy(int id, [FromBody]ToyDetailsDTO toyDTO)
         {
-            if (id != toy.Id)
+            if (!ToyExists(id))
             {
-                return BadRequest();
+                BadRequest();
             }
 
+            var toy = _context.Toy.FindAsync(id).Result;
+
+            toy.LendeeId = toyDTO.LendeeId;
+            toy.Status = toyDTO.Status;
+            
             _context.Entry(toy).State = EntityState.Modified;
 
             try

@@ -29,7 +29,8 @@ export type toyDetails = {
     userCountry: string,
     status: number,
     category: number,
-    age: number
+    age: number,
+    lendeeId: number
 }
 
 export type rating = {

@@ -82,8 +82,6 @@ const Details = () => {
                     </Button>
                 </Form>
             </div>
-            
-        
         </div>
     );
 };

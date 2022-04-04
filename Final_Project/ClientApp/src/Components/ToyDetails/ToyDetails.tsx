@@ -7,17 +7,41 @@ import { GoLocation } from 'react-icons/go';
 import {Row, Col, Button} from "react-bootstrap";
 import {MdEmail} from "react-icons/md";
 
-const ToyDetails = () => {
+
+
+
+
+const ToyDetails = ({ initialUserDetails }: any ) => {
     const params = useParams();
     console.log(params);
     const { loginWithRedirect, logout 
         ,isAuthenticated, isLoading} = useAuth0();
     
     const [Toy, setToy] = useState<toyDetails>();
-
     
+    
+    const reservationHandler = async (e: any) => {
+        let updatedToy: any = Toy; 
+        updatedToy.lendeeId = initialUserDetails.id;
+        updatedToy.status = 1   ; 
+        
+        setToy(updatedToy); 
+        
+        console.log(updatedToy);
+        console.log(Toy);
+        
+        const response = await fetch('https://localhost:7275/api/toys/' + params.id, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(Toy)
+        }) 
+        
+       
+    };    
 
-    const GetToysData =async () =>{
+    const GetToysData = async () =>{
         const response = await fetch('https://localhost:7275/api/toys/' + params.id,{
             method:'GET',
             headers: {
@@ -49,7 +73,7 @@ const ToyDetails = () => {
                         <p className="toy-details__status-text">{Toy?.status}</p>
                         <div className="toy-details__status-blob"></div>
                     </div>
-                    <Button className="btn-success">Reserve</Button>
+                    <Button className="btn-success" onClick={e => {  reservationHandler(e) }}>Reserve</Button>
                 </Col>
             </Row>
             <div className="toy-details__bottom">
