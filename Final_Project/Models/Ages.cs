@@ -4,9 +4,14 @@ namespace Final_Project.Models;
 
 public enum Ages
 {
-    AgeCategory1 = 0-1,
-    AgeCategory2 = 2-4,
-    AgeCategory3 = 5-6,
-    AgeCategory4 = 7-10,
-    AgeCategory5 = 10-100
+    [Description("0-1")]
+    AgeCategory1,
+    [Description("2-4")]
+    AgeCategory2,
+    [Description("5-6")]
+    AgeCategory3,
+    [Description("7-10")]
+    AgeCategory4,
+    [Description("10+")]
+    AgeCategory5
 }
