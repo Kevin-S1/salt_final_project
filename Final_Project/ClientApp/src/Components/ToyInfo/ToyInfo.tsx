@@ -19,7 +19,7 @@ const ToyInfo = ({toy}: Props) => {
                         <p className='toy__card__text toy__card__text--description'>{toy.description}</p>
                         <article className='toy__card__info__row'>
                             <h4 className='toy__card__text toy__card__text--location'>
-                            <GoLocation className='logo'/>{toy.user.city}</h4>
+                            <GoLocation className='logo'/>{toy.userCity === undefined ? toy.user.city : toy.userCity} </h4>
                             <h4 className='toy__card__text toy__card__text--status'>
                             <IoIosCheckmarkCircle />{toy.status}</h4>
                         </article>

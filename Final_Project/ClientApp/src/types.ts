@@ -25,7 +25,7 @@ export type toyDetails = {
     userEmail: string,
     phoneNumber: string,
     userCity: string,
-    user: object,
+    user: user,
     userCountry: string,
     status: number,
     category: number,
@@ -50,4 +50,12 @@ export type InitialUserDetails = {
     toys:Array<toyDetails>,
     ratings:Array<rating>,
     sub:string
+}
+
+export type user = {
+    id: string,
+    userName:string,
+    city:string,
+    country : string,
+    phoneNumber:string,
 }
