@@ -107,7 +107,7 @@ namespace Final_Project.Controllers
         [HttpPost]
         public async Task<ActionResult<Toy>> PostToy([FromBody]ToyInputDTO toy)
         {
-           Console.WriteLine(toy);
+            Console.WriteLine(toy);
             Toy newToy = new Toy()
             {
                 Name = toy.Name,
@@ -115,7 +115,8 @@ namespace Final_Project.Controllers
                 UserId = toy.UserId,
                 Status = toy.Status,
                 Category = toy.Category,
-                Age = toy.Age
+                Age = toy.Age,
+                Image = toy.ImgUrl
             };
             
             _context.Toy.Add(newToy);

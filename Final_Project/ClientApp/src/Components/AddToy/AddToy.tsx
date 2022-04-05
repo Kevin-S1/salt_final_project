@@ -7,24 +7,29 @@ import SuccessMsg from "../SuccessMsg/SuccessMsg";
 
 
 const AddToy = (props : any) => {
-
+   
     const { isAuthenticated} = useAuth0();
-
+  
     const [name, setName] = useState<string>("")
     const [description, setDescription] = useState<string>("")
     const [category, setCategory] = useState<number>(0)
     const [age, setAge] = useState<number>(0)
-
-    const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0, category: 1, age: 1});
+    const [imageUrl, setImageUrl] = useState<string>("")
     const [successStatus, setSuccessStatus] = useState<boolean>(false);
-    
+
+
     let firstLoad = useRef(true);
+    
+    
+    const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0, category: 1, age: 1, imgUrl: imageUrl});
     
     const submitHandler = (e:any) => {
         e.preventDefault();
-            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age})
+        if(isAuthenticated){
+            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age, imgUrl: imageUrl});
+        }
     }
-
+    
     const categoryChangeHandler = (e: any) => {
         e.preventDefault();
         setCategory(parseInt(e.target.value));
@@ -35,6 +40,7 @@ const AddToy = (props : any) => {
         setAge(parseInt(e.target.value));
     }
     const CreateToy = async()=> {
+        
         if(isAuthenticated)
         {
             const response = await fetch(`https://localhost:7275/api/toys/`,{
@@ -44,40 +50,44 @@ const AddToy = (props : any) => {
                     "Content-Type": "application/json"
                 }
             })
-            
-            if(response.status === 201) {
-                setSuccessStatus(true);
+            console.log(await response.json())
+            if(response.status === 204) {
+
                 setName("");
                 setDescription("");
             }
-            setTimeout(() => {setSuccessStatus(false)}, 4000);
         }
 
     }
     useEffect(()=>{
         if(!firstLoad.current){
-            CreateToy();    
+            CreateToy();
         }
         firstLoad.current = false;
     },[toy])
-
+    
     return (
         <>
             <div>
-                <h4>Add Toy to your listings</h4>
+                <h4>Add Toy to your listings {props.initialUserDetails.id}</h4>
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Name" name="name"  value={name} onChange={e => setName(e.target.value)}/>
+                        <Form.Control type="text" placeholder="Enter Name..." name="name"  value={name} onChange={e => setName(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicDescription">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Description" name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
+                        <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Description..." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicImageUrl">
+                        <Form.Label>Image Url</Form.Label>
+                        <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Image Url..." name="imageUrl"  value={imageUrl} onChange={e => setImageUrl(e.target.value)}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
                         <select onChange={e => categoryChangeHandler(e)}>
+                            <option selected value="0">All</option>
                             <option value="1">Lego</option>
                             <option value="2">Puzzle</option>
                             <option value="3">Dolls</option>
@@ -90,7 +100,7 @@ const AddToy = (props : any) => {
                     <Form.Group>
                         <Form.Label>Age Category</Form.Label>
                         <select onChange={e => ageChangeHandler(e)}>
-
+                            <option selected value="0">All</option>
                             <option value="1">0-1</option>
                             <option value="2">2-4</option>
                             <option value="3">5-6</option>

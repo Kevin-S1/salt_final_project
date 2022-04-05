@@ -8,6 +8,7 @@ public class ToyInputDTO
     public string Description { get; set; }
     public int UserId { get; set; }
 
+    public string ImgUrl { get; set; }
     public Statuses Status { get; set; } = Statuses.Available;
     
     public Categories Category { get; set; }

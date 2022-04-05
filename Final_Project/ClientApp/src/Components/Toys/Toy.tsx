@@ -73,7 +73,6 @@ const Toy = ({toys}: Props) => {
             </section>
             <section className="toy__list">
                 {
-                   
                     toys?.filter(toy => toy.name.includes(searchTerm))
                     .filter(toy => category === 0 ? toy : toy.category === category)
                     .filter(toy => age === 0 ? toy : toy.age === age)

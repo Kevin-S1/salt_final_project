@@ -2,17 +2,18 @@ import {UrlWithStringQuery} from "url";
 import {SpawnSyncOptionsWithStringEncoding} from "child_process";
 
 export type userDetails = {
-    city : string,
+    city: string,
     country: string,
     phoneNumber: string
 }
 
 export type addToyDto = {
-    name : string,
-    description : string,
-    userId : number,
-    age : number,
-    category : number
+    name: string,
+    description: string,
+    userId: number,
+    age: number,
+    category: number,
+    imgUrl: string
 }
 // toy details page
 export type toyDetails = {
