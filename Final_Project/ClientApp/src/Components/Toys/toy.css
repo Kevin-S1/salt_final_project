@@ -1,3 +1,11 @@
+
+.toy__page__background {
+    background-image: url("../../HomePagePic1.svg");
+}
+.toy__page__background__dim {
+   background-color: #ffffff85;
+}
+
 .toy__list{
     display: flex;
     flex-direction: column;

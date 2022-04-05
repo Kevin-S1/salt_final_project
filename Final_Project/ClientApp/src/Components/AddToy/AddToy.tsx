@@ -7,8 +7,8 @@ import SuccessMsg from "../SuccessMsg/SuccessMsg";
 
 
 const AddToy = (props : any) => {
-   
-    const { isAuthenticated} = useAuth0();
+    
+    const { isAuthenticated, isLoading} = useAuth0();
   
     const [name, setName] = useState<string>("")
     const [description, setDescription] = useState<string>("")
@@ -17,11 +17,9 @@ const AddToy = (props : any) => {
     const [imageUrl, setImageUrl] = useState<string>("")
     const [successStatus, setSuccessStatus] = useState<boolean>(false);
 
-
-    let firstLoad = useRef(true);
-    
-    
     const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0, category: 1, age: 1, imgUrl: imageUrl});
+    
+    let firstLoad = useRef(true);
     
     const submitHandler = (e:any) => {
         e.preventDefault();
@@ -68,8 +66,10 @@ const AddToy = (props : any) => {
     
     return (
         <>
-            <div>
-                <h4>Add Toy to your listings {props.initialUserDetails.id}</h4>
+        <div className="add-toy__page" >
+            <h4>Add Toy to your listings</h4>
+            <div className="add-toy__container">
+                
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
