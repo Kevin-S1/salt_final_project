@@ -1,16 +1,12 @@
-body {
-}
 
 .add-toy__page {
     background-image: url("../../HomePagePic1.svg");
-
-    height: 100vh;
     background-color: #ffffff15;
+    flex-direction: column;
 }
 .add-toy__container {
-
+    height: 80%;
     background-color: #ffffff99;
-
     display: flex;
     justify-content: center;
     align-items: center;

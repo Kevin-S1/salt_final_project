@@ -9,7 +9,6 @@ import HomePagePic2 from "../../HomePagePic2.svg";
 
 
 const AddToy = (props : any) => {
-   
     
     const { isAuthenticated, isLoading} = useAuth0();
   
@@ -20,11 +19,9 @@ const AddToy = (props : any) => {
     const [imageUrl, setImageUrl] = useState<string>("")
     const [successStatus, setSuccessStatus] = useState<boolean>(false);
 
-
-    let firstLoad = useRef(true);
-    
-    
     const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0, category: 1, age: 1, imgUrl: imageUrl});
+    
+    let firstLoad = useRef(true);
     
     const submitHandler = (e:any) => {
         e.preventDefault();
@@ -77,8 +74,9 @@ const AddToy = (props : any) => {
     return (
         <>
         <div className="add-toy__page" >
+            <h4>Add Toy to your listings</h4>
             <div className="add-toy__container">
-                <h4>Add Toy to your listings</h4>
+                
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
