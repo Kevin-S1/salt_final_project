@@ -5,26 +5,66 @@
     align-items: center;
     padding: 10px;
 }
+
 .home-page__header{
-    margin-right: 1em;
+    margin: 1em;
     color: black;
     font-family: 'Kanit', sans-serif;
     font-size: 1.5rem;
 }
 
+.home-page__subheader {
+    margin: 1em;
+    color: #FF521B;
+    font-family: 'Kanit', sans-serif;
+}
+
+.home-page__description {
+    max-width: 80vw;
+}
+
 .home-page__paragraph {
-    justify-content: center;
-    align-items: center;
     text-align: justify;
 }
 .home-page__image {
     width: 80vw;
 }
 
+.carousel-inner {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+.carousel-outer {
+    margin-top: 1em;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li::before {
+    content: "\2022";
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+
 @media only screen and (min-width: 680px) {
 
     .home-page__image {
         width: 30vw;
     }
-
+    
+    .carousel-outer {
+        height: 400px;
+        width: 600px;
+    }
+    .carousel-inner {
+        max-height: 400px;
+        max-width: 600px;
+    }
 }
