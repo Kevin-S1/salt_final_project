@@ -70,7 +70,9 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                     <p className="toy-details__header">{Toy?.name}</p>
                     <p>{Toy?.userCity} <GoLocation className="toy-details__go-location"/></p>
                     <div className="toy-details__status">
-                        <p className="toy-details__status-text">{Toy?.status}</p>
+                        <p className="toy-details__status-text">{
+                            Toy?.status === 0 ? 'Available' : (Toy?.status === 1 ? 'Reserved' : 'Not Available')
+                        }</p>
                         <div className="toy-details__status-blob"></div>
                     </div>
                     <Button className="btn-success" onClick={e => {  reservationHandler(e) }}>Reserve</Button>
