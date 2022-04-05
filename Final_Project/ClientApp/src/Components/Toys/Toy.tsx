@@ -8,9 +8,10 @@ import {Dropdown, Form} from "react-bootstrap";
 
 
 interface Props{
-   toys : Array<toyDetails> | undefined
+   toys : Array<toyDetails> | undefined,
+    initialUserDetails : any
 }
-const Toy = ({toys}: Props) => {
+const Toy = ({toys, initialUserDetails}: Props) => {
     console.log(toys);
     
     const [searchTerm, setSearchTerm] = useState('');
@@ -76,7 +77,7 @@ const Toy = ({toys}: Props) => {
                     toys?.filter(toy => toy.name.includes(searchTerm))
                     .filter(toy => category === 0 ? toy : toy.category === category)
                     .filter(toy => age === 0 ? toy : toy.age === age)
-                    .map((t : toyDetails,index) =>(<ToyInfo key={index} toy={t} />))
+                    .map((t : toyDetails,index) =>(<ToyInfo initialUserDetails={initialUserDetails} key={index} toy={t} />))
                 }
             </section>
         </>
