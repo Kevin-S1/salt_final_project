@@ -81,12 +81,14 @@ function App() {
         <Routes>
             <Route path='/profile' >
                 <Route path='details' element={<Details />}/>
+
                 <Route path='listings' element={<Listings id={initialUserDetails} />}/>
                 <Route path='loans' element={<Loans id={initialUserDetails} />}/>
+
             </Route>
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> } />
-            <Route path='/toys' element={ <Toy toys={toys}/>} />
+            <Route path='/toys' element={ <Toy toys={toys} initialUserDetails={initialUserDetails}/>} />
             <Route path='/about' element={ <AboutPage /> } />
             <Route path='/contact' element={ <ContactPage />} />
             <Route path='/toys/:id' element={<ToyDetails initialUserDetails={initialUserDetails}/>} />

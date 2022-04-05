@@ -6,13 +6,14 @@ import { GoLocation } from 'react-icons/go';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 
 interface Props{
-    toy: toyDetails
+    toy: toyDetails,
+    initialUserDetails: any
 }
-const ToyInfo = ({toy}: Props) => {
+const ToyInfo = ({toy, initialUserDetails}: Props) => {
     
     return (
         <Link to={`/toys/${toy.id}`} >
-            <article className='toy__card'>
+            <article className={toy.userId == initialUserDetails.id ? 'toy__card toy__card__owner' : 'toy__card'}>
                 <article className='row row__first'>
                     <article className='col-7 toy__card__col__first'>
                         <h3 className='toy__card__text toy__card__text--header'>{toy.name}</h3>
@@ -32,7 +33,14 @@ const ToyInfo = ({toy}: Props) => {
                         <img className='toy__card__image' src={toy.image}/>
                     </article>
                 </article>
-        
+                {toy.userId == initialUserDetails.id.toString() ?
+                    <article className='toy--owner--button--container'>
+                        <button className='toy--owner--button toy--owner--button__edit'>Edit</button>
+                        <button className='toy--owner--button toy--owner--button__delete'>Delete</button>
+                    </article> :
+                    <></>
+                }
+                
             </article>  
 
         </Link>
