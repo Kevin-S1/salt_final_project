@@ -50,12 +50,13 @@ const AddToy = (props : any) => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log(await response.json())
-            if(response.status === 204) {
-
+       
+            if(response.status === 201) {
+                setSuccessStatus(true);
                 setName("");
                 setDescription("");
             }
+            setTimeout(() => { setSuccessStatus(false)},4000)
         }
 
     }
@@ -69,7 +70,7 @@ const AddToy = (props : any) => {
     return (
         <>
             <div>
-                <h4>Add Toy to your listings {props.initialUserDetails.id}</h4>
+                <h4>Add Toy to your listings</h4>
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
