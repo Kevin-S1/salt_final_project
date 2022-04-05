@@ -82,8 +82,8 @@ function App() {
             <Route path='/profile' >
                 <Route path='details' element={<Details />}/>
 
-                <Route path='listings' element={<Listings id={initialUserDetails} />}/>
-                <Route path='loans' element={<Loans id={initialUserDetails} />}/>
+                <Route path='listings' element={<Listings initialUserDetails={initialUserDetails} />}/>
+                <Route path='loans' element={<Loans initialUserDetails={initialUserDetails} />}/>
 
             </Route>
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />

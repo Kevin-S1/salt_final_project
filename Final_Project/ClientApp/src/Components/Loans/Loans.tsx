@@ -5,17 +5,15 @@ import {toyDetails} from "../../types";
 import Toy from "../Toys/Toy";
 
 interface Props {
-    id : any
+    initialUserDetails: any 
 }
 
-const Loans = ({id}:Props) => {
+const Loans = ({initialUserDetails}:Props) => {
     const { isLoading } = useAuth0();
     const [lendToys, setLendToys] = useState<Array<toyDetails>>();
 
     const GetLendToys = async () =>{
-        console.log('fetch reached');
-        console.log(id.id);
-        const response = await fetch('https://localhost:7275/api/toys/myloans/' + id.id,{
+        const response = await fetch('https://localhost:7275/api/toys/myloans/' + initialUserDetails.id,{
             method:'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -29,7 +27,7 @@ const Loans = ({id}:Props) => {
 
     useEffect(()=>{
         GetLendToys();
-    },[id]);
+    },[initialUserDetails]);
 
     if (isLoading) {
         return <div>Loading ...</div>;
@@ -39,8 +37,7 @@ const Loans = ({id}:Props) => {
         <div className="listings--container">
             <h1>My Loans</h1>
             <div>
-                <Toy toys={lendToys}/>
-
+                <Toy initialUserDetails={initialUserDetails} toys={lendToys}/>
             </div>
         </div>
     );
