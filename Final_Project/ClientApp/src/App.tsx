@@ -15,6 +15,7 @@ import {InitialUserDetails, toyDetails} from "./types";
 import ToyDetails from "./Components/ToyDetails/ToyDetails";
 import AboutPage from "./Components/About/AboutPage";
 import ContactPage from "./Components/Contact/ContactPage";
+import EditToy from "./Components/EditToy/EditToy";
 
 
 function App() {
@@ -81,11 +82,10 @@ function App() {
         <Routes>
             <Route path='/profile' >
                 <Route path='details' element={<Details />}/>
-
                 <Route path='listings' element={<Listings initialUserDetails={initialUserDetails} />}/>
-                <Route path='loans' element={<Loans initialUserDetails={initialUserDetails} />}/>
-
+                <Route path='loans' element={<Loans />}/>
             </Route>
+            <Route path='/edittoy/:id' element={ <EditToy /> } />
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> } />
             <Route path='/toys' element={ <Toy toys={toys} initialUserDetails={initialUserDetails}/>} />
