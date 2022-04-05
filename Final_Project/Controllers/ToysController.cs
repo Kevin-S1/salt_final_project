@@ -77,7 +77,10 @@ namespace Final_Project.Controllers
             }
 
             var toy = _context.Toy.FindAsync(id).Result;
-
+            toy.Age = toyDTO.Age;
+            toy.Category = toyDTO.Category;
+            toy.Name = toyDTO.Name;
+            toy.Description = toyDTO.Description;
             toy.LendeeId = toyDTO.LendeeId;
             toy.Status = toyDTO.Status;
             

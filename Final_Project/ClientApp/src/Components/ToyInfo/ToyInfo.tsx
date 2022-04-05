@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import { toyDetails } from '../../types';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './toyinfo.css';
 import { GoLocation } from 'react-icons/go';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
@@ -11,7 +11,7 @@ interface Props{
 }
 const ToyInfo = ({toy, initialUserDetails}: Props) => {
     
-    return (
+        return (
         <Link to={`/toys/${toy.id}`} >
             <article className={toy.userId == initialUserDetails.id ? 'toy__card toy__card__owner' : 'toy__card'}>
                 <article className='row row__first'>
@@ -35,7 +35,7 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
                 </article>
                 {toy.userId == initialUserDetails.id.toString() ?
                     <article className='toy--owner--button--container'>
-                        <button className='toy--owner--button toy--owner--button__edit'>Edit</button>
+                        <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${toy.id}`}>Edit</Link>
                         <button className='toy--owner--button toy--owner--button__delete'>Delete</button>
                     </article> :
                     <></>
