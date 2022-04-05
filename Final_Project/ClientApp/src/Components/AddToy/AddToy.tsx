@@ -48,12 +48,12 @@ const AddToy = (props : any) => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log(await response.json())
-            if(response.status === 204) {
-
+            if(response.status === 201) {
+                setSuccessStatus(true);
                 setName("");
                 setDescription("");
             }
+            setTimeout(() => { setSuccessStatus(false)},4000)
         }
 
     }
@@ -65,7 +65,6 @@ const AddToy = (props : any) => {
     },[toy])
     
     return (
-        <>
         <div className="add-toy__page" >
             <h4>Add Toy to your listings</h4>
             <div className="add-toy__container">
@@ -113,7 +112,7 @@ const AddToy = (props : any) => {
                     </Button>
                 </Form>
             </div>
-        </>
+        </div>    
     );
 };
 

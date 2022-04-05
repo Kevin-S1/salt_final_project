@@ -38,7 +38,7 @@ const EditToy = () => {
         }
     }
     const GetToysData = async () =>{
-        const response = await fetch('https://localhost:7275/api/toys/' + params.id,{
+        const response = await fetch('https://localhost:7275/api/toys/getbyid/' + params.id,{
             method:'GET',
             headers: {
                 "Content-Type": "application/json"
