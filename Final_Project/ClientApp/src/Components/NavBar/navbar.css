@@ -2,6 +2,9 @@
 
 .navBar{
     margin-bottom: 1em;
+    background-color: #FF521B45;
+    
+    box-shadow: 0 0 10px #000000;
 }
 
 .nav-header{
