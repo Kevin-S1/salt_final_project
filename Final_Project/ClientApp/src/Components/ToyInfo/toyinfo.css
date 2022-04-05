@@ -18,7 +18,7 @@
 }
 
 .toy__card__owner{
-    height: 12rem;
+    height: 150px;
 }
 
 .toy__card__image{
@@ -85,16 +85,19 @@
 }
 
 .toy--owner--button--container{
-    margin-top: 0.2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    height: 2rem;
+}
+
+.filler{
+    height: 2rem;
 }
 
 .toy--owner--button{
     appearance: none;
-    
     border-radius: 6px;
     box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
     box-sizing: border-box;

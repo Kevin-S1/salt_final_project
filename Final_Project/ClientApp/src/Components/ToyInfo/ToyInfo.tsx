@@ -7,6 +7,7 @@ import { IoIosCheckmarkCircle } from 'react-icons/io';
 import DeleteModal from "../DeleteModal/DeleteModal";
 
 interface Props{
+    
     toy: toyDetails,
     initialUserDetails: any
 }
@@ -53,7 +54,7 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
                         {show ? 
                         <DeleteModal show={show} id={toy.id}/> : <></>}
                     </article> :
-                    <></>
+                    <div className='filler'></div>
                 }
             </article>
         

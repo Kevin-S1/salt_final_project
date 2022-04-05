@@ -37,8 +37,7 @@ const Loans = ({initialUserDetails}:Props) => {
         <div className="listings--container">
             <h1>My Loans</h1>
             <div>
-                <Toy initialUserDetails={initialUserDetails} toys={lendToys}/>
-
+                <Toy getToys={false} initialUserDetails={initialUserDetails} toys={lendToys}/>
             </div>
         </div>
     );

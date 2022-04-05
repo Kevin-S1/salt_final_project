@@ -31,25 +31,12 @@ function App() {
         sub: user?.sub,
         picture: user?.picture
     }
-    const GetToysData =async () =>{
-        const response = await fetch('https://localhost:7275/api/toys',{
-            method:'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        const data = await response.json();
-        setToys(data);
-    }
-
-    
     
     useEffect(() =>{
         console.log(toys)
         }, 
         [toys]
     )
-
     
     const postUserData =async () =>{
         const response = await fetch('https://localhost:7275/api/Users',{
@@ -69,12 +56,6 @@ function App() {
             postUserData();
         }
     },[isAuthenticated]);
-
-    useEffect(()=>{
-        GetToysData();
-    },[]);
-    
-    
     
   return (
     <>
@@ -88,7 +69,7 @@ function App() {
             <Route path='/edittoy/:id' element={ <EditToy /> } />
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> } />
-            <Route path='/toys' element={ <Toy toys={toys} initialUserDetails={initialUserDetails}/>} />
+            <Route path='/toys' element={ <Toy getToys={true} initialUserDetails={initialUserDetails}/>} />
             <Route path='/about' element={ <AboutPage /> } />
             <Route path='/contact' element={ <ContactPage />} />
             <Route path='/toys/:id' element={<ToyDetails initialUserDetails={initialUserDetails}/>} />
