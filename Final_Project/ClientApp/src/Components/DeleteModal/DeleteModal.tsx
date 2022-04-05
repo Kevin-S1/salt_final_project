@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import './deleteModal.css'
 import {Button, Form, Modal, Nav} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 
 // TODO: add props which should be Toy ID
@@ -42,7 +42,7 @@ const DeleteModal = ({id, show}: any) => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={cancelHandler}>No, go back</Button>
+                    <Link to={'/toys'}> <Button variant="secondary" onClick={cancelHandler}>No, go back</Button> </Link>
                     <Button variant="primary" onClick={handleDelete}>Yes, delete it</Button>
                 </Modal.Footer>
             </Modal.Dialog>

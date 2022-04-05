@@ -94,7 +94,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                     {Toy?.userId == initialUserDetails?.id.toString() ?
                         <article className='toy--owner--button--container'>
                             <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${Toy?.id}`}>Edit</Link>
-                            <Link to={''}><button onClick={showHandler} className='toy--owner--button toy--owner--button__delete' >Delete</button> </Link>
+                            <Link to={'/toys'}><button onClick={showHandler} className='toy--owner--button toy--owner--button__delete' >Delete</button> </Link>
                             {show ?
                                 <DeleteModal show={show} id={Toy?.id}/> : <></>}
                         </article> : <></>
