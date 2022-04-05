@@ -32,6 +32,34 @@
     border-radius: 5px;
 }
 
+.blob__available{
+    background-color: limegreen;
+}
+
+.blob__reserved{
+    background-color: grey;
+}
+
+.blob__unavailable{
+    background-color: red;
+}
+
+.status__available{
+    color: green;
+}
+
+.status__reserved{
+    color: grey;
+}
+
+.status__reserved::after{
+    color: grey;
+}
+
+.status__unavailable{
+    color: red;
+}
+
 .toy-details__image {
     height: 100%;
     width: 100%;
