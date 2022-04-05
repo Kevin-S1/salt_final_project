@@ -1,0 +1,48 @@
+body {
+    background-image: url("../../HomePagePic1.svg");
+}
+
+.add-toy__page {
+    height: 100vh;
+    background-color: #ffffff15;
+}
+.add-toy__container {
+
+    background-color: #ffffff99;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #000000;
+    padding: 1rem;  
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px black;
+}   
+
+
+.add-toy__orange-button {
+    background-color: #FF521B !important;
+    border-color: #FF521B !important;
+    box-shadow: 0px 0px 5px black;
+}
+
+
+
+@media screen and (min-width: 680px) {
+    .add-toy__page {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+
+    .add-toy__container {
+        min-height: 80vh;
+        min-width: 30vw;
+        justify-content: flex-start;
+    }
+}
