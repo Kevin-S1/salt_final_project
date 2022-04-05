@@ -34,7 +34,8 @@ const EditToy = () => {
                     "Content-Type": "application/json"
                 },
             })
-            
+            setSuccessStatus(true);
+            setTimeout(() => { setSuccessStatus(false)},4000)
         }
     }
     const GetToysData = async () =>{
@@ -83,6 +84,7 @@ const EditToy = () => {
     
     return (
         <section className='edit--toy--container'>
+            {successStatus ? <SuccessMsg message='The item has been updated!'/> : <></>}
             <article className='edit--form--container'>
                 <form onSubmit={e => submitHandler(e)} className='edit--form'>
                     <label className='edit--label' htmlFor='title' >Title</label>
