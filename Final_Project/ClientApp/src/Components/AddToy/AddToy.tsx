@@ -4,6 +4,7 @@ import {Button, Form} from "react-bootstrap";
 import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
+import {useNavigate} from "react-router-dom";
 
 
 const AddToy = (props : any) => {
@@ -18,7 +19,7 @@ const AddToy = (props : any) => {
     const [successStatus, setSuccessStatus] = useState<boolean>(false);
 
     const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0, category: 1, age: 1, imgUrl: imageUrl});
-    
+    const navigate = useNavigate();
     let firstLoad = useRef(true);
     
     const submitHandler = (e:any) => {
@@ -60,6 +61,7 @@ const AddToy = (props : any) => {
     useEffect(()=>{
         if(!firstLoad.current){
             CreateToy();
+            navigate('/toys');
         }
         firstLoad.current = false;
     },[toy])

@@ -18,6 +18,7 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
     const [age, setAge] = useState<number>(0)
     const [toyArray, setToyArray] = useState<toyDetails[]>()
     const [loading, setLoading] = useState<boolean>(false);
+    const [showOwnToys, setShowOwnToys] = useState<boolean>(true);
     
     const getAllToys = async () =>{
         const response = await fetch('https://localhost:7275/api/toys',{
@@ -94,6 +95,8 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                                     <option value="5">10+</option>
                                 </select>
                             </Form.Group>
+                            <label htmlFor='own-toys-checkbox'>Show own toys?</label>
+                            <input id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
                         </article>
                         
                     </section>
@@ -101,6 +104,7 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                         {loading ? <Loading /> : <></>}
                         {
                             toyArray?.filter(toy => toy.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                                .filter(toy => showOwnToys ? toy : toy.userId !== initialUserDetails?.id)
                             .filter(toy => category === 0 ? toy : toy.category === category)
                             .filter(toy => age === 0 ? toy : toy.age === age)
                             .map((t : toyDetails,index) =>(<ToyInfo initialUserDetails={initialUserDetails} key={index} toy={t} />))
