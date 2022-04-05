@@ -65,12 +65,12 @@ const AddToy = (props : any) => {
     },[toy])
     
     return (
-        <div className="add-toy__page" >
-            <h4>Add Toy to your listings</h4>
-            <div className="add-toy__container">
-                
+        <div className="add-toy-page__background">
+            <div className="add-toy__page" >
+                <h2>Add Toy to your listings</h2>
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
-                <Form onSubmit={ (e) => submitHandler(e)}>
+                
+                <Form className="add-toy__container" onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Name..." name="name"  value={name} onChange={e => setName(e.target.value)}/>
@@ -81,7 +81,7 @@ const AddToy = (props : any) => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicImageUrl">
                         <Form.Label>Image Url</Form.Label>
-                        <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Image Url..." name="imageUrl"  value={imageUrl} onChange={e => setImageUrl(e.target.value)}/>
+                        <Form.Control type="text" placeholder="Enter Image Url..." name="imageUrl"  value={imageUrl} onChange={e => setImageUrl(e.target.value)}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
@@ -107,12 +107,12 @@ const AddToy = (props : any) => {
                             <option value="5">10+</option>
                         </select>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button className="add-toy__orange-button" variant="primary" type="submit">
                         Add toy
                     </Button>
                 </Form>
             </div>
-        </div>    
+        </div>
     );
 };
 

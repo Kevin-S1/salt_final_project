@@ -5,6 +5,10 @@
     margin-top: 50px;
     margin-bottom:30px;
 }
+
+.contact-page-header {
+    text-align: center;
+}
 .contact-page-text{
     display:flex;
     justify-content: center;
@@ -16,7 +20,8 @@
 .contact-page input{
     height:2rem;
     margin:5px;
-    border:1px solid #FF521B;
+    box-shadow: 0 0 3px #000000;
+    border:1px solid #00000070;
     font-size:18px;
     border-radius:5px;
 }
@@ -31,13 +36,17 @@ label{
     justify-content: center;
 }
 .contact-page-textarea{
-    border:1px solid #FF521B;
+    border:1px solid #00000070;
+    box-shadow: 0 0 3px #000000;
     font-size:18px;
     border-radius:5px;
 }
 .contact-page-submit{
+    background-color: #FF521B;
+    color: white;
     width:200px;
-    border: 1px solid black;
-    border-radius:10px;
+    box-shadow: 0 0 5px #000000;
+    border: 1px solid #FF521B;
+    border-radius: 10px;
     margin:0 auto;
 }
