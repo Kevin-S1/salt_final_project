@@ -18,6 +18,8 @@ namespace Final_Project.Data
         public DbSet<User> User { get; set; }
         public DbSet<Toy> Toy { get; set; }
         
+        public DbSet<Information> Information { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Toy>()

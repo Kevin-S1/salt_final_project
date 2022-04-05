@@ -1,0 +1,28 @@
+.about-page__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.about-page__header{
+    margin-right: 1em;
+    color: black;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.5rem;
+}
+
+.about-page__paragraph {
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+
+
+@media only screen and (min-width: 680px) {
+
+    .home-page__image {
+        width: 30vw;
+    }
+
+}
