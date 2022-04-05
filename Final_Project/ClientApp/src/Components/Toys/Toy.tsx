@@ -7,8 +7,6 @@ import {Dropdown, Form} from "react-bootstrap";
 import {To, useParams} from "react-router-dom";
 import Loading from "../Loading/Loading";
 
-
-
 interface Props{
     getToys: boolean,
     toys? : toyDetails[] | undefined;

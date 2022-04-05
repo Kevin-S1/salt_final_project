@@ -12,11 +12,9 @@ interface Props{
     initialUserDetails: any
 }
 const ToyInfo = ({toy, initialUserDetails}: Props) => {
-        const [click, setClick] = useState(false)
         const [show, setShow] = useState(false)
         
         const showHandler = () => {
-            console.log('showhandler')
             setShow(!show);
         }
         
@@ -43,8 +41,6 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
                                 <img className='toy__card__image' src={toy.image}/>
                             </article>
                         </article>
-                        
-
                     </article>
                 </Link>
                 {toy.userId == initialUserDetails.id.toString() ?

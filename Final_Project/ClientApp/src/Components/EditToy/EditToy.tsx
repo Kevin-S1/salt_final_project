@@ -17,6 +17,7 @@ const EditToy = () => {
     const [age, setAge] = useState(0);
     const [toy, setToy] = useState<toyDetails>();
     const [successStatus, setSuccessStatus] = useState(false);
+    const [image, setImage] = useState('');
     
     const submitHandler = async (e: any) => {
         e.preventDefault();
@@ -26,6 +27,7 @@ const EditToy = () => {
             newToy.description = description;
             newToy.age = age;
             newToy.category = category;
+            newToy.image = image;
 
             await fetch(`https://localhost:7275/api/toys/` + params.id,{
                 method:'PUT',
@@ -69,6 +71,11 @@ const EditToy = () => {
         setAge(parseInt(e.target.value));
     }
     
+    const imageChangeHandler = (e: any) => {
+        e.preventDefault();
+        setImage(e.target.value);
+    }
+    
     useEffect(() => {
         GetToysData();
     },[])
@@ -79,6 +86,7 @@ const EditToy = () => {
             setAge(toy.age);
             setName(toy.name);
             setDescription(toy.description);
+            setImage(toy.image);
         }
     },[toy])
     
@@ -88,9 +96,9 @@ const EditToy = () => {
             <article className='edit--form--container'>
                 <form onSubmit={e => submitHandler(e)} className='edit--form'>
                     <label className='edit--label' htmlFor='title' >Title</label>
-                    <input className='edit--input' type='text' id='title' onChange={e => nameChangeHandler(e)} defaultValue={name}></input>
+                    <input className='edit--input' type='text' id='title' onChange={e => nameChangeHandler(e)} defaultValue={name}/>
                     <label className='edit--label' htmlFor='description'>Description</label>
-                    <textarea className='edit--input' cols={30} rows={7} id='description' onChange={e => descriptionChangeHandler(e)} defaultValue={description}></textarea>
+                    <textarea className='edit--input' cols={30} rows={7} id='description' onChange={e => descriptionChangeHandler(e)} defaultValue={description}/>
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
                         <select value={category}  onChange={e => categoryChangeHandler(e)}>
@@ -116,6 +124,8 @@ const EditToy = () => {
                             <option value="5">10+</option>
                         </select>
                     </Form.Group>
+                    <label htmlFor='image'>Image</label>
+                    <input type='text' onChange={e => imageChangeHandler(e)} id='image' defaultValue={image}/>
                     <Button variant="primary" type="submit">
                         Save Changes
                     </Button>

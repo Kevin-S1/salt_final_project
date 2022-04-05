@@ -111,6 +111,7 @@ namespace Final_Project.Controllers
             toy.Description = toyDTO.Description;
             toy.LendeeId = toyDTO.LendeeId;
             toy.Status = toyDTO.Status;
+            toy.Image = toyDTO.Image;
             
             _context.Entry(toy).State = EntityState.Modified;
 
