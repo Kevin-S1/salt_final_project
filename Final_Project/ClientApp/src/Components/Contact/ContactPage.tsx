@@ -46,11 +46,11 @@ const ContactPage = () => {
     }
     return (
         <div className="contact-page-container">
-            <div className="contact-page-header">
-                <h2>Contact Us!</h2>
+            <div className="contact-page__header">
+                <h2 className="contact-page__headertext">Contact Us!</h2>
             </div>
             <div className="contact-page-text">
-                <p> If you need any information contact us by filling the details</p>
+                <p className="contact-page__textinfo"> If you need any information contact us by filling the details</p>
             </div>
             {showText ? <SuccessMsg message={'We will get back to you as soon as possible, thanks for contacting us.'} /> : <></>}
             <form onSubmit={handleSubmit} className='contact-page'>

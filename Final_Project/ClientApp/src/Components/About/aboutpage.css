@@ -1,28 +1,37 @@
-.about-page__container {
-    display: flex;
-    flex-direction: column;
+.about-page__container{
+    width:70vw;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    background-image: url("../../HomePagePic2.svg");
+    filter:opacity(0.1);
+}
+.about-page__top{
+    display:flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-}
-.about-page__header{
-    margin-right: 1em;
-    color: black;
+    margin: 1rem;
     font-family: 'Kanit', sans-serif;
-    font-size: 1.5rem;
 }
-
-.about-page__paragraph {
+.about-page__middle{
+    display:flex;
+    flex-direction:column;
     justify-content: center;
-    align-items: center;
-    text-align: justify;
+    align-items:center;
 }
-
+.about-page__image{
+    width:350px;
+    height:300px;
+    border-radius: 1rem;
+}
 
 @media only screen and (min-width: 680px) {
-
-    .home-page__image {
-        width: 30vw;
+    .about-page__middle{
+        flex-direction: row;
+        flex-wrap: wrap;
     }
-
+    .about-page__profile{
+        margin:1.5rem;
+    }
+    
 }
