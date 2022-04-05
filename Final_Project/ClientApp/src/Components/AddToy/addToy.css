@@ -1,8 +1,9 @@
 body {
-    background-image: url("../../HomePagePic1.svg");
 }
 
 .add-toy__page {
+    background-image: url("../../HomePagePic1.svg");
+
     height: 100vh;
     background-color: #ffffff15;
 }
