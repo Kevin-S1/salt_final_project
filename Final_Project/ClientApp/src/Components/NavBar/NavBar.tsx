@@ -19,6 +19,12 @@ const NavBar = () => {
                         <Nav className="me-auto">
                             <Link className='nav-item' to="/toys">Toys</Link>
                         </Nav>
+                        <Nav className="me-auto">
+                            <Link className='nav-item' to="/about">About Us</Link>
+                        </Nav>
+                        <Nav className="me-auto">
+                            <Link className='nav-item' to="/contact">Contact</Link>
+                        </Nav>
                         <Nav>
                             {isAuthenticated ? 
                                 <NavDropdown title="My Profile" id="collasible-nav-dropdown">

@@ -22,6 +22,33 @@ namespace Final_Project.Controllers
         {
             _context = context;
         }
+        [HttpGet("myloans/{lendeeId}")]
+        public async Task<ActionResult<IEnumerable<ToyDetailsDTO>>> GetLendToys(int lendeeId)
+        {
+            return await _context.Toy
+                .Include(t=> t.User)
+                .Where(t=> t.LendeeId == lendeeId)
+                .Select(t =>
+                new ToyDetailsDTO() { 
+                        Id = t.Id,
+                        Name = t.Name, 
+                        Description = t.Description,
+                        UserId = t.User.Id,
+                        LendeeId = (int)t.LendeeId,
+                        Status = t.Status,
+                        Age = t.Age,
+                        Category = t.Category,
+                        UserName = t.User.UserName,
+                        Image = t.Image,
+                        UserEmail = t.User.Email,
+                        PhoneNumber = t.User.PhoneNumber,
+                        UserCity = t.User.City,
+                        UserCountry = t.User.Country
+                    }
+                    
+                )
+                .ToListAsync();
+        }
 
         // GET: api/Toys
         [HttpGet]
@@ -33,7 +60,7 @@ namespace Final_Project.Controllers
         }
 
         // GET: api/Toys/5
-        [HttpGet("{id}")]
+        [HttpGet("getbyid/{id}")]
         public async Task<ActionResult<ToyDetailsDTO>> GetToy(int id)
         {
             var toy = await _context.Toy.FindAsync(id);

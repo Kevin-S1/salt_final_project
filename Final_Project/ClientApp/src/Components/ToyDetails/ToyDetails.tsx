@@ -42,7 +42,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     };    
 
     const GetToysData = async () =>{
-        const response = await fetch('https://localhost:7275/api/toys/' + params.id,{
+        const response = await fetch('https://localhost:7275/api/toys/getbyid/' + params.id,{
             method:'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -70,8 +70,18 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                     <p className="toy-details__header">{Toy?.name}</p>
                     <p>{Toy?.userCity} <GoLocation className="toy-details__go-location"/></p>
                     <div className="toy-details__status">
-                        <p className="toy-details__status-text">{Toy?.status}</p>
-                        <div className="toy-details__status-blob"></div>
+                        <p className={
+                            Toy?.status === 0 ? ' toy--details--status--text status__available' :
+                                (Toy?.status === 1 ? 'toy--details--status--text status__reserved' :
+                                    'toy--details--status--text status__unavailable')
+                        }>{
+                            Toy?.status === 0 ? 'Available' : (Toy?.status === 1 ? 'Reserved' : 'Not Available')
+                        }</p>   
+                        <div className={
+                            Toy?.status === 0 ? 'toy-details__status-blob blob__available' :
+                                (Toy?.status === 1 ? 'toy-details__status-blob blob__reserved' :
+                                    'toy-details__status-blob blob__unavailable')
+                        }></div>
                     </div>
                     <Button className="btn-success" onClick={e => {  reservationHandler(e) }}>Reserve</Button>
                 </Col>
