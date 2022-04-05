@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import './addToy.css'
 import {Button, Form} from "react-bootstrap";
 import {addToyDto, InitialUserDetails} from "../../types";
@@ -7,23 +7,24 @@ import SuccessMsg from "../SuccessMsg/SuccessMsg";
 
 
 const AddToy = (props : any) => {
-   
+
     const { isAuthenticated} = useAuth0();
-  
+
     const [name, setName] = useState<string>("")
     const [description, setDescription] = useState<string>("")
     const [category, setCategory] = useState<number>(0)
     const [age, setAge] = useState<number>(0)
-    
+
     const [toy, setToy] = useState<addToyDto>({name: "", description: "", userId: 0, category: 1, age: 1});
+    const [successStatus, setSuccessStatus] = useState<boolean>(false);
+    
+    let firstLoad = useRef(true);
     
     const submitHandler = (e:any) => {
         e.preventDefault();
-        if(isAuthenticated){
-            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age});
-        }
+            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age})
     }
-    
+
     const categoryChangeHandler = (e: any) => {
         e.preventDefault();
         setCategory(parseInt(e.target.value));
@@ -34,7 +35,6 @@ const AddToy = (props : any) => {
         setAge(parseInt(e.target.value));
     }
     const CreateToy = async()=> {
-        
         if(isAuthenticated)
         {
             const response = await fetch(`https://localhost:7275/api/toys/`,{
@@ -44,24 +44,28 @@ const AddToy = (props : any) => {
                     "Content-Type": "application/json"
                 }
             })
-            console.log(await response.json())
-            if(response.status === 204) {
-
+            
+            if(response.status === 201) {
+                setSuccessStatus(true);
                 setName("");
                 setDescription("");
             }
+            setTimeout(() => {setSuccessStatus(false)}, 4000);
         }
 
     }
     useEffect(()=>{
-        CreateToy();
+        if(!firstLoad.current){
+            CreateToy();    
+        }
+        firstLoad.current = false;
     },[toy])
-    
+
     return (
         <>
             <div>
-                <h4>Add Toy: {props.initialUserDetails.id}</h4>
-                
+                <h4>Add Toy to your listings</h4>
+                { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
@@ -86,7 +90,7 @@ const AddToy = (props : any) => {
                     <Form.Group>
                         <Form.Label>Age Category</Form.Label>
                         <select onChange={e => ageChangeHandler(e)}>
-                            
+
                             <option value="1">0-1</option>
                             <option value="2">2-4</option>
                             <option value="3">5-6</option>
