@@ -4,6 +4,7 @@ import {InitialUserDetails, rating, toyDetails} from "../../types";
 import "./toyDetails.css";
 import {Link, useParams} from "react-router-dom";
 import { GoLocation } from 'react-icons/go';
+import {AiFillStar, AiFillPhone} from 'react-icons/ai';
 import {Row, Col, Button} from "react-bootstrap";
 import {MdEmail} from "react-icons/md";
 import DeleteModal from "../DeleteModal/DeleteModal";
@@ -33,14 +34,10 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     const reservationHandler = async (e: any) => {
         let updatedToy: any = Toy; 
         updatedToy.lendeeId = initialUserDetails.id;
-        updatedToy.status = 1   ; 
+        updatedToy.status = 1;
+        setToy(updatedToy);
         
-        setToy(updatedToy); 
-        
-        console.log(updatedToy);
-        console.log(Toy);
-        
-        const response = await fetch('https://localhost:7275/api/toys/' + params.id, {
+        await fetch('https://localhost:7275/api/toys/' + params.id, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json"
@@ -63,8 +60,6 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     }
     
     const UpdateUserRating = async () => {
-        console.log(newRating);
-        
         const response = await fetch('https://localhost:7275/api/users/' + Toy?.userId,{
             method:'PATCH',
             body: JSON.stringify(ratingDTO),
@@ -72,13 +67,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 "Content-Type": "application/json"
             }
         })
-        
-        console.log(response);
-        
         var data = response.json();
-        
-        console.log(data);
-        
     }
     
     const GetToysData = async () =>{
@@ -94,12 +83,12 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     
     useEffect(() => {
         GetToysData();
-        
     }, [])
     
     useEffect(() => {
-            GetToyOwner()
+        GetToyOwner()
     },[Toy])
+    
     useEffect(() => {
         setRatings(toyOwner?.ratings);
     },[toyOwner])
@@ -111,19 +100,19 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
         {
             avgRating = arr.reduce((a: any,b: any)=>a+b, 0) / arr.length;
         }
-        
         setAverageRating(avgRating)
-        
     }, [ratings])
     
-    
+    useEffect(() => {
+        
+    }, [averageRating])
     
     useEffect(() => {
-        const newRatingDTO: rating = {value: newRating, userId: parseInt(toyOwner.id)}
-        setRatingDTO(newRatingDTO)
+        if(toyOwner !== undefined){
+            const newRatingDTO: rating = {value: newRating, userId: toyOwner.id.toString()}
+            setRatingDTO(newRatingDTO)
+        }
     }, [newRating])
-    
-    
     
     if (isLoading) {
         return <div>Loading ...</div>;
@@ -137,30 +126,26 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 <h3 className="toy-details__header">{Toy?.name}</h3>
             </Row>
             <Row className="toy-details__top">
-                <Col className="col-6" >
+                <Col className="col-12 col-md-6" >
                     <img className="toy-details__image" src={Toy?.image} />
                 </Col>
                 
-                <Col className="toy-details__text col-6 col-md-4">
+                <Col className="toy-details__text col-12 col-md-4">
                     <Row>
-                            
-                        <div className="toy-details__status col-6">
+                        <div className="toy-details__status col-12 col-md-4">
                             <p className={
                                 Toy?.status === 0 ? ' toy--details--status--text status__available' :
                                     (Toy?.status === 1 ? 'toy--details--status--text status__reserved' :
                                         'toy--details--status--text status__unavailable')
-                            }>{
+                            }>Status: {
                                 Toy?.status === 0 ? 'Available' : (Toy?.status === 1 ? 'Reserved' : 'Not Available')
                             }</p>   
                             <div className={
                                 Toy?.status === 0 ? 'toy-details__status-blob blob__available' :
                                     (Toy?.status === 1 ? 'toy-details__status-blob blob__reserved' :
                                         'toy-details__status-blob blob__unavailable')
-                            }></div>
+                            } />
                         </div>
-                        
-                        <div className="col-6 location">{Toy?.userCity} <GoLocation className="toy-details__go-location"/></div>
-                        
                     </Row>
                     
                     <Button className={Toy?.userId === initialUserDetails?.id.toString() ?
@@ -180,10 +165,11 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 <div className="toy-details__info ">
                     {isAuthenticated ?
                         <div className="toy-details--info__user-info">
-                            <div className="toy-details__header">Toy owned by:</div>
-                            <div className="toy-details__rating">Rating: {Toy?.userName && averageRating}</div>
+                            <div className="toy-details__header">Toy owned by: {Toy?.userName}</div>
+                            <div className="col-6 location"> <GoLocation className="toy-details__go-location"/>{Toy?.userCity}, {Toy?.userCountry}</div>
+                            <div className="toy-details__rating"><AiFillStar/>Rating: {averageRating?.toFixed(1)}</div>
                             <div><MdEmail/> {Toy?.userEmail} </div>
-                            <div>{Toy?.phoneNumber}</div>
+                            <div><AiFillPhone/>{Toy?.phoneNumber}</div>
                             <select className='dropdown-filter' onChange={e => setNewRating(parseInt(e.target.value))} >
                                 <option value={1}>1</option>
                                 <option value={2}>2</option>
@@ -206,8 +192,8 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
             <Row>
                 
             
-                <div className="toy-details__bottom col-6 col-md-4">
-                    <h6>About this toy: </h6>
+                <div className="toy-details__bottom col-12 col-md-4">
+                    <h6 className='toy-details--info__user-info'>About this toy: </h6>
                     <p className="toy-details__bottom-text">{Toy?.description}</p>
                     
                 </div>
