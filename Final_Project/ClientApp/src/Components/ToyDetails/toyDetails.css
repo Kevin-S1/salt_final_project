@@ -48,6 +48,13 @@
     visibility: hidden;
 }
 
+.toy-details__back-button {
+    width: 8rem !important;
+    margin-bottom: 1rem;
+    background-color: #FF521B !important;
+    padding: 0 !important;
+}
+
 .btn-reserved{
     background-color: lightgray !important;
     border: none !important;

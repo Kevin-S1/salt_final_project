@@ -66,7 +66,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     return(
         <div className="toy-details__body">
             <Row className="toy-details__back-button_row" >
-                <button className=" btn-primary toy-details__back-button" onClick={() => navigate('/toys')}>Back to Toys</button>
+                <button className="toy-details__back-button btn-primary btn" onClick={() => navigate('/toys')}>Back to Toys</button>
             </Row>
             <Row className="toy-details__top">
                 <Col className="col-6" >
