@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className="footer-container">
             <div className="footer-container__left">
-                <p>Contact us:</p>
+                <p className="footer-container__contacttext">Contact us:</p>
                 <div className="footer-container__logos">
                     <BsFacebook className="footer-container__icon" />
                    <AiFillTwitterCircle className="footer-container__icon" />
