@@ -11,6 +11,7 @@
     margin: 1em;
     color: black;
     font-family: 'Kanit', sans-serif;
+    font-weight: 500;
     font-size: 1.5rem;
 }
 
@@ -26,11 +27,14 @@
 
 .home-page__paragraph {
     text-align: justify;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 300;
 }
 .home-page__image {
     width: 80vw;
 }
 .carousel-outer {
+    z-index: 1 !important;
     margin-top: -1.2rem;
     width: 100vw !important;
     height: 20rem !important;
@@ -74,7 +78,9 @@ ul li::before {
     height: 20rem !important;
     object-fit: cover !important;
 }
-
+.home-page__list-item{
+    font-family: 'Kanit', sans-serif;
+}
 @media only screen and (min-width: 680px) {
     .carousel-outer {
         width: 100vw !important;

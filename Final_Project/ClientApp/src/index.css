@@ -9,6 +9,9 @@ body {
   /*background-image: linear-gradient(180deg, #FF521B60 0%, #FF521B20 20%, #FF521B05 100%);*/
   /*min-height: 100vh;*/
   /*min-width: 100vw;*/
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 code {
