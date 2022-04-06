@@ -35,7 +35,7 @@ export type toyDetails = {
 }
 
 export type rating = {
-    ratingValue : number,
+    value : number,
     userId : string
 }
 

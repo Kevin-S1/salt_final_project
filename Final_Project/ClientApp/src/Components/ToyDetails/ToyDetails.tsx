@@ -1,6 +1,6 @@
-import  React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { toyDetails } from "../../types";
+import {InitialUserDetails, rating, toyDetails} from "../../types";
 import "./toyDetails.css";
 import {Link, useParams} from "react-router-dom";
 import { GoLocation } from 'react-icons/go';
@@ -15,7 +15,13 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
         ,isAuthenticated, isLoading} = useAuth0();
     
     const [Toy, setToy] = useState<toyDetails>();
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
+    const [toyOwner, setToyOwner] = useState<InitialUserDetails>();
+    const [ratings, setRatings] = useState<Array<rating>>();
+    const [averageRating, setAverageRating] = useState<number>();
+    
+    let firstLoad = useRef(true);
+
 
     const showHandler = () => {
         setShow(!show);
@@ -41,8 +47,20 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
             body: JSON.stringify(Toy)
         })
         navigate('/toys');
-       
     };    
+    
+    
+    const GetToyOwner = async () => {
+        const response = await fetch('https://localhost:7275/api/users/' + Toy?.userId,{
+            method:'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json()
+        setToyOwner(data);
+        console.log(toyOwner);
+    }
 
     const GetToysData = async () =>{
         const response = await fetch('https://localhost:7275/api/toys/getbyid/' + params.id,{
@@ -57,12 +75,33 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     
     useEffect(() => {
         GetToysData();
+        
     }, [])
+    
+    useEffect(() => {
+            GetToyOwner()
+    },[Toy])
+    useEffect(() => {
+        setRatings(toyOwner?.ratings);
+    },[toyOwner])
+    
+    useEffect(() => {
+        let arr = ratings?.map(r => r.value);
+        console.log(arr);
+        let avgRating = 0;
+        if(arr != undefined)
+        {
+            avgRating = arr.reduce((a: any,b: any)=>a+b) / arr.length;
+        }
+        
+        setAverageRating(avgRating)
+        
+    }, [ratings])
+    
     
     if (isLoading) {
         return <div>Loading ...</div>;
     }
-    
     return(
         <div className="toy-details__body">
             <Row className="toy-details__back-button_row" >
@@ -110,9 +149,10 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                     {isAuthenticated ?
                         <div className="toy-details--info__user-info">
                             <h3>Contact information:</h3>
-                            <div>{Toy?.userName}</div>
+                            <div>{Toy?.userName && averageRating}</div>
                             <div><MdEmail/> {Toy?.userEmail} </div>
                             <div>{Toy?.phoneNumber}</div>
+                            <button  className="btn-primary" onClick={() => GetToyOwner()}>GetUser</button>
                         </div>
                         :
                         <div >

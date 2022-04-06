@@ -37,6 +37,7 @@ namespace Final_Project.Controllers
             var user = await _context
                 .User
                 .Include(u => u.Toys)
+                .Include(u => u.Ratings)
                 .FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
