@@ -1,8 +1,94 @@
-
-
-.edit--form{
-    display: flex;
+.edit--toy--container{
+    display:flex;
     flex-direction: column;
+    width:100vw;
+    text-align: center;
+    margin:0 auto;
+}
+.edit--form--container{
+    display:flex;
+    width:80%;
+    margin:0 auto;
+    flex-direction:column;
     justify-content: center;
-    align-items: center;
+    margin-bottom:1rem;
+}
+.edit-toy-text-container{
+    margin-bottom:1rem;
+}
+.edit-toy-image-picture{
+    width:100%;
+    height:200px;
+    box-shadow: 0 0 5px black;
+    border-radius: 20px;
+}
+.edit-toy-submit{
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    color: white;
+    border-radius: 10px;
+    margin:0 auto;
+    background-color: #2ea44f;
+    margin-top:1rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px !important;
+}
+.edit-input{
+    margin: 0.5rem;
+    border-radius:5px;
+    border: none !important;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px !important;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 300;
+}
+.edit-form{
+    display:flex;
+    flex-direction:column;
+}
+.edit--label{
+    font-family: 'Kanit', sans-serif;
+    display:flex;
+    justify-content: left;
+    margin-top:.5rem;
+}
+.edit-toy-textarea{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    font-size:18px;
+    border-radius:5px;
+}
+.edit-toy-title{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.edit-toy-age{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.edit-toy-category{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.edit-toy-uploadimage{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+@media screen and (min-width: 680px){
+    .edit--form--container{
+        flex-direction:row;
+        width:85%;
+        margin-top:2rem;
+    }
+    .edit-toy-text-container{
+        padding-right:5rem;
+    }
+    .edit-toy-image-picture{
+        width:500px;
+        height:400px;
+        margin:1rem;
+    }
+    
 }

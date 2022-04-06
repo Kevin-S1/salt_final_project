@@ -9,6 +9,7 @@ import {Button, Form} from "react-bootstrap";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../Firebase";
+import Footer from "../Footer/Footer";
 
 const EditToy = () => {
 
@@ -109,14 +110,26 @@ const EditToy = () => {
         <section className='edit--toy--container'>
             {successStatus ? <SuccessMsg message='The item has been updated!'/> : <></>}
             <article className='edit--form--container'>
+                <div className='edit-toy-text-container'>
+                    <div className="edit-toy__header">
+                        <h3 className="edit-toy__headertext">Edit Toy Information!</h3>
+                    </div>
+                    <div className="edit-toy-image">
+                        <img src={image} className="edit-toy-image-picture"/>
+                    </div>
+                </div>
                 <form onSubmit={e => submitHandler(e)} className='edit--form'>
-                    <label className='edit--label' htmlFor='title' >Title</label>
-                    <input className='edit--input' type='text' id='title' onChange={e => nameChangeHandler(e)} defaultValue={name}/>
-                    <label className='edit--label' htmlFor='description'>Description</label>
-                    <textarea className='edit--input' cols={30} rows={7} id='description' onChange={e => descriptionChangeHandler(e)} defaultValue={description}/>
-                    <Form.Group>
-                        <Form.Label>Category</Form.Label>
-                        <select value={category}  onChange={e => categoryChangeHandler(e)}>
+                    <div className='edit-toy-title'>
+                        <label className='edit--label' htmlFor='title' >Title</label>
+                        <input className='edit--input' type='text' id='title' onChange={e => nameChangeHandler(e)} defaultValue={name}/>
+                    </div>
+                    <div className='edit-toy-description'>
+                        <label className='edit--label' htmlFor='description'>Description</label>
+                        <textarea className='edit-toy-textarea' cols={30} rows={7} id='description' onChange={e => descriptionChangeHandler(e)} defaultValue={description}/>
+                    </div>
+                    <Form.Group className="edit-toy-category">
+                        <Form.Label className='edit--label'>Category</Form.Label>
+                        <select value={category}  onChange={e => categoryChangeHandler(e)} className='edit--select'>
                             <option value="0">All</option>
                             <option value="1">Lego</option>
                             <option value="2">Puzzle</option>
@@ -128,9 +141,9 @@ const EditToy = () => {
                         </select>
                     </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Age Category</Form.Label>
-                        <select value={age} onChange={e => ageChangeHandler(e)}>
+                    <Form.Group className="edit-toy-age">
+                        <Form.Label className='edit--label'>Age Category</Form.Label>
+                        <select value={age} onChange={e => ageChangeHandler(e)} className='edit--select'>
                             <option value="0">All</option>
                             <option value="1">0-1</option>
                             <option value="2">2-4</option>
@@ -139,13 +152,16 @@ const EditToy = () => {
                             <option value="5">10+</option>
                         </select>
                     </Form.Group>
-                    <label htmlFor='image'>Image</label>
-                    <input type='file' id='image'/>
-                    <Button variant="primary" type="submit">
+                    <div className='edit-toy-uploadimage'>
+                        <label htmlFor='image' className='edit--label'>Image</label>
+                        <input type='file' id='image' className='edit--input' />
+                    </div>
+                    <Button variant="primary" type="submit" className="edit-toy-submit">
                         Save Changes
                     </Button>
                 </form>
             </article>
+            <Footer />
         </section>
     );
 };
