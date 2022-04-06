@@ -28,7 +28,7 @@ const Home = () => {
                 <Carousel.Item className="carousel-inner">
                     <img
                         className="d-block w-100"
-                        src="https://picsum.photos/300/200?text=First slide&bg=373940"
+                        src="https://images.unsplash.com/photo-1588348442528-85c6fa3b0440?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -39,7 +39,7 @@ const Home = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="https://picsum.photos/300/200?text=Second slide&bg=282c34"
+                        src="https://media.istockphoto.com/photos/children-playing-with-colorful-blocks-building-a-block-tower-picture-id589961490?s=612x612"
                         alt="Second slide"
                     />
 
@@ -51,7 +51,7 @@ const Home = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="https://picsum.photos/300/200?text=Third slide&bg=20232a"
+                        src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
                         alt="Third slide"
                     />
 

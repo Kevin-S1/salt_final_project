@@ -11,11 +11,9 @@ const NavBar = () => {
     return (
         <>
             <Navbar className="navBar" bg="light" expand="lg">
-                <Container>
-                    <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>
-                    
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse className="navbar-collapse" id="basic-navbar-nav">
+                <Container className="navbar-container">
+                    <div className="navbar-container__left">
+                        <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>
                         <Nav className="me-auto">
                             <Link className='nav-item' to="/toys">Toys</Link>
                         </Nav>
@@ -25,6 +23,10 @@ const NavBar = () => {
                         <Nav className="me-auto">
                             <Link className='nav-item' to="/contact">Contact</Link>
                         </Nav>
+                    </div>
+                    <div className="navbar-container__right">
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse className="navbar-collapse float-right" id="basic-navbar-nav">
                         <Nav>
                             {isAuthenticated ? 
                                 <NavDropdown title="My Profile" id="collasible-nav-dropdown">
@@ -40,6 +42,7 @@ const NavBar = () => {
                                 <button className="button-32" role="button" onClick={() => loginWithRedirect()}>Log In / Register</button>}
                         </Nav>
                     </Navbar.Collapse>
+                    </div>
                 </Container>
             </Navbar>
             

@@ -1,0 +1,12 @@
+.footer-container{
+    min-height:10vh;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #FF521B10;
+}
+.footer-container__icon{
+    margin-right:3rem;
+    margin-bottom:1rem;
+    font-size:2rem;
+}
