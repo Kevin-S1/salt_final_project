@@ -12,6 +12,7 @@ interface Props{
     toys? : toyDetails[] | undefined;
     initialUserDetails : any
 }
+
 const Toy = ({toys, initialUserDetails, getToys}: Props) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState<number>(0);
@@ -100,7 +101,7 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                         </article>
                         
                     </section>
-                    <section className="toy__list">
+                    <section className="toy__list"> 
                         {loading ? <Loading /> : <></>}
                         {
                             toyArray?.filter(toy => toy.name.toLowerCase().includes(searchTerm.toLowerCase()))

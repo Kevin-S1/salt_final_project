@@ -14,12 +14,16 @@ interface Props{
 const ToyInfo = ({toy, initialUserDetails}: Props) => {
         const [show, setShow] = useState(false)
         const [category, setCategory] = useState('');
-        
+        const [userId, setUserId] = useState<number>(0);
         const showHandler = () => {
             setShow(!show);
         }
         
     
+        useEffect(() => {
+            if(initialUserDetails != undefined)
+                setUserId(initialUserDetails.id)
+        }, [initialUserDetails])
     
     useEffect(() => {
         switch (toy?.category){
@@ -37,13 +41,13 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
         return (
             <article>
                 <Link to={`/toys/${toy.id}`} >
-                    <article className={toy.userId == initialUserDetails.id ? 'toy__card toy__card__owner' : 'toy__card'}>
+                    <article className={toy.userId == userId ? 'toy__card toy__card__owner' : 'toy__card'}>
                         <article className='row row__first'>
                             <article className='col-7 toy__card__col__first'>
                                 <h3 className='toy__card__text toy__card__text--header'>{toy.name}</h3>
                                 <h3 className='toy__card__text toy__card__text--header__sub'>{category}</h3>
                                 <p className='toy__card__text toy__card__text--description'>{toy.description}</p>
-                                {toy.userId == initialUserDetails.id.toString() ?
+                                {toy.userId == userId ?
                                     <article className='toy--owner--button--container'>
                                         <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${toy.id}`}>Edit</Link>
                                         <Link to={''}><button onClick={showHandler} className='toy--owner--button toy--owner--button__delete' >Delete</button> </Link>
@@ -69,7 +73,6 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
                         </article>
                     </article>
                 </Link>
-                
             </article>
         
     )
