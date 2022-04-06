@@ -2,10 +2,11 @@ import  React, {useState, useEffect} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { toyDetails } from "../../types";
 import "./toyDetails.css";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { GoLocation } from 'react-icons/go';
 import {Row, Col, Button} from "react-bootstrap";
 import {MdEmail} from "react-icons/md";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 
 
@@ -13,12 +14,17 @@ import {MdEmail} from "react-icons/md";
 
 const ToyDetails = ({ initialUserDetails }: any ) => {
     const params = useParams();
-    console.log(params);
     const { loginWithRedirect, logout 
         ,isAuthenticated, isLoading} = useAuth0();
     
     const [Toy, setToy] = useState<toyDetails>();
+    const [show, setShow] = useState(false)
+
+    const showHandler = () => {
+        setShow(!show);
+    }
     
+    console.log(Toy);
     
     const reservationHandler = async (e: any) => {
         let updatedToy: any = Toy; 
@@ -83,7 +89,16 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                                     'toy-details__status-blob blob__unavailable')
                         }></div>
                     </div>
-                    <Button className="btn-success" onClick={e => {  reservationHandler(e) }}>Reserve</Button>
+                    <Button className={Toy?.userId == initialUserDetails?.id.toString() ?
+                        'btn-hidden' : (Toy?.status === 1 ? 'btn-reserved' : (Toy?.status === 2 ? 'btn-unavailable' : 'btn-success')  )} onClick={e => {  reservationHandler(e) }}>Reserve</Button>
+                    {Toy?.userId == initialUserDetails?.id.toString() ?
+                        <article className='toy--owner--button--container'>
+                            <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${Toy?.id}`}>Edit</Link>
+                            <Link to={'/toys'}><button onClick={showHandler} className='toy--owner--button toy--owner--button__delete' >Delete</button> </Link>
+                            {show ?
+                                <DeleteModal show={show} id={Toy?.id}/> : <></>}
+                        </article> : <></>
+                    }
                 </Col>
             </Row>
             <div className="toy-details__bottom">

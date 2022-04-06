@@ -11,13 +11,11 @@ interface Props {
 }
 
 const Listings = ({initialUserDetails}:Props) => {
-    console.log(initialUserDetails);
     const navigate = useNavigate();
     const { isAuthenticated, user, isLoading } = useAuth0();
     const [userToys, setUserToys] = useState<Array<toyDetails>>();
 
     const GetToys = async () =>{
-        console.log('fetch reached');
         const response = await fetch('https://localhost:7275/api/users/usertoys/' + initialUserDetails.id,{
             method:'GET',
             headers: {
@@ -25,9 +23,7 @@ const Listings = ({initialUserDetails}:Props) => {
             }
         })
         const data = await response.json();
-        console.log(data);
         await setUserToys(data);
-        console.log(userToys);
     }
 
     useEffect(()=>{
@@ -43,7 +39,7 @@ const Listings = ({initialUserDetails}:Props) => {
             <h4 className="listings--header">My Listings:</h4>
             <button className="button-3" onClick={ () => navigate('/add')}>Add Toy</button>
             <div>
-                <Toy initialUserDetails={initialUserDetails} toys={userToys}/>
+                <Toy getToys={false} initialUserDetails={initialUserDetails} toys={userToys}/>
                 
             </div>
         </div>

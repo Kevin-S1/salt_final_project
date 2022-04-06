@@ -1,23 +1,36 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import './toy.css'
 import './form.scss'
 import {toyDetails} from "../../types";
 import ToyInfo from "../ToyInfo/ToyInfo";
 import {Dropdown, Form} from "react-bootstrap";
-
-
+import {To, useParams} from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 interface Props{
-   toys : Array<toyDetails> | undefined,
+    getToys: boolean,
+    toys? : toyDetails[] | undefined;
     initialUserDetails : any
 }
-const Toy = ({toys, initialUserDetails}: Props) => {
-    console.log(toys);
-    
+const Toy = ({toys, initialUserDetails, getToys}: Props) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState<number>(0);
     const [age, setAge] = useState<number>(0)
-
+    const [toyArray, setToyArray] = useState<toyDetails[]>()
+    const [loading, setLoading] = useState<boolean>(false);
+    const [showOwnToys, setShowOwnToys] = useState<boolean>(true);
+    
+    const getAllToys = async () =>{
+        const response = await fetch('https://localhost:7275/api/toys',{
+            method:'GET',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json();
+        setToyArray(data);
+    }
+    
     const categoryChangeHandler = (e: any) => {
         e.preventDefault();
         if(e.target.value === 0) return;
@@ -29,13 +42,24 @@ const Toy = ({toys, initialUserDetails}: Props) => {
         setAge(parseInt(e.target.value));
     }
     
-    
     const changeHandler = (e: any) => {
         e.preventDefault();
-        console.log(e);
         setSearchTerm(e.target.value);
-        console.log(searchTerm);
     }
+    
+    // Workaround for bug on reload
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(()=> {
+            if(getToys){
+                getAllToys();
+                setLoading(false);
+            } else {
+                setToyArray(toys);
+                setLoading(false);
+            }
+        }, 2000)
+    }, [toys])
 
     return (
         
@@ -71,12 +95,16 @@ const Toy = ({toys, initialUserDetails}: Props) => {
                                     <option value="5">10+</option>
                                 </select>
                             </Form.Group>
+                            <label htmlFor='own-toys-checkbox'>Show own toys?</label>
+                            <input id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
                         </article>
                         
                     </section>
                     <section className="toy__list">
+                        {loading ? <Loading /> : <></>}
                         {
-                            toys?.filter(toy => toy.name.includes(searchTerm))
+                            toyArray?.filter(toy => toy.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                                .filter(toy => showOwnToys ? toy : toy.userId !== initialUserDetails?.id)
                             .filter(toy => category === 0 ? toy : toy.category === category)
                             .filter(toy => age === 0 ? toy : toy.age === age)
                             .map((t : toyDetails,index) =>(<ToyInfo initialUserDetails={initialUserDetails} key={index} toy={t} />))

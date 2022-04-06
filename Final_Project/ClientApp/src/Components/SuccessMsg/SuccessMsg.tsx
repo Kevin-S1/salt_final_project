@@ -1,12 +1,13 @@
-
-
-
+import './successMsg.css';
 
 const SuccessMsg = (props: any) => {
   return (
-      <>
-          <h3>{props.message}</h3>
-      </>
+      <div className='successMsg'>
+          <div className='success-container'>
+              <h3 className='success-message'>{props.message}</h3>
+          </div>
+      </div>
+      
   )
 }
 
