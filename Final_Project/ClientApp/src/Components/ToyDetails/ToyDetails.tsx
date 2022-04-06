@@ -91,7 +91,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
         let avgRating = 0;
         if(arr != undefined)
         {
-            avgRating = arr.reduce((a: any,b: any)=>a+b) / arr.length;
+            avgRating = arr.reduce((a: any,b: any)=>a+b, 0) / arr.length;
         }
         
         setAverageRating(avgRating)

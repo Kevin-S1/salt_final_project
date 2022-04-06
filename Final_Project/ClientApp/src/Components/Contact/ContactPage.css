@@ -32,8 +32,7 @@
 .contact-page input{
     height:2rem;
     margin:5px;
-    box-shadow: 0 0 3px #000000;
-    border:1px solid #00000070;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     font-size:18px;
     border-radius:5px;
 }
@@ -49,8 +48,7 @@ label{
     justify-content: center;
 }
 .contact-page-textarea{
-    border:1px solid #00000070;
-    box-shadow: 0 0 3px #000000;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     font-size:18px;
     border-radius:5px;
 }
@@ -59,9 +57,8 @@ label{
     color: white;
     width:200px;
     box-shadow: 0 0 5px #000000;
-    border: 1px solid #FF521B;
     border-radius: 10px;
     margin:0 auto;
     background-color: #2ea44f;
-    border: 1px solid rgba(27, 31, 35, .15) !important;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px !important;
 }
