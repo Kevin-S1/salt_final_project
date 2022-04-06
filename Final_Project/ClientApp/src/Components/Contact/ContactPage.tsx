@@ -57,6 +57,7 @@ const ContactPage = () => {
                 <label>First Name:
                 </label>
                 <input
+                    className='contact-input-field'
                     type="text"
                     name="firstName"
                     value={inputs.firstName}
@@ -66,6 +67,7 @@ const ContactPage = () => {
                 <label>Last Name:
                 </label>
                 <input
+                    className='contact-input-field'
                     type="text"
                     name="lastName"
                     value={inputs.lastName}
@@ -75,6 +77,7 @@ const ContactPage = () => {
                 <label>Email:
                 </label>
                 <input
+                    className='contact-input-field'
                     type="email"
                     name="email"
                     value={inputs.email}
