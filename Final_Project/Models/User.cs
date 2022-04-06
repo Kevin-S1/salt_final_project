@@ -14,7 +14,7 @@ public class User
 
     public virtual ICollection<Toy>? Toys { get; set; }
     public virtual ICollection<Rating>? Ratings { get; set; }
-    
+
     [Required]
     [JsonPropertyName("sub")]
     public string AuthId { get; set; }

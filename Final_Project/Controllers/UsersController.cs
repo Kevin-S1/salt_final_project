@@ -35,14 +35,13 @@ namespace Final_Project.Controllers
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _context
-                    .User
-                    .Include(u => u.Toys)
-                    .FirstOrDefaultAsync(u => u.Id == id);
+                .User
+                .Include(u => u.Toys)
+                .FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
                 return NotFound();
-            }
-            return user;
+            } return user;
         }
         
         [HttpGet("usertoys/{id}")]
@@ -88,7 +87,6 @@ namespace Final_Project.Controllers
         [HttpPut("{authId}")]
         public async Task<IActionResult> PutUser(string authId, [FromBody] UserInputDTO userInputDto)
         {
-            
             if (!UserExists(authId))
             {
                 return BadRequest();
@@ -123,7 +121,6 @@ namespace Final_Project.Controllers
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser([FromBody] User user)
         {
@@ -149,6 +146,27 @@ namespace Final_Project.Controllers
             }
 
             _context.User.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        
+        // PATCH: api/users
+        [HttpPatch( "{userId}")]
+        public async Task<IActionResult> UpdateUserRatings(int userId, [FromBody]RatingDTO ratingDto)
+        {
+            var user = await _context.User.FindAsync(userId);
+
+            if (user == null) return BadRequest();
+
+            var rating = new Rating
+            {
+                UserId = userId,
+                Value = ratingDto.Value
+            };
+            
+            _context.Rating.Add(rating);
+            user.Ratings.Add(rating);
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -7,6 +7,8 @@ import {InitialUserDetails} from "../../types";
 import Toy from "../Toys/Toy";
 import {Button, Form} from "react-bootstrap";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
+import {storage} from "../../Firebase";
 
 const EditToy = () => {
 
@@ -22,13 +24,25 @@ const EditToy = () => {
     const submitHandler = async (e: any) => {
         e.preventDefault();
         if(toy !== undefined){
+            let downloadURL = '';
+            const id = Date.now();
+            
+            if(e.target[4].files[0] == undefined) {
+                downloadURL = toy.image;
+            } else {
+                const storageRef = await ref(storage, 'Toys/' + id);
+                const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
+                downloadURL = await getDownloadURL(ref(snapshot.ref));
+                await setImage(downloadURL);
+            }
+            
             const newToy = toy;
             newToy.name = name;
             newToy.description = description;
             newToy.age = age;
             newToy.category = category;
-            newToy.image = image;
-
+            newToy.image = downloadURL;
+            
             await fetch(`https://localhost:7275/api/toys/` + params.id,{
                 method:'PUT',
                 body:JSON.stringify(newToy),
@@ -40,6 +54,7 @@ const EditToy = () => {
             setTimeout(() => { setSuccessStatus(false)},4000)
         }
     }
+    
     const GetToysData = async () =>{
         const response = await fetch('https://localhost:7275/api/toys/getbyid/' + params.id,{
             method:'GET',
@@ -125,7 +140,7 @@ const EditToy = () => {
                         </select>
                     </Form.Group>
                     <label htmlFor='image'>Image</label>
-                    <input type='text' onChange={e => imageChangeHandler(e)} id='image' defaultValue={image}/>
+                    <input type='file' id='image'/>
                     <Button variant="primary" type="submit">
                         Save Changes
                     </Button>

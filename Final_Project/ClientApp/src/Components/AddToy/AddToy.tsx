@@ -5,8 +5,11 @@ import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import {useNavigate} from "react-router-dom";
-import Footer from "../Footer/Footer";
 
+import Footer from "../Footer/Footer";
+import { doc, setDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {app, db, storage} from "../../Firebase";
 
 const AddToy = (props : any) => {
     
@@ -23,10 +26,20 @@ const AddToy = (props : any) => {
     const navigate = useNavigate();
     let firstLoad = useRef(true);
     
-    const submitHandler = (e:any) => {
+    const submitHandler = async (e:any) => {
         e.preventDefault();
+        let downloadURL = '';
+        const id = Date.now();
+        if(e.target[4].files[0] == undefined) {
+            downloadURL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvH7dMd3WcyQTNRr0sxQNzzK8UlZdBQpwKxQ&usqp=CAU';
+        } else {
+            const storageRef = await ref(storage, 'Toys/' + id);
+            const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
+            downloadURL = await getDownloadURL(ref(snapshot.ref));
+            await setImageUrl(downloadURL);
+        }
         if(isAuthenticated){
-            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age, imgUrl: imageUrl});
+            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age, imgUrl: downloadURL});
         }
     }
     
@@ -52,8 +65,9 @@ const AddToy = (props : any) => {
             })
             if(response.status === 201) {
                 setSuccessStatus(true);
-                setName("");
-                setDescription("");
+                setName('');
+                setDescription('');
+                setImageUrl('');
             }
             setTimeout(() => { setSuccessStatus(false)},4000)
         }
@@ -70,25 +84,21 @@ const AddToy = (props : any) => {
     return (
         <div className="add-toy-page__background">
             <div className="add-toy__page" >
-                <h2>Add Toy to your listings</h2>
+                <h2 className='add-toy-header'>Add Toy to your listings</h2>
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 
                 <Form className="add-toy__container" onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Name..." name="name"  value={name} onChange={e => setName(e.target.value)}/>
+                        <Form.Label className='add-toy-label'>Name</Form.Label>
+                        <Form.Control className='add-toy-input' type="text" placeholder="Enter Name..." name="name"  value={name} onChange={e => setName(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicDescription">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Description..." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicImageUrl">
-                        <Form.Label>Image Url</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Image Url..." name="imageUrl"  value={imageUrl} onChange={e => setImageUrl(e.target.value)}/>
+                        <Form.Label className='add-toy-label'>Description</Form.Label>
+                        <Form.Control className='add-toy-input' as='textarea' aria-rowcount={14} aria-colcount={20} placeholder="Enter Description..." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Category</Form.Label>
-                        <select onChange={e => categoryChangeHandler(e)}>
+                        <Form.Label className='add-toy-label'>Category</Form.Label>
+                        <select className='add-toy-dropdown' onChange={e => categoryChangeHandler(e)}>
                             <option selected value="0">All</option>
                             <option value="1">Lego</option>
                             <option value="2">Puzzle</option>
@@ -100,8 +110,8 @@ const AddToy = (props : any) => {
                         </select>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Age Category</Form.Label>
-                        <select onChange={e => ageChangeHandler(e)}>
+                        <Form.Label className='add-toy-label'>Age Category</Form.Label>
+                        <select className='add-toy-dropdown' onChange={e => ageChangeHandler(e)}>
                             <option selected value="0">All</option>
                             <option value="1">0-1</option>
                             <option value="2">2-4</option>
@@ -110,6 +120,8 @@ const AddToy = (props : any) => {
                             <option value="5">10+</option>
                         </select>
                     </Form.Group>
+                    <label className='' htmlFor='toyimage'>Image of the toy:</label>
+                    <input id='toyimage' type='file'/>
                     <Button className="add-toy__orange-button" variant="primary" type="submit">
                         Add toy
                     </Button>

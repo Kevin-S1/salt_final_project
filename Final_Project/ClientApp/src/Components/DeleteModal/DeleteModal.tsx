@@ -42,8 +42,8 @@ const DeleteModal = ({id, show}: any) => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Link to={'/toys'}> <Button variant="secondary" onClick={cancelHandler}>No, go back</Button> </Link>
-                    <Button variant="primary" onClick={handleDelete}>Yes, delete it</Button>
+                    <Link to={'/toys'}><Button variant="secondary" onClick={cancelHandler}>No, go back</Button> </Link>
+                    <Link to={'/toys'}><Button variant="primary" onClick={handleDelete}>Yes, delete it</Button></Link> 
                 </Modal.Footer>
             </Modal.Dialog>
         </Modal>
