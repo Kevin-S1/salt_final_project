@@ -5,6 +5,7 @@ import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import {useNavigate} from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 
 const AddToy = (props : any) => {
@@ -114,6 +115,7 @@ const AddToy = (props : any) => {
                     </Button>
                 </Form>
             </div>
+            <Footer />
         </div>
     );
 };

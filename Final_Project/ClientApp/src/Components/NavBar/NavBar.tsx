@@ -10,31 +10,27 @@ const NavBar = () => {
     
     return (
         <>
-            <Navbar className="navBar" bg="light" expand="lg">
-                <Container className="navbar-container">
-                    <div className="navbar-container__left">
-                        <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>
+            <Navbar collapseOnSelect className="navBar" bg="light" expand="lg">
+                <Container>
+                    <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>
+
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse className="navbar-collapse navbar-links" id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Link className='nav-item' to="/toys">Toys</Link>
-                        </Nav>
-                        <Nav className="me-auto">
-                            <Link className='nav-item' to="/about">About Us</Link>
-                        </Nav>
-                        <Nav className="me-auto">
-                            <Link className='nav-item' to="/contact">Contact</Link>
-                        </Nav>
-                    </div>
-                    <div className="navbar-container__right">
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse className="navbar-collapse float-right" id="basic-navbar-nav">
+                            <Nav.Link href="#toys">Toys</Nav.Link>
+                        
+                            <Nav.Link href="#about">About Us</Nav.Link>
+                        
+                            <Nav.Link href="#contact">Contact</Nav.Link>
+                        </Nav>   
                         <Nav>
-                            {isAuthenticated ? 
+                            {isAuthenticated ?
                                 <NavDropdown title="My Profile" id="collasible-nav-dropdown">
                                     <NavDropdown.Item ><Link className="navbar__dropdown__item" to={`/profile/details`}
                                     >Details</Link></NavDropdown.Item>
                                     <NavDropdown.Item ><Link className="navbar__dropdown__item" to="/profile/loans">My Loans</Link></NavDropdown.Item>
                                     <NavDropdown.Item ><Link className="navbar__dropdown__item" to="/profile/listings">My Listings</Link></NavDropdown.Item>
-                            </NavDropdown> : <> </>}
+                                </NavDropdown> : <> </>}
                             {isAuthenticated ?
                                 <button className="button-32" role="button" onClick={() => logout({ returnTo: window.location.origin })}>
                                     Log Out
@@ -42,10 +38,9 @@ const NavBar = () => {
                                 <button className="button-32" role="button" onClick={() => loginWithRedirect()}>Log In / Register</button>}
                         </Nav>
                     </Navbar.Collapse>
-                    </div>
                 </Container>
             </Navbar>
-            
+
         </>
         
     );
