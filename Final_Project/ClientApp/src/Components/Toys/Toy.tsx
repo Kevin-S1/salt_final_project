@@ -117,7 +117,6 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                     </section>
                 </div>
             </div>
-        
     )
 };
 

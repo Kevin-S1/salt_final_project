@@ -19,7 +19,8 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     const [toyOwner, setToyOwner] = useState<InitialUserDetails>();
     const [ratings, setRatings] = useState<Array<rating>>();
     const [averageRating, setAverageRating] = useState<number>();
-    
+    const [newRating, setNewRating] = useState<number>(1);
+    const [ratingDTO, setRatingDTO] = useState<rating>();
     let firstLoad = useRef(true);
 
 
@@ -59,9 +60,27 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
         })
         const data = await response.json()
         setToyOwner(data);
-        console.log(toyOwner);
     }
-
+    
+    const UpdateUserRating = async () => {
+        console.log(newRating);
+        
+        const response = await fetch('https://localhost:7275/api/users/' + Toy?.userId,{
+            method:'PATCH',
+            body: JSON.stringify(ratingDTO),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        
+        console.log(response);
+        
+        var data = response.json();
+        
+        console.log(data);
+        
+    }
+    
     const GetToysData = async () =>{
         const response = await fetch('https://localhost:7275/api/toys/getbyid/' + params.id,{
             method:'GET',
@@ -87,9 +106,8 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     
     useEffect(() => {
         let arr = ratings?.map(r => r.value);
-        console.log(arr);
         let avgRating = 0;
-        if(arr != undefined)
+        if(arr !== undefined)
         {
             avgRating = arr.reduce((a: any,b: any)=>a+b, 0) / arr.length;
         }
@@ -97,6 +115,14 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
         setAverageRating(avgRating)
         
     }, [ratings])
+    
+    
+    
+    useEffect(() => {
+        const newRatingDTO: rating = {value: newRating, userId: parseInt(toyOwner.id)}
+        setRatingDTO(newRatingDTO)
+    }, [newRating])
+    
     
     
     if (isLoading) {
@@ -137,7 +163,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                         
                     </Row>
                     
-                    <Button className={Toy?.userId == initialUserDetails?.id.toString() ?
+                    <Button className={Toy?.userId === initialUserDetails?.id.toString() ?
                         'btn-hidden' : (Toy?.status === 1 ? 'btn-reserved' : (Toy?.status === 2 ? 'btn-unavailable' : 'btn-success')  )} onClick={e => {  reservationHandler(e) }}>Reserve</Button>
                     {/* Owner buttons */}
                     <Row>
@@ -158,7 +184,14 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                             <div className="toy-details__rating">Rating: {Toy?.userName && averageRating}</div>
                             <div><MdEmail/> {Toy?.userEmail} </div>
                             <div>{Toy?.phoneNumber}</div>
-                            <button  className="btn-primary" onClick={() => GetToyOwner()}>GetUser</button>
+                            <select className='dropdown-filter' onChange={e => setNewRating(parseInt(e.target.value))} >
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                            </select>
+                            <button  className="btn-primary" onClick={() => UpdateUserRating()}>Add rating</button>
                         </div>
                         :
                         <div >
