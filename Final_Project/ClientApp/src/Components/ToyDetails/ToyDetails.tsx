@@ -91,7 +91,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
         let avgRating = 0;
         if(arr != undefined)
         {
-            avgRating = arr.reduce((a: any,b: any)=>a+b) / arr.length;
+            avgRating = arr.reduce((a: any,b: any)=>a+b, 0) / arr.length;
         }
         
         setAverageRating(avgRating)
@@ -107,31 +107,42 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
             <Row className="toy-details__back-button_row" >
                 <button className="toy-details__back-button btn-primary btn" onClick={() => navigate('/toys')}>Back to Toys</button>
             </Row>
+            <Row>
+                <h3 className="toy-details__header">{Toy?.name}</h3>
+            </Row>
             <Row className="toy-details__top">
                 <Col className="col-6" >
                     <img className="toy-details__image" src={Toy?.image} />
                 </Col>
-                <Col className="toy-details__text col-6">
-                    <p className="toy-details__header">{Toy?.name}</p>
-                    <p>{Toy?.userCity} <GoLocation className="toy-details__go-location"/></p>
-                    <div className="toy-details__status">
-                        <p className={
-                            Toy?.status === 0 ? ' toy--details--status--text status__available' :
-                                (Toy?.status === 1 ? 'toy--details--status--text status__reserved' :
-                                    'toy--details--status--text status__unavailable')
-                        }>{
-                            Toy?.status === 0 ? 'Available' : (Toy?.status === 1 ? 'Reserved' : 'Not Available')
-                        }</p>   
-                        <div className={
-                            Toy?.status === 0 ? 'toy-details__status-blob blob__available' :
-                                (Toy?.status === 1 ? 'toy-details__status-blob blob__reserved' :
-                                    'toy-details__status-blob blob__unavailable')
-                        }></div>
-                    </div>
+                
+                <Col className="toy-details__text col-6 col-md-4">
+                    <Row>
+                            
+                        <div className="toy-details__status col-6">
+                            <p className={
+                                Toy?.status === 0 ? ' toy--details--status--text status__available' :
+                                    (Toy?.status === 1 ? 'toy--details--status--text status__reserved' :
+                                        'toy--details--status--text status__unavailable')
+                            }>{
+                                Toy?.status === 0 ? 'Available' : (Toy?.status === 1 ? 'Reserved' : 'Not Available')
+                            }</p>   
+                            <div className={
+                                Toy?.status === 0 ? 'toy-details__status-blob blob__available' :
+                                    (Toy?.status === 1 ? 'toy-details__status-blob blob__reserved' :
+                                        'toy-details__status-blob blob__unavailable')
+                            }></div>
+                        </div>
+                        
+                        <div className="col-6 location">{Toy?.userCity} <GoLocation className="toy-details__go-location"/></div>
+                        
+                    </Row>
                     
                     <Button className={Toy?.userId == initialUserDetails?.id.toString() ?
                         'btn-hidden' : (Toy?.status === 1 ? 'btn-reserved' : (Toy?.status === 2 ? 'btn-unavailable' : 'btn-success')  )} onClick={e => {  reservationHandler(e) }}>Reserve</Button>
                     {/* Owner buttons */}
+                    <Row>
+                        
+                    
                     {Toy?.userId == initialUserDetails?.id.toString() ?
                         <article className='toy--owner--button--container'>
                             <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${Toy?.id}`}>Edit</Link>
@@ -140,16 +151,11 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                                 <DeleteModal show={show} id={Toy?.id}/> : <></>}
                         </article> : <></>
                     }
-                </Col>
-            </Row>
-            <div className="toy-details__bottom">
-                <h6>About this toy: </h6>
-                <p className="toy-details__bottom-text">{Toy?.description}</p>
-                <div className="toy-details__info">
+                <div className="toy-details__info ">
                     {isAuthenticated ?
                         <div className="toy-details--info__user-info">
-                            <h3>Contact information:</h3>
-                            <div>{Toy?.userName && averageRating}</div>
+                            <div className="toy-details__header">Toy owned by:</div>
+                            <div className="toy-details__rating">Rating: {Toy?.userName && averageRating}</div>
                             <div><MdEmail/> {Toy?.userEmail} </div>
                             <div>{Toy?.phoneNumber}</div>
                             <button  className="btn-primary" onClick={() => GetToyOwner()}>GetUser</button>
@@ -161,7 +167,19 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                         </div>
                     }
                 </div>
-            </div>
+                    </Row>
+                </Col>
+            </Row>
+            <Row>
+                
+            
+                <div className="toy-details__bottom col-6 col-md-4">
+                    <h6>About this toy: </h6>
+                    <p className="toy-details__bottom-text">{Toy?.description}</p>
+                    
+                </div>
+                
+            </Row>
         </div>
     )
 }
