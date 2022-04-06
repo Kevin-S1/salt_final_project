@@ -98,7 +98,7 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                             </Form.Group>
                             
                             <div className='filter-item'>
-                                <label htmlFor='own-toys-checkbox'>Show own toys?</label>
+                                <label className='dropdown-filter-label' htmlFor='own-toys-checkbox'>Show own toys?</label>
                                 <input className='checkbox-filter' id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
                                 
                             </div>

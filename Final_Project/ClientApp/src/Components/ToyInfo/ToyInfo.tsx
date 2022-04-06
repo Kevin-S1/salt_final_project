@@ -59,9 +59,9 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
                                 <article className='toy__card__info__row'>
                                     <h4 className='toy__card__text toy__card__text--location'>
                                         <GoLocation className='logo'/>{toy.userCity === undefined ? toy.user.city : toy.userCity} </h4>
-                                    <h4 className={toy?.status === 0 ? 'toy__card__text--description toy--card--status toy--status__available' :
-                                        (toy?.status === 1 ? 'toy__card__text--description toy--card--status toy--status__reserved' :
-                                            'toy__card__text--description toy--card--status toy--status__unavailable')}>
+                                    <h4 className={toy?.status === 0 ? 'toy__card__text--description toy__card__text--status toy--status__available' :
+                                        (toy?.status === 1 ? 'toy__card__text--description toy__card__text--status toy--status__reserved' :
+                                            'toy__card__text--description toy__card__text--status toy--status__unavailable')}>
                                         <IoIosCheckmarkCircle  />{
                                         toy?.status === 0 ? 'Available' : (toy?.status === 1 ? 'Reserved' : 'Not Available')
                                     }</h4>

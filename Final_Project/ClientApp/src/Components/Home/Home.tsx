@@ -13,37 +13,35 @@ const Home = () => {
                 <Carousel className="carousel-outer">
                     <Carousel.Item className="carousel-inner">
                         <img
-                            className="d-block w-100"
-                            src="https://images.unsplash.com/photo-1588348442528-85c6fa3b0440?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80"
+                            className="d-block w-100 carousel-image"
+                            src="https://st2.depositphotos.com/1074529/10959/v/950/depositphotos_109595930-stock-illustration-toys-seamless-pattern-for-kids.jpg"
                             alt="First slide"
                         />
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <Carousel.Caption className='carousel-title-container'>
+                            <h3 className='carousel-title'>Reduce consumption</h3>
+                            <p className='carousel-title__sub'>Contribute by buying less new (plastic) toys.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                            className="d-block w-100"
-                            src="https://media.istockphoto.com/photos/children-playing-with-colorful-blocks-building-a-block-tower-picture-id589961490?s=612x612"
+                            className="d-block w-100 carousel-image"
+                            src="https://static.vecteezy.com/system/resources/previews/000/115/516/original/kids-toys-pattern-vectors.jpg"
                             alt="Second slide"
                         />
-
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <Carousel.Caption className='carousel-title-container'>
+                            <h3 className='carousel-title'>Happier kids!</h3>
+                            <p className='carousel-title__sub'>An endless supply of new toys to borrow from BorrowMy</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
-                            className="d-block w-100"
-                            src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                            className="d-block w-100 carousel-image"
+                            src="https://img.freepik.com/free-vector/kids-toys-pattern_1284-34751.jpg?w=2000"
                             alt="Third slide"
                         />
-
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <Carousel.Caption className='carousel-title-container'>
+                            <h3 className='carousel-title'>Save money!</h3>
+                            <p className='carousel-title__sub'>No need to buy new toys, just trade them!</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

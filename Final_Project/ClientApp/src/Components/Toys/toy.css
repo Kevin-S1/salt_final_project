@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,800;1,300;1,400;1,500&display=swap');
 
 .toy__page__background {
 }
@@ -106,7 +106,14 @@
     width: 90vw;
 }
 
+.dropdown-filter-label{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
 .toy__search__form__input{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
     width: 60vw;
     font-weight: normal;
 }

@@ -30,14 +30,15 @@
 .home-page__image {
     width: 80vw;
 }
-
-.carousel-inner {
-    max-height: 200px;
-    max-width: 300px;
+.carousel-outer {
+    margin-top: -1.2rem;
+    width: 100vw !important;
+    height: 20rem !important;
 }
 
-.carousel-outer {
-    margin-top: 1em;
+.carousel-inner {
+    width: 100vw !important;
+    height: 20rem !important;
 }
 
 ul {
@@ -53,19 +54,34 @@ ul li::before {
     margin-left: -1em;
 }
 
+.carousel-title-container{
+    background-color: rgba(255, 180, 146, 0.85);
+}
+
+.carousel-title{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    color: #FF521B;
+}
+
+.carousel-title__sub{
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.73);
+}
+
+.carousel-image{
+    height: 20rem !important;
+    object-fit: cover !important;
+}
 
 @media only screen and (min-width: 680px) {
-
-    .home-page__image {
-        width: 30vw;
-    }
-
     .carousel-outer {
-        height: 400px;
-        width: 600px;
+        width: 100vw !important;
+        height: 20rem !important;
     }
     .carousel-inner {
-        max-height: 400px;
-        max-width: 600px;
+        width: 100vw !important;
+        height: 100% !important;
     }
 }
