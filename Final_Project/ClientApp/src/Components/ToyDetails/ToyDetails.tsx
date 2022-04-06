@@ -120,7 +120,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     return(
         <div className="toy-details__body">
             <Row className="toy-details__back-button_row" >
-                <button className="toy-details__back-button btn-primary btn" onClick={() => navigate('/toys')}>Back to Toys</button>
+                <button className="button-4" onClick={() => navigate('/toys')}>Back to Toys</button>
             </Row>
             <Row>
                 <h3 className="toy-details__header">{Toy?.name}</h3>
@@ -155,12 +155,14 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                         
                     
                     {Toy?.userId == initialUserDetails?.id.toString() ?
-                        <article className='toy--owner--button--container'>
-                            <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${Toy?.id}`}>Edit</Link>
-                            <Link to={'/toys'}><button onClick={showHandler} className='toy--owner--button toy--owner--button__delete' >Delete</button> </Link>
-                            {show ?
-                                <DeleteModal show={show} id={Toy?.id}/> : <></>}
-                        </article> : <></>
+                        <Row className='toy-owner-row'>
+                            <article className='toy--owner--button--container'>
+                                <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${Toy?.id}`}>Edit</Link>
+                                <Link to={'/toys'}><button onClick={showHandler} className='toy--owner--button toy--owner--button__delete'>Delete</button> </Link>
+                                {show ?
+                                    <DeleteModal show={show} id={Toy?.id}/> : <></>}
+                            </article> </Row>: <></>
+                        
                     }
                 <div className="toy-details__info ">
                     {isAuthenticated ?

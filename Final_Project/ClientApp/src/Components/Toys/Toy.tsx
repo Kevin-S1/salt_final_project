@@ -3,7 +3,7 @@ import './toy.css'
 import {toyDetails} from "../../types";
 import ToyInfo from "../ToyInfo/ToyInfo";
 import {Dropdown, Form} from "react-bootstrap";
-import {To, useNavigate, useParams} from "react-router-dom";
+import {Link, To, useNavigate, useParams} from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 interface Props{
@@ -100,7 +100,9 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                             <div className='filter-item'>
                                 <label className='dropdown-filter-label' htmlFor='own-toys-checkbox'>Show own toys?</label>
                                 <input className='checkbox-filter' id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
-                                
+                            </div>
+                            <div className='add-button-container'>
+                                <Link to='/add'><button className='button-4'>Add Toy</button></Link>
                             </div>
                         </article>
                         
