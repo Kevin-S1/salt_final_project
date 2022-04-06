@@ -102,7 +102,7 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                                 <input className='checkbox-filter' id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
                             </div>
                             <div className='add-button-container'>
-                                <Link to='/add'><button className='button-4'>Add Toy</button></Link>
+                                <Link to='/add'><button className='button-4 button-bold-text'>Add Toy</button></Link>
                             </div>
                         </article>
                         

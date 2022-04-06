@@ -168,10 +168,10 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                     {isAuthenticated ?
                         <div className="toy-details--info__user-info">
                             <div className="toy-details__header">Toy owned by: {Toy?.userName}</div>
-                            <div className="col-6 location"> <GoLocation className="toy-details__go-location"/>{Toy?.userCity}, {Toy?.userCountry}</div>
-                            <div className="toy-details__rating"><AiFillStar/>Rating: {averageRating?.toFixed(1)}</div>
-                            <div><MdEmail/> {Toy?.userEmail} </div>
-                            <div><AiFillPhone/>{Toy?.phoneNumber}</div>
+                            <div className="col-6 toy-owner-detail"> <GoLocation className="toy-details__go-location"/>{Toy?.userCity}, {Toy?.userCountry}</div>
+                            <div className="toy-owner-detail"><AiFillStar/>Rating: {averageRating?.toFixed(1)}</div>
+                            <div className="toy-owner-detail"><MdEmail/> {Toy?.userEmail} </div>
+                            <div className="toy-owner-detail"><AiFillPhone/>{Toy?.phoneNumber}</div>
                             <select className='dropdown-filter' onChange={e => setNewRating(parseInt(e.target.value))} >
                                 <option value={1}>1</option>
                                 <option value={2}>2</option>
@@ -179,11 +179,11 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                                 <option value={4}>4</option>
                                 <option value={5}>5</option>
                             </select>
-                            <button  className="btn-primary" onClick={() => UpdateUserRating()}>Add rating</button>
+                            <button  className="button-4" onClick={() => UpdateUserRating()}>Add rating</button>
                         </div>
                         :
                         <div >
-                            <p>login to contact owner</p>
+                            <p>Login to contact owner</p>
                             <button className="btn-primary" onClick={() => loginWithRedirect()}>Login </button>
                         </div>
                     }

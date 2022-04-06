@@ -85,9 +85,10 @@
 }
 
 .dropdown-filter{
-    font-weight: bolder;
-    background-color: #2ea44f40;
-    border: 2px solid #2ea44f90;;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+    background-color: #FAFBFC;
+    border: 2px solid #eeeef1;
     padding: 0.1rem;
     border-radius: 0.2rem;
     margin: 0.2rem;
@@ -106,7 +107,11 @@
     flex-wrap: nowrap;
     width: 90vw;
 }
-
+.button-bold-text{
+    font-family: 'Kanit', sans-serif !important;
+    font-weight: 600 !important;
+    border: 2px solid #dfdfe5;
+}
 .dropdown-filter-label{
     font-family: 'Kanit', sans-serif;
     font-weight: 400;
@@ -142,16 +147,6 @@
         align-items: center;
         flex-wrap: nowrap;
         width: auto;
-    }
-    .dropdown-filter{
-        height: 1.5rem;
-        font-weight: bolder;
-        background-color: #2ea44f40;
-        border: 2px solid #2ea44f90;;
-        padding: 0rem;
-        border-radius: 0.2rem;
-        margin: 0 1rem 0 1rem;
-        width: 10rem;
     }
     .checkbox-filter{
         margin: 0rem 1rem 0 0.5rem;
