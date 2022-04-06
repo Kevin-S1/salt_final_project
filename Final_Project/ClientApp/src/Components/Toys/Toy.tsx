@@ -1,10 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import './toy.css'
-import './form.scss'
 import {toyDetails} from "../../types";
 import ToyInfo from "../ToyInfo/ToyInfo";
 import {Dropdown, Form} from "react-bootstrap";
-import {To, useParams} from "react-router-dom";
+import {To, useNavigate, useParams} from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 interface Props{
@@ -31,6 +30,8 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
         const data = await response.json();
         setToyArray(data);
     }
+    
+    const navigate = useNavigate();
     
     const categoryChangeHandler = (e: any) => {
         e.preventDefault();
@@ -68,14 +69,13 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                 <div className="toy__page__background__dim">
                     <section className='toy__search__filter'>
                         <form className='toy__search__form'  role="search">
-                            <label className="toy__search__label" htmlFor="search">Search for stuff</label>
                             <input className="toy__search__form__input" onChange={e => changeHandler(e)} id="search" type="search" placeholder="Search..." />
                         </form>
                         <article className="toy__filter__container">
-                            <Form.Group>
-                                <Form.Label>Category</Form.Label>
-                                <select onChange={e => categoryChangeHandler(e)}>
-                                    <option selected  value="0">All</option>
+                            <Form.Group className='filter-item'>
+                                <Form.Label className='dropdown-filter-label'>Category</Form.Label>
+                                <select className='dropdown-filter' onChange={e => categoryChangeHandler(e)}>
+                                    <option selected value="0">All</option>
                                     <option value="1">Lego</option>
                                     <option value="2">Puzzle</option>
                                     <option value="3">Dolls</option>
@@ -85,9 +85,9 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                                     <option value="7">Board Games</option>
                                 </select>
                             </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Age Category</Form.Label>
-                                <select onChange={e => ageChangeHandler(e)} >
+                            <Form.Group className='filter-item'>
+                                <Form.Label className='dropdown-filter-label'>Age Category</Form.Label>
+                                <select className='dropdown-filter' onChange={e => ageChangeHandler(e)} >
                                     <option selected value="0">All</option>
                                     <option value="1">0-1</option>
                                     <option value="2">2-4</option>
@@ -96,8 +96,15 @@ const Toy = ({toys, initialUserDetails, getToys}: Props) => {
                                     <option value="5">10+</option>
                                 </select>
                             </Form.Group>
-                            <label htmlFor='own-toys-checkbox'>Show own toys?</label>
-                            <input id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
+                            
+                            <div className='filter-item'>
+                                <label htmlFor='own-toys-checkbox'>Show own toys?</label>
+                                <input className='checkbox-filter' id='own-toys-checkbox' type='checkbox' defaultChecked={showOwnToys} onChange={() => setShowOwnToys(!showOwnToys)}/>
+                                
+                            </div>
+                            <div className='filter-item'>
+                                <button className="button-3" onClick={ () => navigate('/add')}>Add Toy</button>
+                            </div>
                         </article>
                         
                     </section>
