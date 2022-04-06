@@ -26,11 +26,16 @@ const EditToy = () => {
         if(toy !== undefined){
             let downloadURL = '';
             const id = Date.now();
-            const storageRef = await ref(storage, 'Toys/' + id);
-            const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
-            downloadURL = await getDownloadURL(ref(snapshot.ref));
-            await setImage(downloadURL);
-
+            
+            if(e.target[4].files[0] == undefined) {
+                downloadURL = toy.image;
+            } else {
+                const storageRef = await ref(storage, 'Toys/' + id);
+                const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
+                downloadURL = await getDownloadURL(ref(snapshot.ref));
+                await setImage(downloadURL);
+            }
+            
             const newToy = toy;
             newToy.name = name;
             newToy.description = description;
