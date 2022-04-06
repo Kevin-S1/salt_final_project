@@ -46,15 +46,19 @@ const ContactPage = () => {
     }
     return (
         <div className="contact-page-container">
-            <div className="contact-page__header">
-                <h2 className="contact-page__headertext">Contact Us!</h2>
+            <div className='contact-page-text-container'>
+                <div className="contact-page__header">
+                    <h2 className="contact-page__headertext">Contact Us!</h2>
+                </div>
+                <div className="contact-page-text">
+                    <p className="contact-page__textinfo"> If you need any information contact us by filling the details</p>
+                </div>
             </div>
-            <div className="contact-page-text">
-                <p className="contact-page__textinfo"> If you need any information contact us by filling the details</p>
-            </div>
-            {showText ? <SuccessMsg message={'We will get back to you as soon as possible, thanks for contacting us.'} /> : <></>}
+            
+            
             <form onSubmit={handleSubmit} className='contact-page'>
-                <label>First Name:
+                {showText ? <SuccessMsg message={'We will get back to you as soon as possible, thanks for contacting us.'} /> : <></>}
+                <label className='contact-input-label'>First Name:
                 </label>
                 <input
                     className='contact-input-field'
@@ -64,7 +68,7 @@ const ContactPage = () => {
                     onChange={handleChange}
                     placeholder="Enter your firstname....."
                 />
-                <label>Last Name:
+                <label className='contact-input-label'>Last Name:
                 </label>
                 <input
                     className='contact-input-field'
@@ -74,7 +78,7 @@ const ContactPage = () => {
                     onChange={handleChange}
                     placeholder="Enter your lastname....."
                 />
-                <label>Email:
+                <label className='contact-input-label'>Email:
                 </label>
                 <input
                     className='contact-input-field'
@@ -84,13 +88,13 @@ const ContactPage = () => {
                     onChange={handleChange}
                     placeholder="Enter your email....."
                 />
-                <label>Short decription:
+                <label className='contact-input-label'>Short decription:
                 </label>
                 <textarea
                     name="description"
                     value={inputs.description}
                     onChange={handleChange}
-                    className="contact-page-textarea"
+                    className='contact-input-field'
                     rows={4}
                     cols={60}
                 />

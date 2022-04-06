@@ -69,6 +69,7 @@
 
 .toy__card__text--description{
     font-size: 0.8em;
+    font-weight: 300;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -81,6 +82,7 @@
 }
 
 .toy__card__text--status{
+    font-weight: 500;
     font-size: 0.85em;
 }
 
