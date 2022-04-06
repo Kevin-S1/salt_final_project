@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import {Navbar, Container, Nav, NavDropdown} from "react-bootstrap";
+import {Navbar, Container, Nav, NavDropdown, NavLink} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
@@ -10,19 +10,24 @@ const NavBar = () => {
     
     return (
         <>
-            <Navbar collapseOnSelect className="navBar" bg="light" expand="lg">
-                <Container>
+            <Navbar collapseOnSelect expand="lg" className="navBar" bg="light">
                     <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>
+                <Container>
 
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse className="navbar-collapse navbar-links" id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#toys">Toys</Nav.Link>
-                        
-                            <Nav.Link href="#about">About Us</Nav.Link>
-                        
-                            <Nav.Link href="#contact">Contact</Nav.Link>
-                        </Nav>   
+                            <Nav.Link eventKey="1">
+                                <Link className='nav-item' to="/toys">Toys</Link>
+                            </Nav.Link>
+                            <Nav.Link eventKey="2">
+                                <Link className='nav-item' to="/about">About Us</Link>
+                            </Nav.Link>
+                            <Nav.Link eventKey="3">
+                                <Link className='nav-item' to="/contact">Contact</Link>
+                            </Nav.Link>
+                        </Nav>
+                    
                         <Nav>
                             {isAuthenticated ?
                                 <NavDropdown title="My Profile" id="collasible-nav-dropdown">
