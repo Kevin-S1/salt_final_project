@@ -5,7 +5,9 @@ import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import {useNavigate} from "react-router-dom";
-
+import { doc, setDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {app, db, storage} from "../../Firebase";
 
 const AddToy = (props : any) => {
     
@@ -22,10 +24,16 @@ const AddToy = (props : any) => {
     const navigate = useNavigate();
     let firstLoad = useRef(true);
     
-    const submitHandler = (e:any) => {
+    const submitHandler = async (e:any) => {
         e.preventDefault();
+        let downloadURL = '';
+        const id = Date.now();
+        const storageRef = await ref(storage, 'Toys/' + id);
+        const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
+        downloadURL = await getDownloadURL(ref(snapshot.ref));
+        await setImageUrl(downloadURL);
         if(isAuthenticated){
-            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age, imgUrl: imageUrl});
+            setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age, imgUrl: downloadURL});
         }
     }
     
@@ -51,8 +59,9 @@ const AddToy = (props : any) => {
             })
             if(response.status === 201) {
                 setSuccessStatus(true);
-                setName("");
-                setDescription("");
+                setName('');
+                setDescription('');
+                setImageUrl('');
             }
             setTimeout(() => { setSuccessStatus(false)},4000)
         }
@@ -81,10 +90,6 @@ const AddToy = (props : any) => {
                         <Form.Label>Description</Form.Label>
                         <Form.Control as='textarea' aria-rowcount={5} placeholder="Enter Description..." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicImageUrl">
-                        <Form.Label>Image Url</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Image Url..." name="imageUrl"  value={imageUrl} onChange={e => setImageUrl(e.target.value)}/>
-                    </Form.Group>
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
                         <select onChange={e => categoryChangeHandler(e)}>
@@ -109,6 +114,8 @@ const AddToy = (props : any) => {
                             <option value="5">10+</option>
                         </select>
                     </Form.Group>
+                    <label className='' htmlFor='toyimage'>Image of the toy:</label>
+                    <input id='toyimage' type='file'/>
                     <Button className="add-toy__orange-button" variant="primary" type="submit">
                         Add toy
                     </Button>
