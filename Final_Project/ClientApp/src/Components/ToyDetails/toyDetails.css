@@ -1,3 +1,8 @@
+* {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    margin: 0;
+}
 
 .toy-details__body {
     margin-top: 1rem;
@@ -14,9 +19,16 @@
   
 }
 .toy-details__text {
-    
-    align-items: flex-start;
-    font-size: 12px;
+    align-items: flex-start !important;
+    font-size: 12px !important;
+    /*display: flex !important;*/
+    /*flex-direction: row !important;*/
+    /*justify-content: space-around !important;*/
+}
+
+.location {
+    flex-direction: row;
+    display: flex;
 }
 
 .toy-details__status {
@@ -30,6 +42,16 @@
     height: 10px;
     color: limegreen;
     border-radius: 5px;
+}
+
+.toy-details__header {
+    margin-top: 1em;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.toy-details__rating {
+    
 }
 
 .blob__available{
@@ -46,6 +68,7 @@
 
 .btn-hidden{
     visibility: hidden;
+    display: none !important;
 }
 
 .toy-details__back-button {
