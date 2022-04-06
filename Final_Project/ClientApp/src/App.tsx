@@ -62,16 +62,16 @@ function App() {
       <NavBar />
         <Routes>
             <Route path='/profile' >
-                <Route path='details' element={<Details />}/>
+                <Route path='details' element={<Details initialUserDetails={initialUserDetails}/>}/>
                 <Route path='listings' element={<Listings initialUserDetails={initialUserDetails} />}/>
                 <Route path='loans' element={<Loans initialUserDetails={initialUserDetails} />}/>
             </Route>
             <Route path='/edittoy/:id' element={ <EditToy /> } />
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> } />
-            <Route path='/#toys' element={ <Toy getToys={true} initialUserDetails={initialUserDetails}/>} />
-            <Route path='/#about' element={ <AboutPage /> } />
-            <Route path='/#contact' element={ <ContactPage />} />
+            <Route path='/toys' element={ <Toy getToys={true} initialUserDetails={initialUserDetails}/>} />
+            <Route path='/about' element={ <AboutPage /> } />
+            <Route path='/contact' element={ <ContactPage />} />
             <Route path='/toys/:id' element={<ToyDetails initialUserDetails={initialUserDetails}/>} />
         </Routes>
     </>

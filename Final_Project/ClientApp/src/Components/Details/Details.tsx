@@ -6,7 +6,7 @@ import './details.css';
 import {First} from "react-bootstrap/PageItem";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 
-const Details = () => {
+const Details = ({initialUserDetails}:any) => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     
     const [updatedUserDetails, setUpdatedUserDetails] = useState<userDetails>({city: "", country: "", phoneNumber: ""});
@@ -22,6 +22,28 @@ const Details = () => {
        setUpdatedUserDetails({city:userCity,country:userCountry,phoneNumber:userPhoneNumber});
     }
     
+    const getUserInformation = async () =>{
+        console.log(initialUserDetails.id)
+        if(isAuthenticated)
+        {
+            const response = await fetch(`https://localhost:7275/api/Users/${initialUserDetails.id}`,{
+                method:'GET',
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const data = await response.json();
+            console.log(data);
+            setUserCity(data.city);
+            setUserCountry(data.country);
+            setUserPhoneNumber(data.phoneNumber);
+        }
+        
+    }
+    useEffect(()=>{
+        getUserInformation();
+    },[initialUserDetails])
+    
     const UpdateUserInformation = async ()=> {
        if(isAuthenticated)
        {
@@ -34,9 +56,6 @@ const Details = () => {
            })
            if(response.status === 204) {
                setSuccessStatus(true);
-               setUserCountry("");
-               setUserCity("");
-               setUserPhoneNumber("");
            }
            setTimeout(() => { setSuccessStatus(false)}, 4000);
            
