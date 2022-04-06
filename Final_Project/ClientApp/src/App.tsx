@@ -62,7 +62,7 @@ function App() {
       <NavBar />
         <Routes>
             <Route path='/profile' >
-                <Route path='details' element={<Details />}/>
+                <Route path='details' element={<Details initialUserDetails={initialUserDetails}/>}/>
                 <Route path='listings' element={<Listings initialUserDetails={initialUserDetails} />}/>
                 <Route path='loans' element={<Loans initialUserDetails={initialUserDetails} />}/>
             </Route>
