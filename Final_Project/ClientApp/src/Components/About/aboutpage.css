@@ -3,8 +3,6 @@
     margin:0 auto;
     display:flex;
     flex-direction:column;
-    background-image: url("../../HomePagePic2.svg");
-    filter:opacity(0.1);
 }
 .about-page__top{
     display:flex;
@@ -23,6 +21,17 @@
     width:350px;
     height:300px;
     border-radius: 1rem;
+    margin-right:1rem;
+}
+.about-page__name{
+    margin-top:5px;
+    font-style:italic;
+    font-size:1.2rem;
+}
+.about-page__designation{
+    margin-top:5px;
+    font-style:italic;
+    font-size:1rem;
 }
 
 @media only screen and (min-width: 680px) {
