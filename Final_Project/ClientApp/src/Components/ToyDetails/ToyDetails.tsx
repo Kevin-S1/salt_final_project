@@ -7,10 +7,7 @@ import { GoLocation } from 'react-icons/go';
 import {Row, Col, Button} from "react-bootstrap";
 import {MdEmail} from "react-icons/md";
 import DeleteModal from "../DeleteModal/DeleteModal";
-
-
-
-
+import {useNavigate} from "react-router-dom";
 
 const ToyDetails = ({ initialUserDetails }: any ) => {
     const params = useParams();
@@ -23,8 +20,8 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     const showHandler = () => {
         setShow(!show);
     }
-    
-    console.log(Toy);
+
+    const navigate = useNavigate()
     
     const reservationHandler = async (e: any) => {
         let updatedToy: any = Toy; 
@@ -42,8 +39,8 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(Toy)
-        }) 
-        
+        })
+        navigate('/toys');
        
     };    
 
@@ -68,6 +65,9 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     
     return(
         <div className="toy-details__body">
+            <Row className="toy-details__back-button_row" >
+                <button className=" btn-primary toy-details__back-button" onClick={() => navigate('/toys')}>Back to Toys</button>
+            </Row>
             <Row className="toy-details__top">
                 <Col className="col-6" >
                     <img className="toy-details__image" src={Toy?.image} />
@@ -89,8 +89,10 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                                     'toy-details__status-blob blob__unavailable')
                         }></div>
                     </div>
+                    
                     <Button className={Toy?.userId == initialUserDetails?.id.toString() ?
                         'btn-hidden' : (Toy?.status === 1 ? 'btn-reserved' : (Toy?.status === 2 ? 'btn-unavailable' : 'btn-success')  )} onClick={e => {  reservationHandler(e) }}>Reserve</Button>
+                    {/* Owner buttons */}
                     {Toy?.userId == initialUserDetails?.id.toString() ?
                         <article className='toy--owner--button--container'>
                             <Link className='toy--owner--button toy--owner--button__edit' to={`/edittoy/${Toy?.id}`}>Edit</Link>
@@ -106,17 +108,17 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 <p className="toy-details__bottom-text">{Toy?.description}</p>
                 <div className="toy-details__info">
                     {isAuthenticated ?
-                        <footer className="toy-details--info__user-info">
+                        <div className="toy-details--info__user-info">
                             <h3>Contact information:</h3>
                             <div>{Toy?.userName}</div>
                             <div><MdEmail/> {Toy?.userEmail} </div>
                             <div>{Toy?.phoneNumber}</div>
-                        </footer>
+                        </div>
                         :
-                        <footer >
+                        <div >
                             <p>login to contact owner</p>
                             <button className="btn-primary" onClick={() => loginWithRedirect()}>Login </button>
-                        </footer>
+                        </div>
                     }
                 </div>
             </div>
