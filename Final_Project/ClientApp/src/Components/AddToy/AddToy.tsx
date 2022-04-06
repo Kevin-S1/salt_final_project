@@ -5,6 +5,8 @@ import {addToyDto, InitialUserDetails} from "../../types";
 import {useAuth0} from "@auth0/auth0-react";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import {useNavigate} from "react-router-dom";
+
+import Footer from "../Footer/Footer";
 import { doc, setDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import {app, db, storage} from "../../Firebase";
@@ -125,6 +127,7 @@ const AddToy = (props : any) => {
                     </Button>
                 </Form>
             </div>
+            <Footer />
         </div>
     );
 };

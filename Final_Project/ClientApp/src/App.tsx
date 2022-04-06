@@ -69,9 +69,9 @@ function App() {
             <Route path='/edittoy/:id' element={ <EditToy /> } />
             <Route path='add' element={<AddToy initialUserDetails={initialUserDetails} />}  />
             <Route path='/' element={ <Home /> } />
-            <Route path='/toys' element={ <Toy getToys={true} initialUserDetails={initialUserDetails}/>} />
-            <Route path='/about' element={ <AboutPage /> } />
-            <Route path='/contact' element={ <ContactPage />} />
+            <Route path='/#toys' element={ <Toy getToys={true} initialUserDetails={initialUserDetails}/>} />
+            <Route path='/#about' element={ <AboutPage /> } />
+            <Route path='/#contact' element={ <ContactPage />} />
             <Route path='/toys/:id' element={<ToyDetails initialUserDetails={initialUserDetails}/>} />
         </Routes>
     </>

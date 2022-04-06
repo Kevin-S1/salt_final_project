@@ -7,13 +7,6 @@
     box-shadow: 0 0 10px #000000;
 }
 
-.navbar-container__left{
-    display:flex;
-}
-.me-auto{
-    margin-left:2rem;
-}
-
 .nav-header{
     margin-right: 1em;
     color: black;
@@ -80,6 +73,11 @@
 .button-32:disabled {
   filter: saturate(0.2) opacity(0.5);
   cursor: not-allowed;
+}
+
+@media only screen and (min-width: 680px) {
+    
+
 }
 
 
