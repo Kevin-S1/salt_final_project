@@ -5,8 +5,12 @@ import {userDetails} from "../../types";
 import './details.css';
 import {First} from "react-bootstrap/PageItem";
 import SuccessMsg from "../SuccessMsg/SuccessMsg";
+import Footer from "../Footer/Footer";
+import profile from '../../profile.svg'
+import profilepic1 from '../../profilepic1.png'
 
 const Details = ({initialUserDetails}:any) => {
+  
     const { user, isAuthenticated, isLoading } = useAuth0();
     
     const [updatedUserDetails, setUpdatedUserDetails] = useState<userDetails>({city: "", country: "", phoneNumber: ""});
@@ -23,7 +27,7 @@ const Details = ({initialUserDetails}:any) => {
     }
     
     const getUserInformation = async () =>{
-        console.log(initialUserDetails.id)
+        
         if(isAuthenticated)
         {
             const response = await fetch(`https://localhost:7275/api/Users/${initialUserDetails.id}`,{
@@ -75,33 +79,48 @@ const Details = ({initialUserDetails}:any) => {
     }
     
     return (
+        <>
         <div className="details">
-            <div className="details-container">
-                <img src={user?.picture} alt={user?.name} />
-                <h2>{user?.name}</h2>
-                <p>{user?.email}</p>
-                <p>{user?.city}</p>
+            <div className="details-container-left">
+                <img className="details-container-image" src={profilepic1} />
+            </div>
+            <div className="details-container-right">
+                <div className="details-inner-container">
+                    <img className="details-inner-container-image" src={user?.picture} alt={user?.name} />
+                </div>
+                
+                <div className="details-inner-container-username">
+                    <h5>UserName : {initialUserDetails.userName} </h5>
+                </div>
+                <div className="details-inner-container-email">
+                    <h4>Email :</h4>
+                    <p>{initialUserDetails.email}</p>
+                </div>
+                
+                
                 { successStatus ? <SuccessMsg message="Your profile has been updated :)"/> : <></> }
                 
                 <Form onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicCity">
-                        <Form.Label>City</Form.Label>
-                        <Form.Control type="text" placeholder="Enter City" name="city"  value={userCity} onChange={e => setUserCity(e.target.value)}/>
+                        <Form.Label className='detail-input-label'>City</Form.Label>
+                        <Form.Control className='detail-input-field' type="text" placeholder="Enter City" name="city"  value={userCity} onChange={e => setUserCity(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCountry">
-                        <Form.Label>Country</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Country" name="country"  value={userCountry} onChange={e => setUserCountry(e.target.value)}/>
+                        <Form.Label className='detail-input-label'>Country</Form.Label>
+                        <Form.Control  className='detail-input-field' type="text" placeholder="Enter Country" name="country"  value={userCountry} onChange={e => setUserCountry(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPhone">
-                        <Form.Label>Phone number</Form.Label>
-                        <Form.Control type="text" placeholder="Enter phone number" name="phoneNumber" value={userPhoneNumber} onChange={e => setUserPhoneNumber(e.target.value)}/>
+                        <Form.Label className='detail-input-label'>Phone number</Form.Label>
+                        <Form.Control className='detail-input-field' type="text" placeholder="Enter phone number" name="phoneNumber" value={userPhoneNumber} onChange={e => setUserPhoneNumber(e.target.value)}/>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button className="detail-page-submit" type="submit">
                         Save my Details
                     </Button>
                 </Form>
             </div>
         </div>
+      <Footer />
+    </>
     );
 };
 

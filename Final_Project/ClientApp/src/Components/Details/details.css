@@ -1,28 +1,81 @@
 
 .details{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    margin-bottom:1rem;
+}
+.details-container-left{
+    display:none;
 }
 
-.details-container{
+.details-container-right{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90vw;
+    width:90vw;
     padding: 1rem;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
+.details-inner-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.details-inner-container-image{
+    border-radius:50%;
+}
+.details-inner-container-username{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   margin-top:1rem;
+    font-family: 'Kanit', sans-serif;
+}
+.details-inner-container-email{
+    margin-top:1rem;
+    font-family: 'Kanit', sans-serif;
+}
 
-@media screen and (min-width: 1100px) {
-    .details-container{
+.detail-input-field{
+    margin: 0.5rem;
+    border-radius:5px;
+    border: none !important;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px !important;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 300;
+}
+
+.detail-input-label{
+    font-family: 'Kanit', sans-serif;
+}
+.detail-page-submit{
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    color: white;
+    border-radius: 10px;
+    margin:0 auto;
+    background-color: #FF521B !important;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px !important;
+}
+@media screen and (min-width: 680px) {
+    .details-container-left{
+        display:flex;
+        align-items: flex-start;
+    }
+    .details-container-right{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;                                    
-        width: 40vw;
+        width: 30vw;
+        margin:2rem 0px;
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+    .details-container-image{
+        width:40vw;
+        height:60vh;
+        margin-right:5rem;
+    }
+    .detail-page-submit{
+        background-color: #2ea44f;
     }
 }
