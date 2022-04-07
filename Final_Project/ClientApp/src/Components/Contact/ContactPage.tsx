@@ -54,8 +54,8 @@ const ContactPage = () => {
                     <p className="contact-page__textinfo"> If you need any information contact us by filling the details</p>
                 </div>
             </div>
-            
-            
+
+
             <form onSubmit={handleSubmit} className='contact-page'>
                 {showText ? <SuccessMsg message={'We will get back to you as soon as possible, thanks for contacting us.'} /> : <></>}
                 <label className='contact-input-label'>First Name:
