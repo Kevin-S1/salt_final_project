@@ -82,56 +82,61 @@ const AddToy = (props : any) => {
     },[toy])
     
     return (
-        <div className="add-toy-page__background">
-            <div className="add-toy__page" >
-                <h2 className='add-toy-header'>Lend out a toy</h2>
-                { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
-                
-                <Form className="add-toy__container" onSubmit={ (e) => submitHandler(e)}>
-                    <Form.Group className="mb-3" controlId="formBasicName">
-                        <Form.Label className='add-toy-label'>Name</Form.Label>
-                        <Form.Control className='add-toy-input' type="text" placeholder="Enter Name.." name="name"  value={name} onChange={e => setName(e.target.value)}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicDescription">
-                        <Form.Label className='add-toy-label'>Description</Form.Label>
-                        <Form.Control className='add-toy-input' as='textarea' aria-rowcount={14} aria-colcount={20} placeholder="Enter Description.." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
-                    </Form.Group>
-                    <Form.Group className='dropdown-container'>
-                        <Form.Label className='add-toy-label'>Category</Form.Label>
-                        <select className='add-toy-dropdown' onChange={e => categoryChangeHandler(e)}>
-                            <option selected value="0">All</option>
-                            <option value="1">Lego</option>
-                            <option value="2">Puzzle</option>
-                            <option value="3">Dolls</option>
-                            <option value="4">Vehicles</option>
-                            <option value="5">Battery Operated</option>
-                            <option value="6">Wooden Toys</option>
-                            <option value="7">Board Games</option>
-                        </select>
-                    </Form.Group>
-                    <Form.Group className='dropdown-container'>
-                        <Form.Label className='add-toy-label'>Age Category</Form.Label>
-                        <select className='add-toy-dropdown' onChange={e => ageChangeHandler(e)}>
-                            <option selected value="0">All</option>
-                            <option value="1">0-1</option>
-                            <option value="2">2-4</option>
-                            <option value="3">5-6</option>
-                            <option value="4">7-10</option>
-                            <option value="5">10+</option>
-                        </select>
-                    </Form.Group>
-                    <div className='dropdown-container'>
-                        <label className='' htmlFor='toyimage'>Toy image:</label>
-                        <input className='image-upload-input' id='toyimage' type='file'/>
-                    </div>
-                    
-                    <Button className="add-toy__orange-button" variant="primary" type="submit">
-                        Add toy
-                    </Button>
-                </Form>
+        <>
+            <div className="add-toy-page__background">
+                <div className="add-toy__page" >
+                    <h2 className='add-toy-header'>Lend out a toy</h2>
+                    { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
+
+                    <Form className="add-toy__container" onSubmit={ (e) => submitHandler(e)}>
+                        <Form.Group className="mb-3" controlId="formBasicName">
+                            <Form.Label className='add-toy-label'>Name</Form.Label>
+                            <Form.Control className='add-toy-input' type="text" placeholder="Enter Name.." name="name"  value={name} onChange={e => setName(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicDescription">
+                            <Form.Label className='add-toy-label'>Description</Form.Label>
+                            <Form.Control className='add-toy-input' as='textarea' aria-rowcount={14} aria-colcount={20} placeholder="Enter Description.." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
+                        </Form.Group>
+                        <Form.Group className='dropdown-container'>
+                            <Form.Label className='add-toy-label'>Category</Form.Label>
+                            <select className='add-toy-dropdown' onChange={e => categoryChangeHandler(e)}>
+                                <option selected value="0">All</option>
+                                <option value="1">Lego</option>
+                                <option value="2">Puzzle</option>
+                                <option value="3">Dolls</option>
+                                <option value="4">Vehicles</option>
+                                <option value="5">Battery Operated</option>
+                                <option value="6">Wooden Toys</option>
+                                <option value="7">Board Games</option>
+                            </select>
+                        </Form.Group>
+                        <Form.Group className='dropdown-container'>
+                            <Form.Label className='add-toy-label'>Age Category</Form.Label>
+                            <select className='add-toy-dropdown' onChange={e => ageChangeHandler(e)}>
+                                <option selected value="0">All</option>
+                                <option value="1">0-1</option>
+                                <option value="2">2-4</option>
+                                <option value="3">5-6</option>
+                                <option value="4">7-10</option>
+                                <option value="5">10+</option>
+                            </select>
+                        </Form.Group>
+                        <div className='dropdown-container'>
+                            <label className='' htmlFor='toyimage'>Toy image:</label>
+                            <input className='image-upload-input' id='toyimage' type='file'/>
+                        </div>
+
+                        <Button className="add-toy__orange-button" variant="primary" type="submit">
+                            Add toy
+                        </Button>
+                    </Form>
+                </div>
+
             </div>
             <Footer />
-        </div>
+        
+        </>
+        
     );
 };
 

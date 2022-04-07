@@ -148,7 +148,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                         </div>
                     </Row>
                     
-                    <Button className={Toy?.userId === initialUserDetails?.id.toString() ?
+                    <Button className={Toy?.userId == initialUserDetails?.id ?
                         'btn-hidden' : (Toy?.status === 1 ? 'btn-reserved' : (Toy?.status === 2 ? 'btn-unavailable' : 'btn-success')  )} onClick={e => {  reservationHandler(e) }}>Reserve</Button>
                     {/* Owner buttons */}
                     <Row>
@@ -172,14 +172,18 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                             <div className="toy-owner-detail"><AiFillStar/>Rating: {averageRating?.toFixed(1)}</div>
                             <div className="toy-owner-detail"><MdEmail/> {Toy?.userEmail} </div>
                             <div className="toy-owner-detail"><AiFillPhone/>{Toy?.phoneNumber}</div>
-                            <select className='dropdown-filter' onChange={e => setNewRating(parseInt(e.target.value))} >
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                                <option value={5}>5</option>
-                            </select>
-                            <button  className="button-4" onClick={() => UpdateUserRating()}>Add rating</button>
+                            {initialUserDetails?.id != Toy?.userId ?
+                                <div className='rating-container'>
+                                    <select className='dropdown-filter' onChange={e => setNewRating(parseInt(e.target.value))} >
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
+                                    </select>
+                                    <button  className="button-4" onClick={() => UpdateUserRating()}>Add rating</button>
+                                </div>
+                                 : <></>}
                         </div>
                         :
                         <div >

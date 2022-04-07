@@ -20,9 +20,8 @@ const AboutPage = () => {
                     <div className="about-page__profile">
                         <img className="about-page__image" src={kevin} />
                         <p className="about-page__designation"><strong className="about-page__name">Kevin Sips</strong></p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu sem dolor.
-                            Pellentesque fringilla, odio at congue blandit, ligula orci viverra diam,
-                            sit amet venenatis magna augue lobortis nunc. Nullam non egestas tortor.
+                        <p className='about-paragraph'>Full stack .NET developer with a background in the finance and automotive industries.
+                            I love programming since I enjoy problem solving and coming up with creative solutions!
                         </p>
                         <div className="about-page__socials">
                             <a
@@ -49,7 +48,7 @@ const AboutPage = () => {
                     <div className="about-page__profile">
                         <img className="about-page__image" src={bonnie} />
                         <p className="about-page__designation"><strong className="about-page__name">Bonnie Mc Bride</strong></p>
-                        <p>Bonnie is really cool and stuff. Sometimes she brings in sweeties, which is nice.</p>
+                        <p className='about-paragraph'>Full Stack Developer with experience in C#, Python and JavaScript. I love building beautiful software that people will enjoy using.</p>
                         <div className="about-page__socials">
                             <a
                                 className='social-icon-link github'
@@ -79,7 +78,7 @@ const AboutPage = () => {
                     <div className="about-page__profile">
                         <img className="about-page__image" src={samuel} />
                         <p className="about-page__designation"><strong className="about-page__name">Samuel</strong>  Full stack Developer, BorrowMY</p>
-                        <p>Samuel is really cool and stuff. He laughs a lot and swears even more.</p>
+                        <p className='about-paragraph'>Samuel is really cool and stuff. He laughs a lot and swears even more.</p>
                         <div className="about-page__socials">
                             <a
                                 className='social-icon-link github'
@@ -104,7 +103,8 @@ const AboutPage = () => {
                     <div className="about-page__profile">
                         <img className="about-page__image" src={krishna} />
                         <p className="about-page__designation"><strong className="about-page__name">Krishna</strong>  Full stack developer, BorrowMY</p>
-                        <p>Krishna is really cool and stuff. Krishna never sleeps, and knows lots of things.</p>
+                        <p className='about-paragraph'>Full stack developer with major in embedded electronics.
+                            Worked as a Warehouse administrator and love building user friendly web applications with different stacks.</p>
                         <div className="about-page__socials">
                             <a
                                 className='social-icon-link github'
