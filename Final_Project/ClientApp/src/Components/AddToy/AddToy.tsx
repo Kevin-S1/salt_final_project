@@ -84,19 +84,19 @@ const AddToy = (props : any) => {
     return (
         <div className="add-toy-page__background">
             <div className="add-toy__page" >
-                <h2 className='add-toy-header'>Add Toy to your listings</h2>
+                <h2 className='add-toy-header'>Lend out a toy</h2>
                 { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
                 
                 <Form className="add-toy__container" onSubmit={ (e) => submitHandler(e)}>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label className='add-toy-label'>Name</Form.Label>
-                        <Form.Control className='add-toy-input' type="text" placeholder="Enter Name..." name="name"  value={name} onChange={e => setName(e.target.value)}/>
+                        <Form.Control className='add-toy-input' type="text" placeholder="Enter Name.." name="name"  value={name} onChange={e => setName(e.target.value)}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicDescription">
                         <Form.Label className='add-toy-label'>Description</Form.Label>
-                        <Form.Control className='add-toy-input' as='textarea' aria-rowcount={14} aria-colcount={20} placeholder="Enter Description..." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
+                        <Form.Control className='add-toy-input' as='textarea' aria-rowcount={14} aria-colcount={20} placeholder="Enter Description.." name="description"  value={description} onChange={e => setDescription(e.target.value)}/>
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group className='dropdown-container'>
                         <Form.Label className='add-toy-label'>Category</Form.Label>
                         <select className='add-toy-dropdown' onChange={e => categoryChangeHandler(e)}>
                             <option selected value="0">All</option>
@@ -109,7 +109,7 @@ const AddToy = (props : any) => {
                             <option value="7">Board Games</option>
                         </select>
                     </Form.Group>
-                    <Form.Group>
+                    <Form.Group className='dropdown-container'>
                         <Form.Label className='add-toy-label'>Age Category</Form.Label>
                         <select className='add-toy-dropdown' onChange={e => ageChangeHandler(e)}>
                             <option selected value="0">All</option>
@@ -120,8 +120,11 @@ const AddToy = (props : any) => {
                             <option value="5">10+</option>
                         </select>
                     </Form.Group>
-                    <label className='' htmlFor='toyimage'>Image of the toy:</label>
-                    <input id='toyimage' type='file'/>
+                    <div className='dropdown-container'>
+                        <label className='' htmlFor='toyimage'>Toy image:</label>
+                        <input className='image-upload-input' id='toyimage' type='file'/>
+                    </div>
+                    
                     <Button className="add-toy__orange-button" variant="primary" type="submit">
                         Add toy
                     </Button>

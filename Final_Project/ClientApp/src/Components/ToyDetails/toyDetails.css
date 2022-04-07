@@ -5,11 +5,10 @@
 }
 
 .toy-details__body {
-    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
 }
 
 .toy-details__top {
@@ -21,9 +20,12 @@
 .toy-details__text {
     align-items: flex-start !important;
     font-size: 12px !important;
-    /*display: flex !important;*/
-    /*flex-direction: row !important;*/
-    /*justify-content: space-around !important;*/
+}
+
+.toy-details__back-button_row{
+    display: flex !important;
+    width: 7.5rem !important;
+    margin-bottom: 1rem;
 }
 
 .location {
@@ -109,10 +111,9 @@
 .toy-details__image {
     height: 100%;
     width: 100%;
-    box-shadow: 0 0 5px black;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     border-radius: 5px;
 }
-
 
 .toy-details__bottom-text {
     font-size: small;
@@ -125,14 +126,74 @@
     justify-content: center;
 } 
 
+.toy-owner-row{
+    padding-top: 2rem;
+}
+
+
+
 .toy-details__go-location {
     color: limegreen;
 }
 
+.button-4:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+.button-4:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+.button-4:focus {
+    outline: 1px transparent;
+}
+
+.button-4:before {
+    display: none;
+}
+
+.button-4::-webkit-details-marker {
+    display: none;
+}
+
+.button-4 {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
 
 @media only screen and (min-width: 680px) {
-    
-    
     .toy-details__top {
         justify-content: left;
         align-items: flex-start;
@@ -143,7 +204,6 @@
         margin-left: 5rem;
         width: 60%;
         height: 40%;
-        box-shadow: 0 0 10px black;
         border-radius: 7px;
     }
     
