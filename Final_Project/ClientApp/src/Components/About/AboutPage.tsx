@@ -35,7 +35,7 @@ const AboutPage = () => {
                             </a>
                             <a
                                 className='social-icon-link linkedin'
-                                href="https://linkedin.com"
+                                href="https://www.linkedin.com/in/kevinsips/"
                                 target='_blank'
                                 rel="noopener"
                                 aria-label='LinkedIn'
@@ -78,11 +78,11 @@ const AboutPage = () => {
                     <div className="about-page__profile">
                         <img className="about-page__image" src={samuel} />
                         <p className="about-page__designation"><strong className="about-page__name">Samuel</strong>  Full stack Developer, BorrowMY</p>
-                        <p className='about-paragraph'>Samuel is really cool and stuff. He laughs a lot and swears even more.</p>
+                        <p className='about-paragraph'>Creative .Net fullstack developer that loves providing useful applications to people. My primary passions as of right now is Fishing and playing videogames</p>
                         <div className="about-page__socials">
                             <a
                                 className='social-icon-link github'
-                                href="https://github.com/BonnieMcb"
+                                href="https://github.com/Sam-OL"
                                 target='_blank'
                                 rel="noopener"
                                 aria-label='Github'
@@ -91,7 +91,7 @@ const AboutPage = () => {
                             </a>
                             <a
                                 className='social-icon-link linkedin'
-                                href="https://www.linkedin.com/in/bonnie-mcbride/"
+                                href="https://www.linkedin.com/in/samuel-%C3%B6hman-lebender-71b3a8212/"
                                 target='_blank'
                                 rel="noopener"
                                 aria-label='LinkedIn'
@@ -108,7 +108,7 @@ const AboutPage = () => {
                         <div className="about-page__socials">
                             <a
                                 className='social-icon-link github'
-                                href="https://github.com/BonnieMcb"
+                                href="https://github.com/krishnamohanparuchuri"
                                 target='_blank'
                                 rel="noopener"
                                 aria-label='Github'
@@ -117,7 +117,7 @@ const AboutPage = () => {
                             </a>
                             <a
                                 className='social-icon-link linkedin'
-                                href="https://www.linkedin.com/in/bonnie-mcbride/"
+                                href="https://www.linkedin.com/in/krishnamohanparuchuri/"
                                 target='_blank'
                                 rel="noopener"
                                 aria-label='LinkedIn'
