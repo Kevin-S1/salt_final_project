@@ -8,9 +8,11 @@ import {Link, useNavigate} from "react-router-dom";
 const DeleteModal = ({id, show}: any) => {
     
     const [showStatus, setShowStatus] = useState(show)
+    const navigate = useNavigate();
     
-    const handleDelete = () => {
-        deleteToy()
+    const handleDelete = async () => {
+        await deleteToy()
+        navigate('/toys');
     };
     
     const cancelHandler = () => {
@@ -43,7 +45,7 @@ const DeleteModal = ({id, show}: any) => {
 
                 <Modal.Footer>
                     <Link to={'/toys'}><Button variant="secondary" onClick={cancelHandler}>No, go back</Button> </Link>
-                    <Link to={'/toys'}><Button variant="primary" onClick={handleDelete}>Yes, delete it</Button></Link> 
+                    <Button variant="primary" onClick={handleDelete}>Yes, delete it</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         </Modal>

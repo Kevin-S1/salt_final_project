@@ -183,8 +183,8 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                         </div>
                         :
                         <div >
-                            <p>Login to contact owner</p>
-                            <button className="btn-primary" onClick={() => loginWithRedirect()}>Login </button>
+                            <h5 className='details-page-header-sub'>Login to contact owner</h5>
+                            <button className="button-32" onClick={() => loginWithRedirect()}>Register/Login</button>
                         </div>
                     }
                 </div>
