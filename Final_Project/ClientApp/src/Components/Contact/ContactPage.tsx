@@ -66,7 +66,7 @@ const ContactPage = () => {
                     name="firstName"
                     value={inputs.firstName}
                     onChange={handleChange}
-                    placeholder="Enter your firstname....."
+                    placeholder="Firstname.."
                 />
                 <label className='contact-input-label'>Last Name:
                 </label>
@@ -76,7 +76,7 @@ const ContactPage = () => {
                     name="lastName"
                     value={inputs.lastName}
                     onChange={handleChange}
-                    placeholder="Enter your lastname....."
+                    placeholder="Lastname.."
                 />
                 <label className='contact-input-label'>Email:
                 </label>
@@ -86,11 +86,12 @@ const ContactPage = () => {
                     name="email"
                     value={inputs.email}
                     onChange={handleChange}
-                    placeholder="Enter your email....."
+                    placeholder="Email.."
                 />
                 <label className='contact-input-label'>Short decription:
                 </label>
                 <textarea
+                    placeholder='Description..'
                     name="description"
                     value={inputs.description}
                     onChange={handleChange}
