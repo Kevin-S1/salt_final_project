@@ -27,6 +27,10 @@
     width: 50%;
 }
 
+.about-paragraph{
+    text-align: left;
+}
+
 .about-page__socials {
     font-size: 2rem;
 }

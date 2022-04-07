@@ -3,6 +3,7 @@ import logo1 from "../../HomePagePic1.svg";
 import logo2 from "../../HomePagePic2.svg";
 import { Carousel } from "react-bootstrap";
 import Footer from "../Footer/Footer";
+import {Link} from "react-router-dom";
 
 
 const Home = () => {
@@ -46,7 +47,7 @@ const Home = () => {
                     </Carousel.Item>
                 </Carousel>
                 <div className="home-page__header">Welcome to <strong className="nav-header__sub">Borrow</strong>My!</div>
-
+                <Link to='/toys'><button className='button-3'>See available toys</button></Link>
                 <div className="home-page__description">
                     <p className="home-page__paragraph"> The platform where you can borrow toys from your neighbours, and lend out toys that your kids play with only sometimes.
                     </p>
