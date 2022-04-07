@@ -36,6 +36,14 @@
 .toy-details__status {
     display: flex;
 }
+
+.details-page-header-sub{
+    margin-top: 0.5rem;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
 .toy-details__status-blob {
     margin-top: 6px;
     margin-left: 5px;

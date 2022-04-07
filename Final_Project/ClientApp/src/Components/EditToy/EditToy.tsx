@@ -21,6 +21,7 @@ const EditToy = () => {
     const [toy, setToy] = useState<toyDetails>();
     const [successStatus, setSuccessStatus] = useState(false);
     const [image, setImage] = useState('');
+    const navigate = useNavigate();
     
     const submitHandler = async (e: any) => {
         e.preventDefault();
@@ -52,7 +53,8 @@ const EditToy = () => {
                 },
             })
             setSuccessStatus(true);
-            setTimeout(() => { setSuccessStatus(false)},4000)
+            setTimeout(() => { setSuccessStatus(false)},1000)
+            navigate('/toys');
         }
     }
     

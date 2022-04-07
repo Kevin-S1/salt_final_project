@@ -124,6 +124,10 @@
     font-weight: normal;
 }
 
+.button-5{
+    background-color: #8AC2D090 !important;
+}
+
 @media screen and (min-width:700px) {
     .toy__list{
         flex-direction: row;
