@@ -6,8 +6,7 @@
     background-color: #FF521B10;
 }
 .footer-container__icon{
-    margin-right:3rem;
-    margin-bottom:1rem;
+    margin: 0.5rem;
     font-size:2rem;
 }
 .footer-container__middle {

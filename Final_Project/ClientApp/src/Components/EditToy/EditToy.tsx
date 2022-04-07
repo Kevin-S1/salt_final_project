@@ -112,7 +112,7 @@ const EditToy = () => {
             <article className='edit--form--container'>
                 <div className='edit-toy-text-container'>
                     <div className="edit-toy__header">
-                        <h3 className="edit-toy__headertext">Edit Toy Information!</h3>
+                        <h3 className="edit-toy__headertext">Edit item</h3>
                     </div>
                     <div className="edit-toy-image">
                         <img src={image} className="edit-toy-image-picture"/>
