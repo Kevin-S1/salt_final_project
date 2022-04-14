@@ -19,7 +19,6 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
             setShow(!show);
         }
         
-    
         useEffect(() => {
             if(initialUserDetails != undefined)
                 setUserId(initialUserDetails.id)
@@ -74,7 +73,6 @@ const ToyInfo = ({toy, initialUserDetails}: Props) => {
                     </article>
                 </Link>
             </article>
-        
     )
 };
 

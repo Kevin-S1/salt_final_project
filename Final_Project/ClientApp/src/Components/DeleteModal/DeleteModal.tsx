@@ -3,8 +3,6 @@ import './deleteModal.css'
 import {Button, Form, Modal, Nav} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 
-
-// TODO: add props which should be Toy ID
 const DeleteModal = ({id, show}: any) => {
     
     const [showStatus, setShowStatus] = useState(show)
@@ -38,21 +36,16 @@ const DeleteModal = ({id, show}: any) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Delete</Modal.Title>
                 </Modal.Header>
-
                 <Modal.Body>
                     <p>Are you sure you want to delete this item?</p>
                 </Modal.Body>
-
                 <Modal.Footer>
                     <Link to={'/toys'}><Button variant="secondary" onClick={cancelHandler}>No, go back</Button> </Link>
                     <Button variant="primary" onClick={handleDelete}>Yes, delete it</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         </Modal>
-        
         )
-    
-    
 }
 export default DeleteModal;
 

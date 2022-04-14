@@ -5,14 +5,14 @@ import {useNavigate} from "react-router-dom";
 import {toyDetails} from "../../types";
 import {InitialUserDetails} from "../../types";
 import Toy from "../Toys/Toy";
+import Loading from "../Loading/Loading";
 
 interface Props {
     initialUserDetails : any
 }
 
 const Listings = ({initialUserDetails}:Props) => {
-    const navigate = useNavigate();
-    const { isAuthenticated, user, isLoading } = useAuth0();
+    const { isLoading } = useAuth0();
     const [userToys, setUserToys] = useState<Array<toyDetails>>();
 
     const GetToys = async () =>{
@@ -23,7 +23,7 @@ const Listings = ({initialUserDetails}:Props) => {
             }
         })
         const data = await response.json();
-        await setUserToys(data);
+        setUserToys(data);
     }
 
     useEffect(()=>{
@@ -31,7 +31,7 @@ const Listings = ({initialUserDetails}:Props) => {
     },[initialUserDetails]);
     
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <Loading />;
     }
     
     return (
@@ -39,7 +39,6 @@ const Listings = ({initialUserDetails}:Props) => {
             <h4 className="listings--header">My Listings:</h4>
             <div>
                 <Toy getToys={false} initialUserDetails={initialUserDetails} toys={userToys}/>
-                
             </div>
         </div>
     );
