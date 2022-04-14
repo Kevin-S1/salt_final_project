@@ -16,7 +16,6 @@ const AboutPage = () => {
             </div>
             <div className="about-page__container" >
                 <div className="about-page__row">
-
                     <div className="about-page__profile">
                         <img className="about-page__image" src={kevin} />
                         <p className="about-page__designation"><strong className="about-page__name">Kevin Sips</strong></p>
