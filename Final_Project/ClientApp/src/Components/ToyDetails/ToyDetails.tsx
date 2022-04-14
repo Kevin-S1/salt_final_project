@@ -9,11 +9,11 @@ import {Row, Col, Button} from "react-bootstrap";
 import {MdEmail} from "react-icons/md";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import {useNavigate} from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 const ToyDetails = ({ initialUserDetails }: any ) => {
     const params = useParams();
-    const { loginWithRedirect, logout 
-        ,isAuthenticated, isLoading} = useAuth0();
+    const { loginWithRedirect ,isAuthenticated, isLoading} = useAuth0();
     
     const [Toy, setToy] = useState<toyDetails>();
     const [show, setShow] = useState(false);
@@ -22,8 +22,6 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     const [averageRating, setAverageRating] = useState<number>();
     const [newRating, setNewRating] = useState<number>(1);
     const [ratingDTO, setRatingDTO] = useState<rating>();
-    let firstLoad = useRef(true);
-
 
     const showHandler = () => {
         setShow(!show);
@@ -60,14 +58,13 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     }
     
     const UpdateUserRating = async () => {
-        const response = await fetch('https://localhost:7275/api/users/' + Toy?.userId,{
+        await fetch('https://localhost:7275/api/users/' + Toy?.userId,{
             method:'PATCH',
             body: JSON.stringify(ratingDTO),
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        var data = response.json();
     }
     
     const GetToysData = async () =>{
@@ -115,7 +112,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
     }, [newRating])
     
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <Loading />;
     }
     return(
         <div className="toy-details__body">
@@ -129,7 +126,6 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 <Col className="col-12 col-md-6" >
                     <img className="toy-details__image" src={Toy?.image} />
                 </Col>
-                
                 <Col className="toy-details__text col-12 col-md-4">
                     <Row>
                         <div className="toy-details__status col-12 col-md-4">
@@ -152,8 +148,7 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                         'btn-hidden' : (Toy?.status === 1 ? 'btn-reserved' : (Toy?.status === 2 ? 'btn-unavailable' : 'btn-success')  )} onClick={e => {  reservationHandler(e) }}>Reserve</Button>
                     {/* Owner buttons */}
                     <Row>
-                        
-                    
+
                     {Toy?.userId == initialUserDetails?.id.toString() ?
                         <Row className='toy-owner-row'>
                             <article className='toy--owner--button--container'>
@@ -196,14 +191,11 @@ const ToyDetails = ({ initialUserDetails }: any ) => {
                 </Col>
             </Row>
             <Row>
-                
-            
                 <div className="toy-details__bottom col-12 col-md-4">
                     <h6 className='toy-details--info__user-info'>About this toy: </h6>
                     <p className="toy-details__bottom-text">{Toy?.description}</p>
                     
                 </div>
-                
             </Row>
         </div>
     )

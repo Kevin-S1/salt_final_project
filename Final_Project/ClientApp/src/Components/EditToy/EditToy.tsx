@@ -35,7 +35,7 @@ const EditToy = () => {
                 const storageRef = await ref(storage, 'Toys/' + id);
                 const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
                 downloadURL = await getDownloadURL(ref(snapshot.ref));
-                await setImage(downloadURL);
+                setImage(downloadURL);
             }
             
             const newToy = toy;
@@ -66,7 +66,7 @@ const EditToy = () => {
             }
         })
         const data = await response.json();
-        await setToy(data);
+        setToy(data);
     }
     
     const nameChangeHandler = (e: any) => {
@@ -142,7 +142,6 @@ const EditToy = () => {
                             <option value="7">Board Games</option>
                         </select>
                     </Form.Group>
-
                     <Form.Group className="edit-toy-age">
                         <Form.Label className='edit--label'>Age Category</Form.Label>
                         <select value={age} onChange={e => ageChangeHandler(e)} className='edit--select'>

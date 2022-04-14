@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import './toy.css'
 import {toyDetails} from "../../types";
 import ToyInfo from "../ToyInfo/ToyInfo";
-import {Dropdown, Form} from "react-bootstrap";
-import {Link, To, useNavigate, useParams} from "react-router-dom";
+import {Form} from "react-bootstrap";
+import {Link, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
 
 interface Props{

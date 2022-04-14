@@ -16,7 +16,7 @@ const ContactPage = () => {
         const value = event.target.value;
         setInputs((values:any)=> ({...values, [name]: value}))
     }
-    const PostInformation =async (inputs : any) =>{
+    const PostInformation = async (inputs : any) =>{
         const response = await fetch('https://localhost:7275/api/information',{
             method:'POST',
             body:JSON.stringify(inputs),

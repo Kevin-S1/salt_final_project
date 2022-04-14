@@ -7,7 +7,6 @@ const SuccessMsg = (props: any) => {
               <h3 className='success-message'>{props.message}</h3>
           </div>
       </div>
-      
   )
 }
 

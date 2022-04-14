@@ -8,6 +8,7 @@ import SuccessMsg from "../SuccessMsg/SuccessMsg";
 import Footer from "../Footer/Footer";
 import profile from '../../profile.svg'
 import profilepic1 from '../../profilepic1.png'
+import Loading from "../Loading/Loading";
 
 const Details = ({initialUserDetails}:any) => {
   
@@ -41,9 +42,9 @@ const Details = ({initialUserDetails}:any) => {
             setUserCity(data.city);
             setUserCountry(data.country);
             setUserPhoneNumber(data.phoneNumber);
-        }
-        
+        }   
     }
+
     useEffect(()=>{
         getUserInformation();
     },[initialUserDetails])
@@ -62,7 +63,6 @@ const Details = ({initialUserDetails}:any) => {
                setSuccessStatus(true);
            }
            setTimeout(() => { setSuccessStatus(false)}, 4000);
-           
        }
     }
     
@@ -73,9 +73,8 @@ const Details = ({initialUserDetails}:any) => {
         firstLoad.current = false;
     },[updatedUserDetails])
     
-
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <Loading />;
     }
     
     return (

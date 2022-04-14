@@ -3,6 +3,7 @@ import './loans.css';
 import {useAuth0} from "@auth0/auth0-react";
 import {toyDetails} from "../../types";
 import Toy from "../Toys/Toy";
+import Loading from "../Loading/Loading";
 
 interface Props {
     initialUserDetails : any
@@ -20,9 +21,7 @@ const Loans = ({initialUserDetails}:Props) => {
             }
         })
         const data = await response.json();
-        console.log(data);
-        await setLendToys(data);
-        console.log(lendToys);
+        setLendToys(data);
     }
 
     useEffect(()=>{
@@ -30,7 +29,7 @@ const Loans = ({initialUserDetails}:Props) => {
     },[initialUserDetails]);
 
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return <Loading />;
     }
 
     return (

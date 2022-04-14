@@ -12,9 +12,7 @@ const NavBar = () => {
         <>
             <Navbar collapseOnSelect expand="lg" className="navBar" bg="light">
                 <Container>
-                    <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>
-
-                    
+                    <Link className='nav-header' to="/"><strong className="nav-header__sub">Borrow</strong>My</Link>                    
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse className="navbar-collapse navbar-links" id="responsive-navbar-nav">
                         <Nav className="me-auto navbar-items">
@@ -29,7 +27,6 @@ const NavBar = () => {
                                     <Link className='nav-item' to="/contact">Contact</Link>
                                 </Nav.Link>
                             </div>
-                            
                             <div className='nav-items-right'>
                                 {isAuthenticated ?
                                     <NavDropdown title="My Profile" id="collapsible-nav-dropdown">
@@ -44,8 +41,6 @@ const NavBar = () => {
                                     </button> :
                                     <button className="button-32" role="button" onClick={() => loginWithRedirect()}>Log In / Register</button>}
                             </div>
-                            
-                            
                                 </Nav>
                     </Navbar.Collapse>
                 </Container>

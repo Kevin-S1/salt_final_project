@@ -33,10 +33,10 @@ const AddToy = (props : any) => {
         if(e.target[4].files[0] == undefined) {
             downloadURL = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvH7dMd3WcyQTNRr0sxQNzzK8UlZdBQpwKxQ&usqp=CAU';
         } else {
-            const storageRef = await ref(storage, 'Toys/' + id);
+            const storageRef = ref(storage, 'Toys/' + id);
             const snapshot = await uploadBytes(storageRef, e.target[4].files[0])
             downloadURL = await getDownloadURL(ref(snapshot.ref));
-            await setImageUrl(downloadURL);
+            setImageUrl(downloadURL);
         }
         if(isAuthenticated){
             setToy({ name:name, description:description, userId:props.initialUserDetails.id, category: category, age: age, imgUrl: downloadURL});
@@ -87,7 +87,6 @@ const AddToy = (props : any) => {
                 <div className="add-toy__page" >
                     <h2 className='add-toy-header'>Lend out a toy</h2>
                     { successStatus ? <SuccessMsg message="Toy has been added to your listings :)"/> : <></> }
-
                     <Form className="add-toy__container" onSubmit={ (e) => submitHandler(e)}>
                         <Form.Group className="mb-3" controlId="formBasicName">
                             <Form.Label className='add-toy-label'>Name</Form.Label>
@@ -125,18 +124,14 @@ const AddToy = (props : any) => {
                             <label className='' htmlFor='toyimage'>Toy image:</label>
                             <input className='image-upload-input' id='toyimage' type='file'/>
                         </div>
-
                         <Button className="add-toy__orange-button" variant="primary" type="submit">
                             Add toy
                         </Button>
                     </Form>
                 </div>
-
             </div>
             <Footer />
-        
         </>
-        
     );
 };
 
