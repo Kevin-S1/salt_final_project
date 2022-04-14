@@ -3,7 +3,7 @@
 ### Final project for salt
 #### Team: TheVoyagers
 
-![alt text](https://github.com/Kevin-S1/salt_final_project/blob/main/image1.gif "App demo")
+<img align="right" src="https://github.com/Kevin-S1/salt_final_project/blob/main/image1.gif" width="300px" />
 
 ##### How to run:
 - dotnet restore in project folder
